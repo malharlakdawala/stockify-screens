@@ -353,29 +353,17 @@ a[style*="color: #1E7B2C"]{text-underline-offset:3px}
 </head>
 <body>
 <div class="bar" role="navigation" aria-label="Screens">
-  <a class="wm" href="#start">ST<span>O</span>CKIFY</a>
+  <a class="wm" href="#pe-home">ST<span>O</span>CKIFY</a>
   <span class="sub">US Private Equity · UI design v8</span>
   <span class="sp"></span>
   <button type="button" id="nav-prev" aria-label="Previous screen">←</button>
   <label for="nav-sel" style="position:absolute;left:-9999px">Go to screen</label>
-  <select id="nav-sel"><option value="start">Contents</option><option value="pe-home">01 · Deal marketplace</option><option value="pe-deal">02 · Deal page – Helix AI</option><option value="pe-how">03 · How it works</option><option value="pe-admin-deals">04 · Admin – Deals</option><option value="pe-admin-editor">05 · Admin – Deal editor</option><option value="pe-admin-pipeline">06 · Admin – Interest requests</option></select>
+  <select id="nav-sel"><option value="pe-home">01 · Deal marketplace</option><option value="pe-deal">02 · Deal page – Helix AI</option><option value="pe-how">03 · How it works</option><option value="pe-admin-deals">04 · Admin – Deals</option><option value="pe-admin-editor">05 · Admin – Deal editor</option><option value="pe-admin-pipeline">06 · Admin – Interest requests</option></select>
   <button type="button" id="nav-next" aria-label="Next screen">→</button>
   <span class="pos" id="nav-pos"></span>
   <label class="fit"><input type="checkbox" id="nav-fit" checked> Fit to window</label>
 </div>
 <main>
-<section class="screen" id="s-start" data-title="Contents"><div class="frame"><div class="cover">
-    <div class="cover-hero">
-      <div class="cover-brand"><span class="wm">ST<span>O</span>CKIFY</span><span class="tag">invest early</span></div>
-      <h1>US Private Equity – UI design</h1>
-      <p>Investors from India, the UAE and worldwide back US pre-IPO companies – deal marketplace, deal page, how it works and the admin screens.</p>
-      <div class="cover-meta"><span>Prepared by Malhar Lakdawala</span><span>29 Sep 2026</span><span>Design v8</span><span>All companies and figures are fictional samples</span></div>
-      <div class="cover-cta"><a class="btn btn-primary" href="#pe-home">Open the deal marketplace</a><a class="btn cover-ghost" href="#pe-deal">Deal page</a><a class="btn cover-ghost" href="#pe-admin-deals">Admin</a></div><div class="cover-cta" style="margin-top:12px"><a class="btn cover-ghost" href="Stockify-Unlisted.html">Unlisted Company Intelligence ↗</a><a class="btn cover-ghost" href="Stockify-MLDs.html">Market Linked Debentures ↗</a></div>
-      <div class="cover-new"><b>New in v8</b><span>Changes from the 29 Sep review</span><span>Yellow notes show data sources and open checks</span><span>Watchlist, portfolios and mobile dropped for now</span></div><div class="cover-new"><b>Earlier</b><span>US Private Equity module</span><span>Ask AI about any company</span><span>Plain-English screener</span></div>
-      <div class="cover-keys">Tip: use the ← → arrow keys or the bar at the top to move between screens.</div>
-    </div>
-    <div class="toc"><div class="toc-group"><div class="toc-gh"><h2>US Private Equity</h2><span>US pre-IPO deals for investors in India, the UAE and worldwide</span></div><div class="toc-grid g-us"><a class="toc-card" href="#pe-home"><span class="toc-n">01</span><span class="toc-t">Deal marketplace</span><span class="toc-d">Featured deal, filters and all 8 deals – open, closing, coming soon and exited. Switch India / UAE / Global.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#pe-deal"><span class="toc-n">02</span><span class="toc-t">Deal page – Helix AI</span><span class="toc-d">Price vs last round, what you own, all-in fees with a $10,000 example, risks, region tax card, documents. Try Express interest.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#pe-how"><span class="toc-n">03</span><span class="toc-t">How it works</span><span class="toc-d">Ownership diagram, deal timeline, fees explained, India vs UAE vs Global, risks and FAQ.</span><span class="toc-go">Open screen</span></a></div></div><div class="toc-group"><div class="toc-gh"><h2>US PE admin</h2><span>How the Stockify team uploads deals and sees interest requests</span></div><div class="toc-grid g-us"><a class="toc-card" href="#pe-admin-deals"><span class="toc-n">04</span><span class="toc-t">Admin – Deals</span><span class="toc-d">All deals with status, money raised, region split and what needs attention.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#pe-admin-editor"><span class="toc-n">05</span><span class="toc-t">Admin – Deal editor</span><span class="toc-d">Upload a deal: company, terms, fees, minimums by region, structure, documents, status workflow and audit log.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#pe-admin-pipeline"><span class="toc-n">06</span><span class="toc-t">Admin – Interest requests</span><span class="toc-d">A simple list of everyone who clicked Express interest. The team contacts them and takes it from there.</span><span class="toc-go">Open screen</span></a></div></div></div>
-  </div></div></section>
 <section class="screen" id="s-pe-home" data-title="Deal marketplace" data-regional="1"><div class="frame"><div style="width: 1440px; background: #FFFFFF; display: flex; flex-direction: column;">
   <div style="width: 1440px; height: 100px; font-family: 'Instrument Sans', system-ui, sans-serif; color: #1B2B3A; background: #FFFFFF;">
   <header style="height: 64px; background: #1B2B3A; display: flex; align-items: center; gap: 28px; padding: 0 40px; box-sizing: border-box;">
@@ -10383,14 +10371,14 @@ a[style*="color: #1E7B2C"]{text-underline-offset:3px}
     if(ids.indexOf(id)<0) return false;
     screens.forEach(function(s){s.classList.toggle('on',s.id==='s-'+id)});
     cur=id; sel.value=id; var k=ids.indexOf(id);
-    pos.textContent=(k===0?'':k+' / '+(ids.length-1));
-    document.title=(k===0?'':document.getElementById('s-'+id).getAttribute('data-title')+' – ')+'Stockify UI';
+    pos.textContent=(k+1)+' / '+ids.length;
+    document.title=(false?'':document.getElementById('s-'+id).getAttribute('data-title')+' – ')+'Stockify UI';
     if(!keepScroll) window.scrollTo(0,0);
     return true;
   }
   function route(){
     var h=decodeURIComponent(location.hash.slice(1));
-    if(!h){show('start');return;}
+    if(!h){show(ids[0]);return;}
     if(show(h)) return;
     var sc=document.getElementById('s-'+cur); var el=sc&&sc.querySelector('[id="'+h.replace(/"/g,'')+'"]');
     if(el){ var y=el.getBoundingClientRect().top+window.scrollY-72; window.scrollTo(0,y); }
