@@ -353,29 +353,17 @@ a[style*="color: #1E7B2C"]{text-underline-offset:3px}
 </head>
 <body>
 <div class="bar" role="navigation" aria-label="Screens">
-  <a class="wm" href="#start">ST<span>O</span>CKIFY</a>
+  <a class="wm" href="#overview">ST<span>O</span>CKIFY</a>
   <span class="sub">Unlisted Company Intelligence · UI design v8</span>
   <span class="sp"></span>
   <button type="button" id="nav-prev" aria-label="Previous screen">←</button>
   <label for="nav-sel" style="position:absolute;left:-9999px">Go to screen</label>
-  <select id="nav-sel"><option value="start">Contents</option><option value="overview">01 · Overview</option><option value="price">02 · Price &amp; Valuation</option><option value="financials">03 · Financials</option><option value="ownership">04 · Ownership &amp; Funding</option><option value="people">05 · People</option><option value="risk">06 · Risk &amp; Legal</option><option value="digital">07 · Digital &amp; Social</option><option value="news">08 · News &amp; Events</option><option value="peers">09 · Peers</option><option value="co-admin-deck">10 · Admin – Pitch deck to company page</option><option value="discover">11 · Discover &amp; Screener</option><option value="plans">12 · Paywall &amp; Plans</option></select>
+  <select id="nav-sel"><option value="overview">01 · Overview</option><option value="price">02 · Price &amp; Valuation</option><option value="financials">03 · Financials</option><option value="ownership">04 · Ownership &amp; Funding</option><option value="people">05 · People</option><option value="risk">06 · Risk &amp; Legal</option><option value="digital">07 · Digital &amp; Social</option><option value="news">08 · News &amp; Events</option><option value="peers">09 · Peers</option><option value="co-admin-deck">10 · Admin – Pitch deck to company page</option><option value="discover">11 · Discover &amp; Screener</option><option value="plans">12 · Paywall &amp; Plans</option></select>
   <button type="button" id="nav-next" aria-label="Next screen">→</button>
   <span class="pos" id="nav-pos"></span>
   <label class="fit"><input type="checkbox" id="nav-fit" checked> Fit to window</label>
 </div>
 <main>
-<section class="screen" id="s-start" data-title="Contents"><div class="frame"><div class="cover">
-    <div class="cover-hero">
-      <div class="cover-brand"><span class="wm">ST<span>O</span>CKIFY</span><span class="tag">invest early</span></div>
-      <h1>Unlisted Company Intelligence – UI design</h1>
-      <p>Company pages for every unlisted company, built around the Stockify share price – plus the screener and plans.</p>
-      <div class="cover-meta"><span>Prepared by Malhar Lakdawala</span><span>29 Sep 2026</span><span>Design v8</span><span>All companies and figures are fictional samples</span></div>
-      <div class="cover-cta"><a class="btn btn-primary" href="#overview">Open the company page</a><a class="btn cover-ghost" href="#discover">Discover &amp; Screener</a></div><div class="cover-cta" style="margin-top:12px"><a class="btn cover-ghost" href="Stockify-US-Private-Equity.html">US Private Equity ↗</a><a class="btn cover-ghost" href="Stockify-MLDs.html">Market Linked Debentures ↗</a></div>
-      <div class="cover-new"><b>New in v8</b><span>Changes from the 29 Sep review</span><span>Yellow notes show data sources and open checks</span><span>Watchlist, portfolios and mobile dropped for now</span></div><div class="cover-new"><b>Earlier</b><span>US Private Equity module</span><span>Ask AI about any company</span><span>Plain-English screener</span></div>
-      <div class="cover-keys">Tip: use the ← → arrow keys or the bar at the top to move between screens.</div>
-    </div>
-    <div class="toc"><div class="toc-group"><div class="toc-gh"><h2>Company page</h2><span>9 tabs on every company page · the header with price and Buy / Sell is shared</span></div><div class="toc-grid g-company"><a class="toc-card" href="#overview"><span class="toc-n">01</span><span class="toc-t">Overview</span><span class="toc-d">Price with Buy / Sell, factual company snapshot, score (tentative), key numbers and business &amp; products from the pitch deck, IPO watch, red flags, FAQ.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#price"><span class="toc-n">02</span><span class="toc-t">Price &amp; Valuation</span><span class="toc-d">Price history, ratios vs peers, deal details, corporate actions, tax calculator.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#financials"><span class="toc-n">03</span><span class="toc-t">Financials</span><span class="toc-d">Consolidated / standalone P&amp;L, balance sheet, cash flow, ratios, segments, earnings quality.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#ownership"><span class="toc-n">04</span><span class="toc-t">Ownership &amp; Funding</span><span class="toc-d">Shareholding, shareholder count, top holders, funding rounds, group structure, dilution.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#people"><span class="toc-n">05</span><span class="toc-t">People</span><span class="toc-d">Board and management, director network, board checks, leadership changes, team, contacts.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#risk"><span class="toc-n">06</span><span class="toc-t">Risk &amp; Legal</span><span class="toc-d">Red-flag scorecard, rating, charges, court cases, GST and PF record, filings.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#digital"><span class="toc-n">07</span><span class="toc-t">Digital &amp; Social</span><span class="toc-d">Every social channel, audience, share of voice, website, apps, customer voice, employer brand, hiring.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#news"><span class="toc-n">08</span><span class="toc-t">News &amp; Events</span><span class="toc-d">AI video summary, news sentiment, tagged news feed, company timeline, research &amp; blogs.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#peers"><span class="toc-n">09</span><span class="toc-t">Peers</span><span class="toc-d">Listed and unlisted peer table, growth vs valuation chart, ranks.</span><span class="toc-go">Open screen</span></a></div></div><div class="toc-group"><div class="toc-gh"><h2>Company data admin</h2><span>The team uploads a pitch deck, the AI fills the Business & products space</span></div><div class="toc-grid g-company"><a class="toc-card" href="#co-admin-deck"><span class="toc-n">10</span><span class="toc-t">Admin – Pitch deck to company page</span><span class="toc-d">Upload a company’s pitch deck – the AI fills the Business &amp; products space on the company page. Check the preview, hide a section if needed, publish.</span><span class="toc-go">Open screen</span></a></div></div><div class="toc-group"><div class="toc-gh"><h2>Platform</h2><span>Discover, screener and plans</span></div><div class="toc-grid g-platform"><a class="toc-card" href="#discover"><span class="toc-n">11</span><span class="toc-t">Discover &amp; Screener</span><span class="toc-d">Search home, IPO pipeline, Screener.in-style screener, top movers.</span><span class="toc-go">Open screen</span></a><a class="toc-card" href="#plans"><span class="toc-n">12</span><span class="toc-t">Paywall &amp; Plans</span><span class="toc-d">What visitors see after 3 free pages, and the plan tiers.</span><span class="toc-go">Open screen</span></a></div></div></div>
-  </div></div></section>
 <section class="screen" id="s-overview" data-title="Overview"><div class="frame"><div style="width: 1440px; background: #FFFFFF; display: flex; flex-direction: column;">
   <div style="width: 1440px; height: 412px; font-family: 'Instrument Sans', system-ui, sans-serif; color: #1B2B3A; background: #FFFFFF; display: flex; flex-direction: column;">
   <div style="width: 1440px; height: 100px; font-family: 'Instrument Sans', system-ui, sans-serif; color: #1B2B3A; background: #FFFFFF;">
@@ -21447,14 +21435,14 @@ a[style*="color: #1E7B2C"]{text-underline-offset:3px}
     if(ids.indexOf(id)<0) return false;
     screens.forEach(function(s){s.classList.toggle('on',s.id==='s-'+id)});
     cur=id; sel.value=id; var k=ids.indexOf(id);
-    pos.textContent=(k===0?'':k+' / '+(ids.length-1));
-    document.title=(k===0?'':document.getElementById('s-'+id).getAttribute('data-title')+' – ')+'Stockify UI';
+    pos.textContent=(k+1)+' / '+ids.length;
+    document.title=(false?'':document.getElementById('s-'+id).getAttribute('data-title')+' – ')+'Stockify UI';
     if(!keepScroll) window.scrollTo(0,0);
     return true;
   }
   function route(){
     var h=decodeURIComponent(location.hash.slice(1));
-    if(!h){show('start');return;}
+    if(!h){show(ids[0]);return;}
     if(show(h)) return;
     var sc=document.getElementById('s-'+cur); var el=sc&&sc.querySelector('[id="'+h.replace(/"/g,'')+'"]');
     if(el){ var y=el.getBoundingClientRect().top+window.scrollY-72; window.scrollTo(0,y); }
