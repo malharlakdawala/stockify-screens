@@ -365,6 +365,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 @media (max-width:960px){.xgrid,.minis{grid-template-columns:1fr}}
 @media (max-width:720px){.idgrid{grid-template-columns:1fr}.idgrid>div:nth-child(2){border-top:1px solid var(--line);padding-top:18px}.dtitle .mark{width:56px;height:56px}}
 .xcard .mstats .value{white-space:normal;font-size:1.2rem}
+#open-now,#apply,#what-is{scroll-margin-top:90px}
 .screen{display:none}
 .screen.on{display:block}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:16px 24px;border-radius:12px;font-size:1.05rem;opacity:0;pointer-events:none;transition:all .25s;z-index:50;max-width:calc(100% - 32px)}
@@ -409,7 +410,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     <a class="logo" href="#mld-home">ST<b>O</b>CKIFY</a>
     <nav class="nav" aria-label="Main">
       <a href="#mld-home" data-for="mld-home">MLDs</a>
-      <a href="#mld-list" data-for="mld-list">All MLDs</a>
+      <a href="#open-now" data-for="mld-list">All MLDs</a>
       <a href="#mld-how" data-for="mld-how">How MLDs work</a>
     </nav>
     <div class="textsize" role="group" aria-label="Text size">
@@ -508,19 +509,44 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     </div>
   </section>
 
-  <!-- 4. Explore MLDs -->
-  <section class="block" id="explore">
+  <!-- 4. All MLDs with filters -->
+  <section class="block" id="open-now">
     <div class="wrap">
-      <div class="head center"><h2>Explore MLDs</h2><p class="muted">New issues from rated finance companies. Tap any MLD to see its details.</p></div>
-      <div class="filters center-f" role="group" aria-label="Filter MLDs" id="x-filters">
-        <button type="button" aria-pressed="true" data-x="all">All</button>
-        <button type="button" aria-pressed="false" data-x="Nifty 50">Nifty 50</button>
-        <button type="button" aria-pressed="false" data-x="Bank Nifty">Bank Nifty</button>
-        <button type="button" aria-pressed="false" data-x="gsec">Government bond</button>
-        <button type="button" aria-pressed="false" data-x="AAA">AAA rated</button>
+      <div class="head">
+        <h2>All MLDs</h2>
+        <p class="muted">New issues and listed MLDs you can buy from other investors. You pay no fee to Stockify.</p>
       </div>
-      <div class="xgrid" id="x-list"></div>
-      <div style="text-align:center;margin-top:28px"><a class="btn btn-outline btn-xl" href="#mld-list">See all MLDs with more filters</a></div>
+
+      <div class="browse">
+        <aside class="fpanel" id="fpanel" aria-label="Filters">
+          <div class="fhead">
+            <h3>Filters</h3>
+            <button type="button" class="clearbtn" id="f-clear">Clear (0)</button>
+          </div>
+          <div id="f-groups"></div>
+          <button type="button" class="btn btn-primary fdone" id="f-done">Show results</button>
+        </aside>
+
+        <div class="results">
+          <div class="rbar">
+            <p class="rcount" id="r-count" aria-live="polite">Showing 10 MLDs</p>
+            <div class="rtools">
+              <button type="button" class="btn btn-outline ftoggle" id="f-open" aria-controls="fpanel" aria-expanded="false"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filters <span id="f-badge"></span></button>
+              <label class="sortlbl" for="r-sort">Sort by</label>
+              <select id="r-sort">
+                <option value="close">Closing soonest</option>
+                <option value="ret">Highest return</option>
+                <option value="mat">Maturing soonest</option>
+                <option value="rating">Highest rating</option>
+              </select>
+            </div>
+          </div>
+          <div class="chiprow" id="f-chips"></div>
+          <div class="mlist" id="r-list"></div>
+          <div class="empty card" id="r-empty" hidden><h3>No MLDs match these filters</h3><p class="muted">Try removing a filter.</p><button type="button" class="btn btn-outline" id="r-reset">Clear all filters</button></div>
+          <p class="legal" style="margin-top:24px">Return is a year (XIRR), before tax, if the condition is met. Listed MLDs show the return at today’s Stockify price. Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -563,7 +589,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           <div class="bicon" style="margin:0 auto 16px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5 9-10"/></svg></div>
           <h2>Thank you!</h2>
           <p class="muted">Our team will call you within 1 working day.</p>
-          <a class="btn btn-outline" href="#mld-list" style="margin-top:20px">Browse MLDs meanwhile</a>
+          <a class="btn btn-outline" href="#open-now" style="margin-top:20px">Browse MLDs meanwhile</a>
         </div>
       </div>
       <p class="legal" style="margin-top:28px;text-align:center">Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p>
@@ -572,114 +598,8 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 </div>
 
 
-<!-- ============ ALL MLDS (list with filters) ============ -->
-<div class="screen" id="scr-mld-list">
-  <section class="block" id="open-now" style="padding-top:40px">
-    <div class="wrap">
-      <div class="head">
-        <h2>All MLDs</h2>
-        <p class="muted">New issues and listed MLDs you can buy from other investors. You pay no fee to Stockify.</p>
-      </div>
-
-      <div class="browse">
-        <aside class="fpanel" id="fpanel" aria-label="Filters">
-          <div class="fhead">
-            <h3>Filters</h3>
-            <button type="button" class="clearbtn" id="f-clear">Clear (0)</button>
-          </div>
-          <div id="f-groups"></div>
-          <button type="button" class="btn btn-primary fdone" id="f-done">Show results</button>
-        </aside>
-
-        <div class="results">
-          <div class="rbar">
-            <p class="rcount" id="r-count" aria-live="polite">Showing 10 MLDs</p>
-            <div class="rtools">
-              <button type="button" class="btn btn-outline ftoggle" id="f-open" aria-controls="fpanel" aria-expanded="false"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filters <span id="f-badge"></span></button>
-              <label class="sortlbl" for="r-sort">Sort by</label>
-              <select id="r-sort">
-                <option value="close">Closing soonest</option>
-                <option value="ret">Highest return</option>
-                <option value="mat">Maturing soonest</option>
-                <option value="rating">Highest rating</option>
-              </select>
-            </div>
-          </div>
-          <div class="chiprow" id="f-chips"></div>
-          <div class="mlist" id="r-list"></div>
-          <div class="empty card" id="r-empty" hidden><h3>No MLDs match these filters</h3><p class="muted">Try removing a filter.</p><button type="button" class="btn btn-outline" id="r-reset">Clear all filters</button></div>
-          <p class="legal" style="margin-top:24px">Return is a year (XIRR), before tax, if the condition is met. Listed MLDs show the return at today’s Stockify price. Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
-      <div class="card">
-        <div class="head" style="margin-bottom:28px">
-          <h2>₹1 lakh for 2 years: MLD or bank FD?</h2>
-          <p class="muted">What you keep each year after tax, at the 30% tax slab. Example: Kaveri Series 7.</p>
-        </div>
-        <div class="bars">
-          <div class="bar-row"><div class="name">MLD, good case<span>Nifty doesn’t fall over 20%</span></div><div class="track"><div class="fill" style="width:72%;background:var(--green)"></div></div><div class="pct num" style="color:var(--green-ink)">7.15%</div></div>
-          <div class="bar-row"><div class="name">Bank FD<span>Fixed, 7.1% before tax</span></div><div class="track"><div class="fill" style="width:51%;background:#5B7186"></div></div><div class="pct num">5.08%</div></div>
-          <div class="bar-row"><div class="name">MLD, bad case<span>Nifty falls more than 20%</span></div><div class="track"><div class="fill" style="width:1%;background:var(--red-ink)"></div></div><div class="pct num" style="color:var(--red-ink)">0%</div></div>
-        </div>
-        <p class="legal" style="margin-top:24px">Sample rates. Not advice.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
-      <div class="head"><h2>Want to know more?</h2><p class="muted">Open any section for the full details.</p></div>
-      <div class="moregrid">
-
-      <details class="more">
-        <summary><h3>About the companies that issue these MLDs<span class="hint">Ratings, size and past record of all 5 issuers</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="body">
-          <p class="muted">Your money is only as safe as the company. All five have repaid every past MLD on time.</p>
-          <div class="tbl-wrap"><table class="tbl">
-            <thead><tr><th>Company</th><th>Rating</th><th class="r">Net worth</th><th class="r">Past MLDs repaid on time</th></tr></thead>
-            <tbody>
-              <tr><td><strong>Crestline Investments</strong></td><td>AAA · Stable</td><td class="r num">₹18,900 Cr</td><td class="r">22 of 22</td></tr>
-              <tr><td><strong>Kaveri Capital Finance</strong></td><td>AA+ · Stable</td><td class="r num">₹6,240 Cr</td><td class="r">14 of 14</td></tr>
-              <tr><td><strong>Meru Home Finance</strong></td><td>AA · Stable</td><td class="r num">₹2,950 Cr</td><td class="r">8 of 8</td></tr>
-              <tr><td><strong>Palash Finserv</strong></td><td>AA · Stable</td><td class="r num">₹2,180 Cr</td><td class="r">6 of 6</td></tr>
-              <tr><td><strong>Sahyadri Finvest</strong></td><td>AA- · Positive</td><td class="r num">₹1,460 Cr</td><td class="r">3 of 3</td></tr>
-            </tbody>
-          </table></div>
-        </div>
-      </details>
-
-      <details class="more">
-        <summary><h3>Full comparison with FD and bonds<span class="hint">Before and after tax, in rupees</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="body">
-          <div class="tbl-wrap"><table class="tbl">
-            <thead><tr><th>₹1 lakh for 25 months</th><th class="r">Before tax, a year</th><th class="r">After tax, a year</th><th class="r">You get back</th></tr></thead>
-            <tbody>
-              <tr><td>MLD, good case</td><td class="r num">10.23%</td><td class="r num">7.15%</td><td class="r num">₹1,15,480</td></tr>
-              <tr><td>MLD, bad case</td><td class="r num">0%</td><td class="r num">0%</td><td class="r num">₹1,00,000</td></tr>
-              <tr><td>Bank FD</td><td class="r num">7.1%</td><td class="r num">5.08%</td><td class="r num">₹1,10,860</td></tr>
-              <tr><td>AA+ corporate bond</td><td class="r num">8.9%</td><td class="r num">~6.1%</td><td class="r num">≈ ₹1,13,100</td></tr>
-            </tbody>
-          </table></div>
-          <p class="legal">Tax at the 30% slab plus 4% cess (31.2%). FD and bond rates are sample market rates.</p>
-        </div>
-      </details>
-      </div>
-
-      <div class="btns" style="margin-top:28px">
-        <a class="btn btn-outline" href="#" data-demo="Downloading: MLD buyer’s guide (PDF, 12 pages) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download the full MLD guide (PDF)</a>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ============ SCREEN 2: MLD DETAIL ============ -->
 <div class="screen" id="scr-mld-detail">
-  <div class="wrap crumb"><a class="btn-link" href="#mld-list"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 6l-6 6 6 6"/></svg>All MLDs</a></div>
+  <div class="wrap crumb"><a class="btn-link" href="#open-now"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 6l-6 6 6 6"/></svg>All MLDs</a></div>
   <div id="d-root"></div>
 </div>
 
@@ -811,7 +731,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     <div class="wrap">
       <div class="cta">
         <div><h2>Ready to see the open MLDs?</h2><p>6 new issues from 5 companies, from ₹1 lakh.</p></div>
-        <div class="btns"><a class="btn btn-primary" href="#mld-list">See open MLDs</a><a class="btn btn-outline" href="#mld-detail">See an example</a></div>
+        <div class="btns"><a class="btn btn-primary" href="#open-now">See open MLDs</a><a class="btn btn-outline" href="#mld-detail">See an example</a></div>
       </div>
       <p class="legal" style="margin-top:24px">Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p>
     </div>
@@ -831,7 +751,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 <script>
 (function(){
   // Screens by URL hash
-  var ids=['mld-home','mld-list','mld-detail','mld-how'];
+  var ids=['mld-home','mld-detail','mld-how'];
   var detailHook=null;
   function show(){
     var h=(location.hash||'').slice(1), part=h.split('/');
@@ -844,7 +764,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     }
     ids.forEach(function(s){document.getElementById('scr-'+s).classList.toggle('on',s===id)});
     document.querySelectorAll('.nav a').forEach(function(a){
-      if(a.dataset.for===(id==='mld-detail'?'mld-list':id))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+      if(a.dataset.for===((id==='mld-detail'||h==='open-now')?'mld-list':id))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
     });
     if(ids.indexOf(h)>=0||!h)window.scrollTo(0,0);
     else if(target)target.scrollIntoView();
@@ -984,26 +904,6 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   function underText(d){return isGsec(d)?'a government bond':'the '+d.under}
   function underLabel(d){return isGsec(d)?'Government bond':d.under}
   function minLabel(d){return d.status==='Buy from investors'?'₹1 lakh face value':inrShort(d.min)}
-
-  // Landing "Explore MLDs"
-  var xf='all';
-  function xcard(d){
-    var i=MLDS.indexOf(d), soon=d.status==='Coming soon';
-    return '<a class="card xcard" href="#mld-detail/'+i+'">'+
-      '<div class="mname"><div class="mark" style="background:'+d.color+'">'+d.mark+'</div><div><h3>'+esc(d.name)+'</h3><div class="mmeta">'+esc(d.issuer)+' · Rated '+d.rating+'</div>'+
-      (d.hot?'<div style="margin-top:8px"><span class="chip amber">'+d.hot+'</span></div>':soon?'<div style="margin-top:8px"><span class="chip">Coming soon</span></div>':'')+'</div></div>'+
-      '<div class="mstats"><div><div class="label">Linked to</div><div class="value">'+underLabel(d)+'</div></div><div><div class="label">Time</div><div class="value">'+months(ISSUE[i],d.mat)+' months</div></div><div><div class="label">Minimum</div><div class="value num">'+inrShort(d.min)+'</div></div></div>'+
-      '<span class="more-link">View details →</span></a>';
-  }
-  function renderExplore(){
-    var list=MLDS.filter(function(d){return d.status!=='Buy from investors'}).filter(function(d){
-      return xf==='all'||(xf==='gsec'?isGsec(d):xf==='AAA'?d.rating==='AAA':d.under===xf)});
-    document.getElementById('x-list').innerHTML=list.slice(0,6).map(xcard).join('');
-  }
-  document.querySelectorAll('#x-filters button').forEach(function(b){b.addEventListener('click',function(){
-    xf=b.dataset.x;document.querySelectorAll('#x-filters button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});renderExplore();
-  })});
-  renderExplore();
 
   // MLD detail page, built from the MLD's data (fields follow the Dezerv bond page)
   function renderDetail(i){
