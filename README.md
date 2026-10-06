@@ -16,3 +16,5 @@ The live link updates about a minute after each push.
 - File: `Stockify-MLDs-easy-read-v9.html` (MLD list, MLD page, How MLDs work)
 - Live: https://malharlakdawala.github.io/stockify-screens/Stockify-MLDs-easy-read-v9.html
 - Larger text with a text-size switch, less on each screen, extra detail behind "show more" sections and download buttons.
+- File: `Stockify-US-PE-easy-read-v9.html` (US deals, deal page, How it works) – same style, with an "I invest from" switch for India / UAE / other.
+- Live: https://malharlakdawala.github.io/stockify-screens/Stockify-US-PE-easy-read-v9.html

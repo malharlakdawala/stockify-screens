@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stockify US Deals – Easy read</title>
+<meta name="description" content="Stockify US Private Equity screens redesigned for easy reading: larger text, less on each screen, details on demand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Schibsted+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F4; --card:#FFFFFF; --ink:#16232F; --ink-2:#3E4C59; --line:#E3E7E2;
+  --green:#3DB54A; --green-ink:#1A6B26; --green-soft:#EAF5EA; --navy:#1B2B3A;
+  --amber-soft:#FFF5E6; --amber-ink:#8A4B00; --red-soft:#FDEEEC; --red-ink:#A3261B;
+  --radius:16px; --shadow:0 1px 2px rgba(22,35,47,.04),0 4px 16px rgba(22,35,47,.05);
+}
+html{font-size:100%}
+html[data-size="1"]{font-size:112.5%}
+html[data-size="2"]{font-size:125%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Instrument Sans',system-ui,sans-serif;font-size:1.1875rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Schibsted Grotesk',sans-serif;color:var(--ink);margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,4.5vw,3rem);line-height:1.15}
+h2{font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.25}
+h3{font-size:1.375rem;line-height:1.3}
+p{margin:0}
+a{color:var(--green-ink)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.narrow{max-width:820px}
+.lead{font-size:1.3rem;color:var(--ink-2);line-height:1.6}
+.muted{color:var(--ink-2)}
+.small{font-size:1rem}
+.num{font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+:focus-visible{outline:3px solid #1F6FEB;outline-offset:3px;border-radius:8px}
+
+/* Header */
+.top{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.top .wrap{display:flex;align-items:center;gap:28px;min-height:76px}
+.logo{font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:1.5rem;letter-spacing:.04em;color:var(--navy);text-decoration:none}
+.logo b{color:var(--green)}
+.nav{display:flex;gap:6px;flex:1}
+.nav a{white-space:nowrap;font-size:1.125rem;font-weight:600;color:var(--ink-2);text-decoration:none;padding:10px 16px;border-radius:10px}
+.nav a:hover{background:var(--bg)}
+.nav a[aria-current="page"]{color:var(--green-ink);background:var(--green-soft)}
+.textsize{display:flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:12px;padding:4px}
+.textsize span{font-size:.95rem;color:var(--ink-2);padding:0 8px}
+.textsize button{font-family:inherit;font-weight:700;border:0;background:transparent;color:var(--ink);border-radius:8px;width:44px;height:40px;cursor:pointer}
+.textsize button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.textsize button:nth-of-type(1){font-size:15px}.textsize button:nth-of-type(2){font-size:18px}.textsize button:nth-of-type(3){font-size:21px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:0 28px;border-radius:12px;font-family:inherit;font-weight:700;font-size:1.15rem;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:background .15s}
+.btn-primary{background:var(--green);color:#0F1D14}
+.btn-primary:hover{background:#34A541}
+.btn-outline{background:var(--card);color:var(--ink);border-color:#C9D1CB}
+.btn-outline:hover{border-color:var(--navy)}
+.btn-link{font-weight:700;font-size:1.15rem;color:var(--green-ink);text-decoration:none;display:inline-flex;gap:8px;align-items:center;min-height:48px}
+.btn-link:hover{text-decoration:underline}
+.btns{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.ico{width:1.2em;height:1.2em;flex:none}
+
+/* Layout pieces */
+section.block{padding:64px 0}
+section.block + section.block{padding-top:0}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:24px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:1rem;font-weight:600;padding:6px 14px;border-radius:999px;background:var(--bg);color:var(--ink-2)}
+.chip.green{background:var(--green-soft);color:var(--green-ink)}
+.chip.amber{background:var(--amber-soft);color:var(--amber-ink)}
+.dot{width:9px;height:9px;border-radius:50%;background:currentColor}
+
+/* Hero */
+.hero{background:linear-gradient(180deg,#EAF3EA 0%,var(--bg) 100%);padding:72px 0 56px}
+.hero .wrap{display:flex;flex-direction:column;gap:26px}
+.hero .chip{align-self:flex-start}
+.hero h1{max-width:22ch}
+.hero .lead{max-width:52ch}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:20px}
+.fact{display:flex;gap:16px;align-items:flex-start;background:var(--card);border-radius:var(--radius);padding:24px;border:1px solid var(--line)}
+.fact .badge{width:52px;height:52px;border-radius:14px;background:var(--green-soft);color:var(--green-ink);display:grid;place-items:center;flex:none}
+.fact strong{display:block;font-size:1.2rem;line-height:1.35;margin-bottom:4px}
+.fact p{color:var(--ink-2);font-size:1.05rem;line-height:1.5}
+
+/* Product cards */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.filters button{font-family:inherit;font-size:1.1rem;font-weight:600;min-height:50px;padding:0 22px;border-radius:999px;border:2px solid #C9D1CB;background:var(--card);color:var(--ink);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.products{display:flex;flex-direction:column;gap:20px}
+.product{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.5fr) auto;gap:32px;align-items:center}
+.product .who{display:flex;flex-direction:column;gap:10px}
+.issuer{display:flex;align-items:center;gap:14px}
+.mark{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:1.05rem;flex:none}
+.product .pitch{font-size:1.1rem;color:var(--ink-2)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.stat .label{font-size:1rem;color:var(--ink-2)}
+.stat .value{font-size:1.6rem;font-weight:700;line-height:1.2}
+.stat .value.good{color:var(--green-ink)}
+.product .act{display:flex;flex-direction:column;gap:10px;align-items:stretch;min-width:200px;text-align:center}
+.product .act .small{color:var(--ink-2)}
+.legal{font-size:1rem;color:var(--ink-2);line-height:1.55}
+
+/* Compare bars */
+.bars{display:flex;flex-direction:column;gap:22px}
+.bar-row{display:grid;grid-template-columns:220px minmax(0,1fr) 110px;gap:20px;align-items:center}
+.bar-row .name{font-weight:600;font-size:1.15rem;line-height:1.35}
+.bar-row .name span{display:block;font-weight:400;font-size:1rem;color:var(--ink-2)}
+.track{height:22px;border-radius:999px;background:#EEF1EE;overflow:hidden}
+.fill{height:100%;border-radius:999px}
+.bar-row .pct{font-size:1.5rem;font-weight:700;text-align:right}
+
+/* Disclosure / "show more" */
+details.more{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+details.more + details.more{margin-top:16px}
+details.more summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:18px;padding:26px 32px;min-height:84px}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary h3{flex:1}
+details.more summary .hint{font-size:1rem;color:var(--ink-2);font-weight:400;display:block;font-family:'Instrument Sans',sans-serif;letter-spacing:0;margin-top:2px}
+.plus{width:44px;height:44px;border-radius:50%;background:var(--bg);display:grid;place-items:center;flex:none;transition:transform .2s}
+details[open] .plus{transform:rotate(45deg)}
+details.more .body{padding:0 32px 32px;display:flex;flex-direction:column;gap:20px}
+
+/* Tables (only inside "show more") */
+.tbl{width:100%;border-collapse:collapse;font-size:1.1rem;font-variant-numeric:tabular-nums}
+.tbl th{text-align:left;font-size:1rem;color:var(--ink-2);font-weight:600;padding:12px 14px;border-bottom:2px solid var(--line)}
+.tbl td{padding:16px 14px;border-bottom:1px solid var(--line)}
+.tbl .r{text-align:right}
+.tbl-wrap{overflow-x:auto}
+
+/* Detail page */
+.crumb{padding:28px 0 0}
+.outcomes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.outcome{border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:8px}
+.outcome.good{background:var(--green-soft)}
+.outcome.base{background:#EEF1F4}
+.outcome .if{font-size:1.1rem;font-weight:600}
+.outcome .amt{font-size:clamp(2rem,4vw,2.6rem);font-weight:700;line-height:1.15}
+.outcome.good .amt{color:var(--green-ink)}
+.keyfacts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--card)}
+.keyfacts>div{padding:22px 24px;border-left:1px solid var(--line)}
+.keyfacts>div:first-child{border-left:0}
+.keyfacts .label{font-size:1rem;color:var(--ink-2)}
+.keyfacts .value{font-size:1.45rem;font-weight:700;line-height:1.3}
+.risks{display:flex;flex-direction:column;gap:0;counter-reset:r}
+.risks li{list-style:none;display:flex;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.risks li:first-child{border-top:0;padding-top:0}
+.risks li::before{counter-increment:r;content:counter(r);width:44px;height:44px;border-radius:50%;background:var(--amber-soft);color:var(--amber-ink);font-weight:700;display:grid;place-items:center;flex:none;font-size:1.15rem}
+.risks strong{display:block;font-size:1.2rem}
+.risks p{color:var(--ink-2)}
+ul.risks{margin:0;padding:0}
+
+/* Calculator */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.field{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.field label{font-weight:700;font-size:1.15rem}
+.stepper{display:flex;align-items:center;gap:0;border:2px solid #C9D1CB;border-radius:12px;width:max-content;background:#fff}
+.stepper button{width:60px;height:58px;border:0;background:transparent;font-size:1.6rem;font-weight:700;cursor:pointer;color:var(--ink)}
+.stepper output{min-width:150px;text-align:center;font-size:1.2rem;font-weight:700}
+input[type=range]{width:100%;height:44px;accent-color:var(--green-ink);cursor:pointer}
+.range-ends{display:flex;justify-content:space-between;font-size:1rem;color:var(--ink-2)}
+select{font-family:inherit;font-size:1.1rem;min-height:56px;padding:0 16px;border:2px solid #C9D1CB;border-radius:12px;background:#fff;color:var(--ink)}
+.result{border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:14px}
+.result.good{background:var(--green-soft)}
+.result.base{background:#EEF1F4}
+.result .big{font-size:2.6rem;font-weight:700;line-height:1.1}
+.result.good .big{color:var(--green-ink)}
+.result .line{display:flex;justify-content:space-between;gap:16px;font-size:1.1rem;border-top:1px solid rgba(22,35,47,.1);padding-top:12px}
+
+/* Docs */
+.doclist{display:flex;flex-direction:column}
+.doc{display:flex;align-items:center;gap:18px;padding:18px 0;border-top:1px solid var(--line)}
+.doc:first-child{border-top:0}
+.doc .meta{flex:1}
+.doc .meta strong{display:block}
+.doc .meta span{font-size:1rem;color:var(--ink-2)}
+
+/* How it works */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;counter-reset:s}
+.step{position:relative}
+.step .n{width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-size:1.4rem;margin-bottom:18px}
+.step p{color:var(--ink-2);margin-top:8px}
+.ticks{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:16px}
+.ticks li{display:flex;gap:14px;align-items:flex-start}
+.ticks .i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:none;font-weight:700}
+.ticks.yes .i{background:var(--green-soft);color:var(--green-ink)}
+.ticks.no .i{background:var(--red-soft);color:var(--red-ink)}
+.callout{background:var(--amber-soft);border-radius:var(--radius);padding:24px 28px;display:flex;gap:16px;align-items:flex-start}
+.callout strong{color:var(--amber-ink)}
+
+.cta{background:var(--navy);color:#fff;border-radius:24px;padding:48px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.cta h2{color:#fff}
+.cta p{color:#C9D3DC;margin-top:8px}
+.cta .btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+
+footer{border-top:1px solid var(--line);background:var(--card);padding:40px 0 56px;margin-top:40px}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 28px;margin-bottom:18px}
+footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:1.05rem}
+
+.screen{display:none}
+.screen.on{display:block}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:16px 24px;border-radius:12px;font-size:1.05rem;opacity:0;pointer-events:none;transition:all .25s;z-index:50;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width:960px){
+  .product{grid-template-columns:1fr;gap:22px}
+  .product .act{flex-direction:row;flex-wrap:wrap;align-items:center;text-align:left}
+  .calc,.g2{grid-template-columns:1fr}
+  .g4,.keyfacts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .keyfacts>div:nth-child(3){border-left:0}
+  .keyfacts>div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:720px){
+  body{font-size:1.125rem}
+  .wrap{padding:0 16px}
+  .top .wrap{flex-wrap:wrap;gap:8px 16px;padding-top:10px;padding-bottom:10px}
+  .nav{order:3;flex-basis:100%;overflow-x:auto}
+  .textsize{margin-left:auto}
+  .textsize span{display:none}
+  .top .login{display:none}
+  .nav a{padding:8px 12px;font-size:1.05rem}
+  .facts,.g3,.steps,.outcomes{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .stat .value{font-size:1.3rem}
+  .card{padding:22px}
+  details.more summary{padding:20px 22px}
+  details.more .body{padding:0 22px 24px}
+  .bar-row{grid-template-columns:1fr auto;gap:8px 12px}
+  .bar-row .track{grid-column:1 / -1;grid-row:2}
+  .cta{padding:32px 24px}
+  section.block{padding:44px 0}
+  .hero{padding:44px 0 36px}
+  .btns .btn{flex:1 1 100%}
+}
+
+.regionbar{background:var(--navy);color:#fff}
+.regionbar .wrap{display:flex;align-items:center;gap:18px;min-height:72px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.rlabel{font-weight:700;font-size:1.15rem}
+.region{display:flex;gap:8px;flex-wrap:wrap}
+.region button{font-family:inherit;font-size:1.1rem;font-weight:600;min-height:50px;padding:0 22px;border-radius:999px;border:2px solid rgba(255,255,255,.35);background:transparent;color:#fff;cursor:pointer}
+.region button[aria-pressed="true"]{background:#fff;color:var(--navy);border-color:#fff}
+.steps4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.flow{font-size:1.25rem;font-weight:700;background:var(--green-soft);color:var(--green-ink);border-radius:12px;padding:18px 22px}
+@media (max-width:960px){.steps4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.steps4{grid-template-columns:1fr}.region button{padding:0 16px;font-size:1.02rem}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#pe-home">ST<b>O</b>CKIFY</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#pe-home" data-for="pe-home">US deals</a>
+      <a href="#pe-deal" data-for="pe-deal">Featured deal</a>
+      <a href="#pe-how" data-for="pe-how">How it works</a>
+    </nav>
+    <div class="textsize" role="group" aria-label="Text size">
+      <span>Text size</span>
+      <button type="button" data-size="0" aria-label="Normal text">A</button>
+      <button type="button" data-size="1" aria-label="Larger text">A</button>
+      <button type="button" data-size="2" aria-label="Largest text">A</button>
+    </div>
+    <a class="btn btn-outline login" href="#" data-demo="Log in" style="min-height:48px;padding:0 20px;font-size:1.05rem">Log in</a>
+  </div>
+</header>
+
+<div class="regionbar">
+  <div class="wrap">
+    <span class="rlabel">I invest from</span>
+    <div class="region" role="group" aria-label="I invest from">
+      <button type="button" data-region="in">India</button>
+      <button type="button" data-region="ae">UAE</button>
+      <button type="button" data-region="gl">Another country</button>
+    </div>
+  </div>
+</div>
+
+<main>
+<!-- ============ SCREEN 1: DEALS ============ -->
+<div class="screen" id="scr-pe-home">
+  <section class="hero">
+    <div class="wrap">
+      <span class="chip green"><span class="dot"></span>4 deals open now</span>
+      <h1>Invest in top US private companies, before they list.</h1>
+      <p class="lead">Own a small part of fast-growing American companies like AI and robotics firms. Start from <strong data-r="min"></strong> <span data-r="minLocal"></span>.</p>
+      <div class="btns">
+        <a class="btn btn-primary" href="#open-deals">See open deals</a>
+        <a class="btn btn-outline" href="#pe-how">How it works <span class="muted small">· 3 min</span></a>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="badge"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><div><strong>Money held safely</strong><p>You pay into an escrow account, never to Stockify.</p></div></div>
+        <div class="fact"><div class="badge"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div><div><strong>One company per deal</strong><p>Each deal has its own US holding company. Deals never mix.</p></div></div>
+        <div class="fact"><div class="badge"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></div><div><strong>Refund if it’s blocked</strong><p>If the company stops the sale, you get your money back.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="callout"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#8A4B00" stroke-width="2" style="margin-top:4px"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><div><strong>High risk, long wait.</strong> Only invest money you won’t need for many years and can afford to lose. You can usually sell only after the company lists or is sold.</div></div>
+    </div>
+  </section>
+
+  <section class="block" id="open-deals">
+    <div class="wrap">
+      <div class="head">
+        <h2>Open deals</h2>
+        <p class="muted">Prices in US dollars. Minimum shown for investors from <span data-r="where"></span>.</p>
+      </div>
+
+      <div class="products">
+        <article class="card product">
+          <div class="who">
+            <div class="issuer"><div class="mark" style="background:#5B3FB0">HA</div><div><h3>Helix AI</h3><span class="muted small">AI for large businesses · San Francisco</span></div></div>
+            <div><span class="chip green">Company approved the sale</span></div>
+            <p class="pitch">Makes AI assistants that handle customer support, accounts and IT work.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="label">Price</div><div class="value num">$142.50</div><div class="label">per share</div></div>
+            <div class="stat"><div class="label">vs last round</div><div class="value num">11% more</div><div class="label">than Jun 2026</div></div>
+            <div class="stat"><div class="label">Minimum</div><div class="value num" data-r="min"></div><div class="label" data-r="minLocalShort"></div></div>
+          </div>
+          <div class="act"><a class="btn btn-primary" href="#pe-deal">See details</a><span class="small">Closes 18 Oct 2026</span></div>
+        </article>
+
+        <article class="card product">
+          <div class="who">
+            <div class="issuer"><div class="mark" style="background:#1F6F8B">NW</div><div><h3>Northwind Data</h3><span class="muted small">Data and AI cloud · Seattle</span></div></div>
+            <div><span class="chip amber">Closing soon · 94% taken</span></div>
+            <p class="pitch">Runs the cloud computers that companies use to store data and train AI.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="label">Price</div><div class="value num">$88.00</div><div class="label">per share</div></div>
+            <div class="stat"><div class="label">vs last round</div><div class="value good num">16% less</div><div class="label">than last round</div></div>
+            <div class="stat"><div class="label">Minimum</div><div class="value num" data-r="min"></div><div class="label" data-r="minLocalShort"></div></div>
+          </div>
+          <div class="act"><a class="btn btn-primary" href="#pe-deal">See details</a><span class="small">Closes 30 Sep 2026</span></div>
+        </article>
+
+        <article class="card product">
+          <div class="who">
+            <div class="issuer"><div class="mark" style="background:#B5541C">FR</div><div><h3>Ferrous Robotics</h3><span class="muted small">Humanoid robots · Austin</span></div></div>
+            <p class="pitch">Builds human-shaped robots for factories and warehouses.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="label">Price</div><div class="value num">$31.20</div><div class="label">per share</div></div>
+            <div class="stat"><div class="label">vs last round</div><div class="value num">10% more</div><div class="label">than last round</div></div>
+            <div class="stat"><div class="label">Minimum</div><div class="value num" data-r="min"></div><div class="label" data-r="minLocalShort"></div></div>
+          </div>
+          <div class="act"><a class="btn btn-primary" href="#pe-deal">See details</a><span class="small">Closes 25 Oct 2026</span></div>
+        </article>
+
+        <article class="card product">
+          <div class="who">
+            <div class="issuer"><div class="mark" style="background:#1E6B34">CP</div><div><h3>Cascade Pay</h3><span class="muted small">Payments · New York</span></div></div>
+            <p class="pitch">Moves money for online shops and apps behind the scenes.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="label">Price</div><div class="value num">$27.40</div><div class="label">per share</div></div>
+            <div class="stat"><div class="label">vs last round</div><div class="value good num">26% less</div><div class="label">than last round</div></div>
+            <div class="stat"><div class="label">Minimum</div><div class="value num" data-r="min"></div><div class="label" data-r="minLocalShort"></div></div>
+          </div>
+          <div class="act"><a class="btn btn-primary" href="#pe-deal">See details</a><span class="small">Closes 2 Nov 2026</span></div>
+        </article>
+      </div>
+      <p class="legal" style="margin-top:24px">“Last round” is the price big investors paid in the company’s latest funding. Paying less is not a guarantee of a good deal. Nothing here is investment advice.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="card">
+        <div class="head" style="margin-bottom:24px"><h2>A past deal: how it turned out</h2><p class="muted">Quanta Genomics, bought at $14.00 a share in Jan 2024. Listed on Nasdaq in Mar 2026.</p></div>
+        <div class="outcomes">
+          <div class="outcome base"><div class="if">You invested</div><div class="amt num">$5,000</div><div class="muted">Jan 2024</div></div>
+          <div class="outcome good"><div class="if">You got back, after all fees</div><div class="amt num">$9,620</div><div class="muted">1.92 times your money · Mar 2026</div></div>
+        </div>
+        <p class="legal" style="margin-top:20px">Past results don’t predict future returns. Some deals can lose money.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head"><h2>Want to know more?</h2><p class="muted">Open any section for the full details.</p></div>
+
+      <details class="more">
+        <summary><h3>What you need to invest<span class="hint" data-r="whereHint"></span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div class="tbl-wrap"><table class="tbl"><tbody>
+            <tr><td><strong>Who can invest</strong></td><td data-r="who"></td></tr>
+            <tr><td><strong>Minimum</strong></td><td><span data-r="min"></span> <span data-r="minLocal"></span></td></tr>
+            <tr><td><strong>How you pay</strong></td><td data-r="pay"></td></tr>
+            <tr><td><strong>Forms</strong></td><td data-r="forms"></td></tr>
+          </tbody></table></div>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>The 4 steps to invest<span class="hint">From saying “I’m interested” to owning your units</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body"><ul class="risks">
+          <li><div><strong>Tell us you’re interested</strong><p>Pick a deal and an amount. No payment yet, and it’s not binding.</p></div></li>
+          <li><div><strong>We confirm your amount</strong><p>We check you can invest. Popular deals may be scaled back.</p></div></li>
+          <li><div><strong>Pay into escrow</strong><p>From your own bank account. Never to Stockify.</p></div></li>
+          <li><div><strong>You get your units</strong><p>We send you a statement by email, about 2 weeks later.</p></div></li>
+        </ul></div>
+      </details>
+
+      <details class="more">
+        <summary><h3>Coming soon and past deals<span class="hint">2 opening soon · 2 closed</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>Company</th><th>What it does</th><th>Status</th><th></th></tr></thead>
+            <tbody>
+              <tr><td><strong>Aegis Autonomy</strong></td><td>Defence AI</td><td>Opens 15 Oct 2026</td><td class="r"><a class="btn btn-outline" style="min-height:48px" href="#" data-demo="You’re on the waitlist. We’ll email you the day it opens.">Join waitlist</a></td></tr>
+              <tr><td><strong>Lumen Fusion</strong></td><td>Fusion energy</td><td>Opens Nov 2026</td><td class="r"><a class="btn btn-outline" style="min-height:48px" href="#" data-demo="You’re on the waitlist. We’ll email you the day it opens.">Join waitlist</a></td></tr>
+              <tr><td><strong>Parcel Prime</strong></td><td>Warehouse robots</td><td>Closed Aug 2026 · holding</td><td></td></tr>
+              <tr><td><strong>Quanta Genomics</strong></td><td>Genomics</td><td style="color:var(--green-ink)">Listed · 1.92x after fees</td><td></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </details>
+
+      <div class="btns" style="margin-top:28px">
+        <a class="btn btn-outline" href="#" data-demo="Downloading: US private equity guide (PDF, 14 pages) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download the full guide (PDF)</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ SCREEN 2: DEAL PAGE ============ -->
+<div class="screen" id="scr-pe-deal">
+  <div class="wrap crumb"><a class="btn-link" href="#pe-home"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 6l-6 6 6 6"/></svg>All deals</a></div>
+
+  <section class="block" style="padding-top:20px">
+    <div class="wrap" style="display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="btns" style="gap:10px"><span class="chip green"><span class="dot"></span>Open · closes 18 Oct 2026</span><span class="chip green">✓ Company approved the sale</span></div>
+        <h1>Helix AI</h1>
+        <p class="lead">Makes AI assistants that large businesses use for customer support, accounts and IT. Based in San Francisco, about 1,400 people.</p>
+      </div>
+
+      <div class="keyfacts">
+        <div><div class="label">Price per share</div><div class="value num">$142.50</div></div>
+        <div><div class="label">vs last round ($128)</div><div class="value num">11% more</div></div>
+        <div><div class="label">Company value</div><div class="value num">$67.9 billion</div></div>
+        <div><div class="label">Your minimum</div><div class="value num" data-r="min"></div></div>
+      </div>
+
+      <div class="card" style="display:flex;flex-direction:column;gap:20px">
+        <h2>What it costs you</h2>
+        <div class="grid g3">
+          <div><div class="num" style="font-size:2.2rem;font-weight:700">3.5%</div><p class="muted">once, when you invest</p></div>
+          <div><div class="num" style="font-size:2.2rem;font-weight:700">$0</div><p class="muted">every year while you hold</p></div>
+          <div><div class="num" style="font-size:2.2rem;font-weight:700">10%</div><p class="muted">of your profit, only if you make money</p></div>
+        </div>
+      </div>
+
+      <div class="btns">
+        <a class="btn btn-primary" href="#" data-demo="Interest saved (demo). Not binding until you sign on 14 Oct.">I’m interested</a>
+        <a class="btn btn-outline" href="#" data-demo="Downloading: Helix AI deal summary (PDF) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download deal summary</a>
+      </div>
+      <p class="muted small" style="margin-top:-12px">Saying you’re interested is not binding. You pay only after your amount is confirmed.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="card">
+        <div class="head"><h2>4 things to know before you invest</h2></div>
+        <ul class="risks">
+          <li><div><strong>It may never list</strong><p>There is no IPO date. You may not be able to sell for years.</p></div></li>
+          <li><div><strong>You pay more than the last round</strong><p>$142.50 is 11% more than big investors paid in June 2026.</p></div></li>
+          <li><div><strong>You own units, not shares directly</strong><p>A US holding company holds the Helix shares for you.</p></div></li>
+          <li><div><strong data-r="risk4t"></strong><p data-r="risk4"></p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="card">
+        <div class="head"><h2>See what you could get back</h2><p class="muted">An example only. Nobody knows what Helix will be worth.</p></div>
+        <div class="calc">
+          <div>
+            <div class="field">
+              <label id="lbl-amt">How much you invest</label>
+              <div class="stepper" role="group" aria-labelledby="lbl-amt">
+                <button type="button" id="p-minus" aria-label="Less">−</button>
+                <output id="p-amt" class="num">$10,000</output>
+                <button type="button" id="p-plus" aria-label="More">+</button>
+              </div>
+              <span class="muted small" id="p-amt-local"></span>
+            </div>
+            <div class="field" style="margin-bottom:0">
+              <label id="lbl-mult">If Helix is later worth</label>
+              <div class="filters" role="group" aria-labelledby="lbl-mult" style="margin:0">
+                <button type="button" data-m="0.5" aria-pressed="false">Half</button>
+                <button type="button" data-m="1" aria-pressed="false">Same</button>
+                <button type="button" data-m="2" aria-pressed="true">2 times</button>
+                <button type="button" data-m="3" aria-pressed="false">3 times</button>
+              </div>
+            </div>
+          </div>
+          <div class="result good" id="p-box" aria-live="polite">
+            <div>You would get back</div>
+            <div class="big num" id="p-get">$18,370</div>
+            <div class="muted" id="p-local"></div>
+            <div class="line"><span>Upfront fee (3.5%)</span><strong class="num" id="p-fee">−$350</strong></div>
+            <div class="line"><span>Profit share (10%)</span><strong class="num" id="p-carry">−$930</strong></div>
+            <div class="line"><span>Times your money</span><strong class="num" id="p-x">1.84x</strong></div>
+          </div>
+        </div>
+        <p class="legal" style="margin-top:20px">Before tax. Currency moves can also change what you get in your own currency.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head"><h2>More details</h2><p class="muted">Open any section, or download the full documents.</p></div>
+
+      <details class="more">
+        <summary><h3>Why investors like Helix<span class="hint">Growth, customers and backers</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body"><ul class="ticks yes" style="margin:0">
+          <li><span class="i">✓</span><div><strong>Fast growth.</strong> Sales of about $3.2 billion a year, around 4 times last year (estimate).</div></li>
+          <li><span class="i">✓</span><div><strong>Big customers.</strong> Sells to large businesses that sign long contracts.</div></li>
+          <li><span class="i">✓</span><div><strong>Strong backers.</strong> Summit Ridge Capital led the last round. Nimbus Cloud is a partner.</div></li>
+        </ul></div>
+      </details>
+
+      <details class="more">
+        <summary><h3>Price history<span class="hint">What investors paid in each funding round</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>When</th><th>Round</th><th class="r">Price per share</th><th class="r">Company value</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Sep 2026</strong></td><td><strong>This deal</strong></td><td class="r num"><strong>$142.50</strong></td><td class="r num">$67.9B</td></tr>
+              <tr><td>Jun 2026</td><td>Series D</td><td class="r num">$128.00</td><td class="r num">$61.0B</td></tr>
+              <tr><td>May 2024</td><td>Series C</td><td class="r num">$46.20</td><td class="r num">$22.0B</td></tr>
+              <tr><td>Apr 2023</td><td>Series B</td><td class="r num">$17.60</td><td class="r num">$8.4B</td></tr>
+              <tr><td>Jan 2022</td><td>Series A</td><td class="r num">$4.40</td><td class="r num">$2.1B</td></tr>
+            </tbody>
+          </table></div>
+          <p class="muted">Other dealers quoted $136–$149 in the last 30 days, so this price is within the market range. Big investors hold “preferred” shares that get paid first if the company is sold cheaply; this deal buys ordinary shares.</p>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>What you actually own<span class="hint">How your money reaches Helix shares</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <p class="flow num" data-r="ownFlow"></p>
+          <p class="muted">Helix allows only a few new shareholders, so one US holding company (an “SPV”) joins on behalf of all 214 investors. Its only asset is Helix shares. <span data-r="ownWhy"></span></p>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>Key dates<span class="hint">From interest to owning units</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div class="tbl-wrap"><table class="tbl"><tbody>
+            <tr><td>Say you’re interested by</td><td class="r"><strong>10 Oct 2026</strong></td></tr>
+            <tr><td>Your amount confirmed</td><td class="r"><strong>14 Oct 2026</strong></td></tr>
+            <tr><td>Pay by</td><td class="r"><strong>21 Oct 2026</strong></td></tr>
+            <tr><td>Units sent to you</td><td class="r"><strong>About 4 Nov 2026</strong></td></tr>
+            <tr><td>Getting your money back</td><td class="r"><strong>After an IPO or sale</strong></td></tr>
+          </tbody></table></div>
+          <p class="muted">No IPO is filed yet. Press reports suggest 2027–28, but this is not confirmed. After an IPO, shares are usually locked for 180 days.</p>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>Tax and paperwork<span class="hint" data-r="whereHint"></span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div class="tbl-wrap"><table class="tbl"><tbody>
+            <tr><td><strong>Who can invest</strong></td><td data-r="who"></td></tr>
+            <tr><td><strong>How you pay</strong></td><td data-r="pay"></td></tr>
+            <tr><td><strong>Tax</strong></td><td data-r="tax"></td></tr>
+            <tr><td><strong>Forms</strong></td><td data-r="forms"></td></tr>
+          </tbody></table></div>
+          <p class="legal">A short guide, not tax advice.</p>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>About Helix AI<span class="hint">Products, leaders and recent news</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div><strong>What it sells</strong><p class="muted">AI models businesses use through the internet, ready-made AI assistants, and tools to build their own.</p></div>
+          <div><strong>Who runs it</strong><p class="muted">Dr. Maya Chen (CEO, co-founder), Arjun Mehta (CTO, co-founder), Lena Fischer (CFO).</p></div>
+          <div><strong>Recent news</strong><p class="muted">18 Sep: launched assistants for banks and insurers. 2 Sep: opened offices in London and Bengaluru. 21 Aug: press reports of early IPO talks.</p></div>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>Documents<span class="hint">Deal memorandum, agreements and risk disclosure</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div class="doclist">
+            <div class="doc"><div class="meta"><strong>Deal summary in plain English</strong><span>Stockify · 4 pages</span></div><a class="btn btn-outline" style="min-height:48px" href="#" data-demo="Downloading (sample)">Download</a></div>
+            <div class="doc"><div class="meta"><strong>Risk disclosure</strong><span>All 8 risks in full</span></div><a class="btn btn-outline" style="min-height:48px" href="#" data-demo="Downloading (sample)">Download</a></div>
+            <div class="doc"><div class="meta"><strong>Private placement memorandum</strong><span>32 pages · the full deal terms</span></div><a class="btn btn-outline" style="min-height:48px" href="#" data-demo="Opens after a 2-minute eligibility check (demo)">Unlock</a></div>
+            <div class="doc"><div class="meta"><strong>Subscription agreement</strong><span>You sign this to invest</span></div><a class="btn btn-outline" style="min-height:48px" href="#" data-demo="Opens after a 2-minute eligibility check (demo)">Unlock</a></div>
+          </div>
+          <a class="btn btn-primary" href="#" data-demo="Starting the 2-minute eligibility check (demo)" style="align-self:flex-start">Check eligibility to see all 7 documents</a>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>Common questions<span class="hint">When do I get my money back? Is interest binding?</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div><strong>When can I get my money back?</strong><p class="muted">Only after Helix lists or is sold. That can take years.</p></div>
+          <div><strong>Is saying I’m interested binding?</strong><p class="muted">No. You commit only when you sign, after your amount is confirmed on 14 Oct.</p></div>
+          <div><strong>What does it cost on $10,000?</strong><p class="muted">$350 upfront, so $9,650 is invested. Then 10% of any profit at the end.</p></div>
+        </div>
+      </details>
+
+      <p class="legal" style="margin-top:28px">Private company investments are high risk and hard to sell. Nothing here is investment advice.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ============ SCREEN 3: HOW IT WORKS ============ -->
+<div class="screen" id="scr-pe-how">
+  <section class="hero">
+    <div class="wrap">
+      <span class="chip">3-minute read</span>
+      <h1>How investing in US private companies works</h1>
+      <p class="lead">You invest in US dollars through a small US company set up for one deal. When the company lists or is sold, you get your share of the money.</p>
+      <div class="btns">
+        <a class="btn btn-outline" href="#" data-demo="Downloading: US private equity guide (PDF, 14 pages) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download the full guide (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head"><h2>4 simple steps</h2><p class="muted">About 4 weeks to get in. Getting out can take years.</p></div>
+      <div class="steps steps4">
+        <div class="card step"><div class="n">1</div><h3>Say you’re interested</h3><p>Pick a deal and an amount. No payment yet.</p></div>
+        <div class="card step"><div class="n">2</div><h3>We confirm</h3><p>We check you can invest and confirm your amount.</p></div>
+        <div class="card step"><div class="n">3</div><h3>You pay</h3><p>Into a safe escrow account, never to Stockify.</p></div>
+        <div class="card step"><div class="n">4</div><h3>You wait</h3><p>Until the company lists or is sold. Then you get paid.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="card" style="display:flex;flex-direction:column;gap:20px">
+        <h2>What it costs</h2>
+        <div class="grid g3">
+          <div><div class="num" style="font-size:2.2rem;font-weight:700">3.5%</div><p class="muted">once, when you invest</p></div>
+          <div><div class="num" style="font-size:2.2rem;font-weight:700">$0</div><p class="muted">every year while you hold</p></div>
+          <div><div class="num" style="font-size:2.2rem;font-weight:700">10%</div><p class="muted">of your profit, only if you make money</p></div>
+        </div>
+        <p class="muted">Example: invest $10,000. If the company later doubles in value, you get back <strong style="color:var(--green-ink)">$18,370</strong> after all fees.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="card">
+        <div class="head"><h2>5 risks you must understand</h2><p class="muted">Only invest money you won’t need for many years, and can afford to lose.</p></div>
+        <ul class="risks">
+          <li><div><strong>You could lose money</strong><p>Private companies can fail, or be sold for less than you paid.</p></div></li>
+          <li><div><strong>Your money is locked in</strong><p>There’s no easy way to sell before an IPO or sale. It may never list.</p></div></li>
+          <li><div><strong>You own units, not shares</strong><p>A holding company keeps the shares for you.</p></div></li>
+          <li><div><strong>Less information</strong><p>Private companies share far less than listed ones.</p></div></li>
+          <li><div><strong>Currency and tax</strong><p>You invest in dollars, so currency moves change your return.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="card">
+        <div class="head"><h2>What you need</h2><p class="muted">For investors from <span data-r="where"></span>. Change this at the top of the page.</p></div>
+        <div class="grid g2">
+          <div><div class="muted small">Who can invest</div><p style="font-weight:600" data-r="who"></p></div>
+          <div><div class="muted small">Minimum per deal</div><p style="font-weight:600"><span data-r="min"></span> <span data-r="minLocal"></span></p></div>
+          <div><div class="muted small">How you pay</div><p style="font-weight:600" data-r="pay"></p></div>
+          <div><div class="muted small">Forms</div><p style="font-weight:600" data-r="forms"></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head"><h2>Want to go deeper?</h2><p class="muted">Open any topic.</p></div>
+
+      <details class="more">
+        <summary><h3>What you actually own<span class="hint">How your money reaches the company’s shares</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <p class="flow num" data-r="ownFlow"></p>
+          <p class="muted">The “SPV” is a small US company set up for one deal only. It pools everyone’s money, buys the shares and gives you units. <span data-r="ownWhy"></span></p>
+          <p class="muted">Your money goes: your bank → the deal’s escrow account → shares, when the deal closes. If the company blocks the sale, escrow returns it.</p>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>Tax in short<span class="hint" data-r="whereHint"></span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body"><p data-r="tax"></p><p class="legal">A short guide, not tax advice.</p></div>
+      </details>
+
+      <details class="more">
+        <summary><h3>Getting your money out<span class="hint">IPO, lock-up and sale</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body"><ul class="risks">
+          <li><div><strong>The company lists or is sold</strong><p>There is no fixed date. It can take years.</p></div></li>
+          <li><div><strong>Lock-up, usually 180 days</strong><p>After an IPO, shares usually can’t be sold for about 6 months.</p></div></li>
+          <li><div><strong>You choose</strong><p>We sell and pay you, or move the shares to your own broker account.</p></div></li>
+        </ul></div>
+      </details>
+
+      <details class="more">
+        <summary><h3>Common questions<span class="hint">Can I sell early? What if the company blocks the sale?</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div><strong>Can I sell before the IPO?</strong><p class="muted">Usually not. Plan to hold until the company lists or is sold.</p></div>
+          <div><strong>What if the company blocks the sale?</strong><p class="muted">The deal doesn’t go ahead and escrow returns your money.</p></div>
+          <div><strong>Where are my documents?</strong><p class="muted">They open after a short eligibility check. Statements come by email.</p></div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="cta">
+        <div><h2>Ready to see the open deals?</h2><p>4 US companies open now, from <span data-r="min"></span>.</p></div>
+        <div class="btns"><a class="btn btn-primary" href="#pe-home">See open deals</a><a class="btn btn-outline" href="#pe-deal">See an example</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links"><a href="#">About our data</a><a href="#">Disclaimer</a><a href="#">Privacy</a><a href="#">Contact us</a><a href="Stockify-US-Private-Equity.html#pe-home">Previous design (v8)</a></div>
+    <p class="legal">Stockify US Private Equity lets eligible investors outside the US invest in US private companies through one SPV per deal. Nothing on this page is investment, legal or tax advice. Private company investments are high risk and hard to sell. Design sample – all companies and figures are fictional.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+<script>
+(function(){
+  var ids=['pe-home','pe-deal','pe-how'];
+  function show(){
+    var h=(location.hash||'').slice(1), target=document.getElementById(h);
+    var id=ids.indexOf(h)>=0?h:null;
+    if(!id){var scr=target&&target.closest&&target.closest('.screen');id=scr?scr.id.replace('scr-',''):'pe-home';}
+    ids.forEach(function(s){document.getElementById('scr-'+s).classList.toggle('on',s===id)});
+    document.querySelectorAll('.nav a').forEach(function(a){
+      if(a.dataset.for===id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+    });
+    if(ids.indexOf(h)>=0||!h)window.scrollTo(0,0);else if(target)target.scrollIntoView();
+  }
+  window.addEventListener('hashchange',show);show();
+
+  function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+
+  // Text size
+  var root=document.documentElement, sizeBtns=document.querySelectorAll('.textsize button');
+  function setSize(n){root.setAttribute('data-size',n);sizeBtns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.size===String(n))});store('stk-text',n)}
+  setSize(store('stk-text')||'0');
+  sizeBtns.forEach(function(b){b.addEventListener('click',function(){setSize(b.dataset.size)})});
+
+  // Region: what changes depending on where the investor lives
+  var R={
+    in:{where:'India',whereHint:'For investors from India',min:'$5,000',minLocal:'(about ₹4.80 lakh)',minLocalShort:'≈ ₹4.80 lakh',
+      who:'Resident Indians with PAN and KYC',
+      pay:'Bank transfer under LRS (up to US$250,000 a year). TCS may apply – you can claim it back in your tax return.',
+      forms:'PAN, Aadhaar, W-8BEN, LRS declaration (Form A2)',
+      tax:'Gains are taxed at 12.5% if you hold for more than 24 months, otherwise at your slab rate. Declare the holding in Schedule FA. US tax on dividends: 25%. US estate tax may apply.',
+      ownFlow:'You → US holding company (SPV) → Helix shares',
+      ownWhy:'Investors from India hold the SPV directly.',
+      risk4t:'US estate tax may apply',risk4:'You hold the US company directly. If a holder dies, US estate tax can apply.',
+      fx:95.9,cur:'in',minNum:5000},
+    ae:{where:'the UAE',whereHint:'For investors from the UAE',min:'$25,000',minLocal:'(about AED 91,813)',minLocalShort:'≈ AED 91,813',
+      who:'Professional investors with net assets of US$1 million or more (verified)',
+      pay:'USD or AED wire from your own UAE bank account',
+      forms:'Emirates ID or passport, proof of net assets, W-8BEN, CRS self-certification',
+      tax:'No UAE personal tax on gains. US tax on dividends: 30%. The offshore company in between protects you from US estate tax.',
+      ownFlow:'You → Stockify offshore company → US holding company (SPV) → Helix shares',
+      ownWhy:'The offshore company in between keeps you out of US estate tax.',
+      risk4t:'Currency moves',risk4:'You invest in US dollars, so exchange rates change what you get in dirhams.',
+      fx:3.6725,cur:'ae',minNum:25000},
+    gl:{where:'outside India and the UAE',whereHint:'For investors from other countries',min:'$10,000',minLocal:'(paid in US dollars)',minLocalShort:'in US dollars',
+      who:'Non-US persons in supported countries',
+      pay:'USD wire from a bank account in your name',
+      forms:'Passport, proof of address, W-8BEN, CRS self-certification, “not a US person” declaration',
+      tax:'Tax on gains depends on your country. US tax on dividends: up to 30%. The offshore company in between protects you from US estate tax.',
+      ownFlow:'You → Stockify offshore company → US holding company (SPV) → Helix shares',
+      ownWhy:'The offshore company in between keeps you out of US estate tax.',
+      risk4t:'Currency moves',risk4:'You invest in US dollars, so exchange rates change what you get in your currency.',
+      fx:null,cur:'gl',minNum:10000}
+  };
+  var region='in', regBtns=document.querySelectorAll('.region button');
+  function setRegion(r){
+    if(!R[r])r='in';region=r;
+    regBtns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.region===r)});
+    document.querySelectorAll('[data-r]').forEach(function(el){el.textContent=R[r][el.dataset.r]});
+    store('stk-region',r);if(amt<R[r].minNum)amt=R[r].minNum;calc();
+  }
+
+  // Filters / toast
+  var toast=document.getElementById('toast'),tt;
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-demo]');if(!a)return;
+    e.preventDefault();toast.textContent=a.dataset.demo;toast.classList.add('show');
+    clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2600);
+  });
+
+  // Return calculator: 3.5% upfront, 10% carry on profit, no yearly fee
+  var amt=10000, mult=2, mb=document.querySelectorAll('[data-m]');
+  function usd(n){return (n<0?'−':'')+'$'+Math.round(Math.abs(n)).toLocaleString('en-US')}
+  function local(n){
+    var c=R[region];
+    if(c.cur==='in'){var r=n*c.fx;return r>=1e7?'≈ ₹'+(r/1e7).toFixed(2)+' crore':'≈ ₹'+(r/1e5).toFixed(2)+' lakh'}
+    if(c.cur==='ae')return '≈ AED '+Math.round(n*c.fx).toLocaleString('en-US');
+    return '';
+  }
+  function calc(){
+    var fee=amt*0.035, value=(amt-fee)*mult, profit=value-amt, carry=Math.max(0,profit)*0.1, get=value-carry;
+    document.getElementById('p-amt').textContent=usd(amt);
+    document.getElementById('p-amt-local').textContent=local(amt);
+    document.getElementById('p-get').textContent=usd(get);
+    document.getElementById('p-local').textContent=local(get);
+    document.getElementById('p-fee').textContent=usd(-fee);
+    document.getElementById('p-carry').textContent=carry?usd(-carry):'$0 – no profit';
+    document.getElementById('p-x').textContent=(get/amt).toFixed(2)+'x';
+    document.getElementById('p-box').className='result '+(get>=amt?'good':'base');
+  }
+  mb.forEach(function(b){b.addEventListener('click',function(){mult=+b.dataset.m;mb.forEach(function(x){x.setAttribute('aria-pressed',x===b)});calc()})});
+  document.getElementById('p-minus').addEventListener('click',function(){if(amt-5000>=R[region].minNum){amt-=5000;calc()}});
+  document.getElementById('p-plus').addEventListener('click',function(){if(amt<250000){amt+=5000;calc()}});
+
+  regBtns.forEach(function(b){b.addEventListener('click',function(){setRegion(b.dataset.region)})});
+  setRegion(store('stk-region')||'in');
+})();
+</script>
+
+</body>
+</html>
