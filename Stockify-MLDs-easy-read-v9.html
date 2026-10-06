@@ -311,6 +311,12 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 .tslot{border:2px dashed #C9D1CB;border-radius:var(--radius);padding:28px;color:var(--ink-2);display:flex;flex-direction:column;gap:6px;min-height:180px}
 .tslot .q{font-size:3rem;line-height:1;color:#C9D1CB;font-family:Georgia,serif}
 .tslot span{margin-top:auto;font-size:1rem}
+.tcard{margin:0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:30px;display:flex;flex-direction:column;gap:14px}
+.tcard .q{font-size:3.4rem;line-height:.6;color:var(--green);font-family:Georgia,serif;height:28px}
+.tcard blockquote{margin:0;font-size:1.2rem;line-height:1.6;color:var(--ink)}
+.tcard figcaption{margin-top:auto;display:flex;gap:14px;align-items:center;font-size:1rem;color:var(--ink-2);line-height:1.4;padding-top:8px;border-top:1px solid var(--line)}
+.tcard figcaption strong{color:var(--ink);font-size:1.1rem}
+.tcard .av{width:52px;height:52px;border-radius:50%;color:#fff;font-weight:700;display:grid;place-items:center;flex:none}
 .applybox{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;background:var(--navy);border-radius:28px;padding:56px}
 .applycopy h2{color:#fff}
 .applycopy p{color:#C9D3DC;font-size:1.25rem;margin-top:12px}
@@ -476,11 +482,11 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   <!-- 4. Testimonials (to add later) -->
   <section class="block">
     <div class="wrap">
-      <div class="head center"><h2>What our investors say</h2><p class="muted">Placeholder – real investor stories will be added here once we have them.</p></div>
+      <div class="head center"><h2>What our investors say</h2><p class="muted small">Sample quotes for the design – to be replaced with real investor stories.</p></div>
       <div class="grid g3">
-        <div class="tslot"><div class="q">“</div><p>Investor quote goes here</p><span>Name, city</span></div>
-        <div class="tslot"><div class="q">“</div><p>Investor quote goes here</p><span>Name, city</span></div>
-        <div class="tslot"><div class="q">“</div><p>Investor quote goes here</p><span>Name, city</span></div>
+        <figure class="tcard"><div class="q">“</div><blockquote>The Stockify team explained everything on a phone call, in simple words. I knew my principal comes back at maturity, so I felt comfortable.</blockquote><figcaption><span class="av" style="background:#2D5BA8">RK</span><span><strong>Rajesh Kulkarni</strong><br>58, retired banker · Pune</span></figcaption></figure>
+        <figure class="tcard"><div class="q">“</div><blockquote>I wanted something better than just an FD, but without too much risk. The MLD was easy to understand and the process was smooth.</blockquote><figcaption><span class="av" style="background:#7A3E8E">SM</span><span><strong>Sunita Mehta</strong><br>49, doctor · Ahmedabad</span></figcaption></figure>
+        <figure class="tcard"><div class="q">“</div><blockquote>They showed me the company’s rating and track record before I invested. No pressure at all – they answered every question patiently.</blockquote><figcaption><span class="av" style="background:#B5541C">AI</span><span><strong>Anil Iyer</strong><br>62, business owner · Chennai</span></figcaption></figure>
       </div>
     </div>
   </section>
