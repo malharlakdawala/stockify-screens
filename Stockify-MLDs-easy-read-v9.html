@@ -208,6 +208,27 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 .ctacard .btn{width:100%}
 .ctacard .note{font-size:1rem;color:var(--ink-2);line-height:1.5}
 @media (max-width:960px){.dhead{grid-template-columns:1fr;gap:24px}}
+
+/* Two-column layout */
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch}
+.pair>.col{display:flex;flex-direction:column;gap:24px;min-width:0}
+.pair>.col>.card{flex:1}
+.pair .head{margin-bottom:24px}
+.pair .calc{grid-template-columns:1fr;gap:28px}
+.pair .outcomes{grid-template-columns:1fr}
+.pair .grid.g2{grid-template-columns:1fr}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.product{grid-template-columns:1fr;gap:22px;align-items:start;align-content:space-between}
+.product .act{flex-direction:row;align-items:center;flex-wrap:wrap;text-align:left;min-width:0}
+.moregrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.moregrid details.more + details.more{margin-top:0}
+.factlist{display:flex;flex-direction:column}
+.factlist>div{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-top:1px solid var(--line);align-items:baseline}
+.factlist>div:first-child{border-top:0;padding-top:0}
+.factlist .label{color:var(--ink-2)}
+.factlist .value{font-size:1.35rem;font-weight:700;text-align:right}
+.steps4{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:960px){.pair,.products,.moregrid{grid-template-columns:1fr}}
 .screen{display:none}
 .screen.on{display:block}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:16px 24px;border-radius:12px;font-size:1.05rem;opacity:0;pointer-events:none;transition:all .25s;z-index:50;max-width:calc(100% - 32px)}
@@ -394,6 +415,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   <section class="block">
     <div class="wrap">
       <div class="head"><h2>Want to know more?</h2><p class="muted">Open any section for the full details.</p></div>
+      <div class="moregrid">
 
       <details class="more">
         <summary><h3>Buy from existing investors<span class="hint">2 MLDs with less time left · condition on track today</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -440,6 +462,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           <p class="legal">Tax at the 30% slab plus 4% cess (31.2%). FD and bond rates are sample market rates.</p>
         </div>
       </details>
+      </div>
 
       <div class="btns" style="margin-top:28px">
         <a class="btn btn-outline" href="#" data-demo="Downloading: MLD buyer’s guide (PDF, 12 pages) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download the full MLD guide (PDF)</a>
@@ -468,6 +491,12 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
         </aside>
       </div>
 
+      </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap pair">
+      <div class="col">
       <div class="card" style="display:flex;flex-direction:column;gap:24px">
         <h2>What you get for every ₹1,00,000</h2>
         <div class="outcomes">
@@ -484,18 +513,25 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
         </div>
         <p class="muted small">Both depend on Kaveri being able to pay. If it cannot, you may lose part or all of your money.</p>
       </div>
-
-      <div class="keyfacts">
-        <div><div class="label">Minimum</div><div class="value num">₹1,00,000</div></div>
-        <div><div class="label">Money locked for</div><div class="value">25 months</div></div>
-        <div><div class="label">Paid to your bank</div><div class="value">12 Nov 2028</div></div>
-        <div><div class="label">Fee you pay</div><div class="value">None</div></div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="head"><h2>Key facts</h2></div>
+          <div class="factlist">
+            <div><span class="label">Money locked for</span><span class="value">25 months</span></div>
+            <div><span class="label">Paid to your bank on</span><span class="value">12 Nov 2028</span></div>
+            <div><span class="label">Rating</span><span class="value">CRISIL AA+ · Stable</span></div>
+            <div><span class="label">Linked to</span><span class="value">Nifty 50</span></div>
+            <div><span class="label">Fee you pay</span><span class="value">None</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="block">
-    <div class="wrap">
+    <div class="wrap pair">
+      <div class="col">
       <div class="card">
         <div class="head"><h2>5 things to know before you apply</h2></div>
         <ul class="risks">
@@ -506,11 +542,9 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           <li><div><strong>Your money is only as safe as Kaveri</strong><p>Kaveri is rated AA+ and has repaid all 14 past MLDs on time.</p></div></li>
         </ul>
       </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
+    
+      </div>
+      <div class="col">
       <div class="card">
         <div class="head"><h2>Work out your payout</h2><p class="muted">Pick an amount and where you think the Nifty will end.</p></div>
         <div class="calc">
@@ -548,12 +582,16 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           </div>
         </div>
       </div>
+    
+      </div>
     </div>
   </section>
+
 
   <section class="block">
     <div class="wrap">
       <div class="head"><h2>More details</h2><p class="muted">Open any section, or download the full documents.</p></div>
+      <div class="moregrid">
 
       <details class="more">
         <summary><h3>Every possible outcome<span class="hint">What you get for each Nifty level, after tax</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -637,6 +675,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           <div><strong>Can I get more than 22.5%?</strong><p class="muted">No. You get ₹1,22,500 whether the Nifty is flat or up 60%.</p></div>
         </div>
       </details>
+      </div>
 
       <p class="legal" style="margin-top:28px">Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p>
     </div>
@@ -701,6 +740,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   <section class="block">
     <div class="wrap">
       <div class="head"><h2>Want to go deeper?</h2><p class="muted">Open any topic.</p></div>
+      <div class="moregrid">
 
       <details class="more">
         <summary><h3>The 5 key risks<span class="hint">Read these before you apply</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -762,6 +802,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           <div><strong>What do I need to apply?</strong><p class="muted">PAN, KYC, a demat account and a 2-minute suitability check.</p></div>
         </div>
       </details>
+      </div>
     </div>
   </section>
 

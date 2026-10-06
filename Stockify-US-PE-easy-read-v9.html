@@ -208,6 +208,27 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 .ctacard .btn{width:100%}
 .ctacard .note{font-size:1rem;color:var(--ink-2);line-height:1.5}
 @media (max-width:960px){.dhead{grid-template-columns:1fr;gap:24px}}
+
+/* Two-column layout */
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch}
+.pair>.col{display:flex;flex-direction:column;gap:24px;min-width:0}
+.pair>.col>.card{flex:1}
+.pair .head{margin-bottom:24px}
+.pair .calc{grid-template-columns:1fr;gap:28px}
+.pair .outcomes{grid-template-columns:1fr}
+.pair .grid.g2{grid-template-columns:1fr}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.product{grid-template-columns:1fr;gap:22px;align-items:start;align-content:space-between}
+.product .act{flex-direction:row;align-items:center;flex-wrap:wrap;text-align:left;min-width:0}
+.moregrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.moregrid details.more + details.more{margin-top:0}
+.factlist{display:flex;flex-direction:column}
+.factlist>div{display:flex;justify-content:space-between;gap:16px;padding:18px 0;border-top:1px solid var(--line);align-items:baseline}
+.factlist>div:first-child{border-top:0;padding-top:0}
+.factlist .label{color:var(--ink-2)}
+.factlist .value{font-size:1.35rem;font-weight:700;text-align:right}
+.steps4{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:960px){.pair,.products,.moregrid{grid-template-columns:1fr}}
 .screen{display:none}
 .screen.on{display:block}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:16px 24px;border-radius:12px;font-size:1.05rem;opacity:0;pointer-events:none;transition:all .25s;z-index:50;max-width:calc(100% - 32px)}
@@ -250,7 +271,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 .region{display:flex;gap:8px;flex-wrap:wrap}
 .region button{font-family:inherit;font-size:1.1rem;font-weight:600;min-height:50px;padding:0 22px;border-radius:999px;border:2px solid rgba(255,255,255,.35);background:transparent;color:#fff;cursor:pointer}
 .region button[aria-pressed="true"]{background:#fff;color:var(--navy);border-color:#fff}
-.steps4{grid-template-columns:repeat(4,minmax(0,1fr))}
+
 .flow{font-size:1.25rem;font-weight:700;background:var(--green-soft);color:var(--green-ink);border-radius:12px;padding:18px 22px}
 @media (max-width:960px){.steps4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:720px){.steps4{grid-template-columns:1fr}.region button{padding:0 16px;font-size:1.02rem}}
@@ -394,6 +415,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   <section class="block">
     <div class="wrap">
       <div class="head"><h2>Want to know more?</h2><p class="muted">Open any section for the full details.</p></div>
+      <div class="moregrid">
 
       <details class="more">
         <summary><h3>What you need to invest<span class="hint" data-r="whereHint"></span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -431,6 +453,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           </table></div>
         </div>
       </details>
+      </div>
 
       <div class="btns" style="margin-top:28px">
         <a class="btn btn-outline" href="#" data-demo="Downloading: US private equity guide (PDF, 14 pages) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download the full guide (PDF)</a>
@@ -459,26 +482,38 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
         </aside>
       </div>
 
-      <div class="keyfacts">
-        <div><div class="label">Price per share</div><div class="value num">$142.50</div></div>
-        <div><div class="label">vs last round ($128)</div><div class="value num">11% more</div></div>
-        <div><div class="label">Company value</div><div class="value num">$67.9 billion</div></div>
-        <div><div class="label">Money back</div><div class="value">After IPO or sale</div></div>
       </div>
+  </section>
 
+  <section class="block">
+    <div class="wrap pair">
+      <div class="col">
+        <div class="card">
+          <div class="head"><h2>The deal at a glance</h2></div>
+          <div class="factlist">
+            <div><span class="label">Price per share</span><span class="value num">$142.50</span></div>
+            <div><span class="label">vs last round ($128)</span><span class="value">11% more</span></div>
+            <div><span class="label">Company value</span><span class="value num">$67.9 billion</span></div>
+            <div><span class="label">Money back</span><span class="value">After IPO or sale</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
       <div class="card" style="display:flex;flex-direction:column;gap:20px">
         <h2>What it costs you</h2>
-        <div class="grid g3">
-          <div><div class="num" style="font-size:2.2rem;font-weight:700">3.5%</div><p class="muted">once, when you invest</p></div>
-          <div><div class="num" style="font-size:2.2rem;font-weight:700">$0</div><p class="muted">every year while you hold</p></div>
-          <div><div class="num" style="font-size:2.2rem;font-weight:700">10%</div><p class="muted">of your profit, only if you make money</p></div>
+        <div class="factlist">
+          <div><span class="label">Once, when you invest</span><span class="value num" style="font-size:1.8rem">3.5%</span></div>
+          <div><span class="label">Every year while you hold</span><span class="value num" style="font-size:1.8rem">$0</span></div>
+          <div><span class="label">Of your profit, only if you make money</span><span class="value num" style="font-size:1.8rem">10%</span></div>
         </div>
+      </div>
       </div>
     </div>
   </section>
 
   <section class="block">
-    <div class="wrap">
+    <div class="wrap pair">
+      <div class="col">
       <div class="card">
         <div class="head"><h2>4 things to know before you invest</h2></div>
         <ul class="risks">
@@ -488,11 +523,9 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           <li><div><strong data-r="risk4t"></strong><p data-r="risk4"></p></div></li>
         </ul>
       </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
+    
+      </div>
+      <div class="col">
       <div class="card">
         <div class="head"><h2>See what you could get back</h2><p class="muted">An example only. Nobody knows what Helix will be worth.</p></div>
         <div class="calc">
@@ -527,12 +560,16 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
         </div>
         <p class="legal" style="margin-top:20px">Before tax. Currency moves can also change what you get in your own currency.</p>
       </div>
+    
+      </div>
     </div>
   </section>
+
 
   <section class="block">
     <div class="wrap">
       <div class="head"><h2>More details</h2><p class="muted">Open any section, or download the full documents.</p></div>
+      <div class="moregrid">
 
       <details class="more">
         <summary><h3>Why investors like Helix<span class="hint">Growth, customers and backers</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -625,6 +662,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           <div><strong>What does it cost on $10,000?</strong><p class="muted">$350 upfront, so $9,650 is invested. Then 10% of any profit at the end.</p></div>
         </div>
       </details>
+      </div>
 
       <p class="legal" style="margin-top:28px">Private company investments are high risk and hard to sell. Nothing here is investment advice.</p>
     </div>
@@ -657,7 +695,8 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   </section>
 
   <section class="block">
-    <div class="wrap">
+    <div class="wrap pair">
+      <div class="col">
       <div class="card" style="display:flex;flex-direction:column;gap:20px">
         <h2>What it costs</h2>
         <div class="grid g3">
@@ -667,11 +706,19 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
         </div>
         <p class="muted">Example: invest $10,000. If the company later doubles in value, you get back <strong style="color:var(--green-ink)">$18,370</strong> after all fees.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
+    
+      <div class="card">
+        <div class="head"><h2>What you need</h2><p class="muted">For investors from <span data-r="where"></span>. Change this at the top of the page.</p></div>
+        <div class="grid g2">
+          <div><div class="muted small">Who can invest</div><p style="font-weight:600" data-r="who"></p></div>
+          <div><div class="muted small">Minimum per deal</div><p style="font-weight:600"><span data-r="min"></span> <span data-r="minLocal"></span></p></div>
+          <div><div class="muted small">How you pay</div><p style="font-weight:600" data-r="pay"></p></div>
+          <div><div class="muted small">Forms</div><p style="font-weight:600" data-r="forms"></p></div>
+        </div>
+      </div>
+    
+      </div>
+      <div class="col">
       <div class="card">
         <div class="head"><h2>5 risks you must understand</h2><p class="muted">Only invest money you won’t need for many years, and can afford to lose.</p></div>
         <ul class="risks">
@@ -682,26 +729,16 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           <li><div><strong>Currency and tax</strong><p>You invest in dollars, so currency moves change your return.</p></div></li>
         </ul>
       </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
-      <div class="card">
-        <div class="head"><h2>What you need</h2><p class="muted">For investors from <span data-r="where"></span>. Change this at the top of the page.</p></div>
-        <div class="grid g2">
-          <div><div class="muted small">Who can invest</div><p style="font-weight:600" data-r="who"></p></div>
-          <div><div class="muted small">Minimum per deal</div><p style="font-weight:600"><span data-r="min"></span> <span data-r="minLocal"></span></p></div>
-          <div><div class="muted small">How you pay</div><p style="font-weight:600" data-r="pay"></p></div>
-          <div><div class="muted small">Forms</div><p style="font-weight:600" data-r="forms"></p></div>
-        </div>
+    
       </div>
     </div>
   </section>
 
+
   <section class="block">
     <div class="wrap">
       <div class="head"><h2>Want to go deeper?</h2><p class="muted">Open any topic.</p></div>
+      <div class="moregrid">
 
       <details class="more">
         <summary><h3>What you actually own<span class="hint">How your money reaches the company’s shares</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -734,6 +771,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           <div><strong>Where are my documents?</strong><p class="muted">They open after a short eligibility check. Statements come by email.</p></div>
         </div>
       </details>
+      </div>
     </div>
   </section>
 
