@@ -256,22 +256,18 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 .chiprow:empty{display:none}
 .fchip{font-family:inherit;font-size:1rem;font-weight:600;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:0;background:var(--navy);color:#fff;cursor:pointer}
 .mlist{display:flex;flex-direction:column;gap:16px}
-.mrow{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:26px 28px;display:flex;flex-direction:column;gap:20px}
-.mtop{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
-.mtop .issuer{align-items:flex-start}
-.mtop h3{margin-bottom:2px}
-.mmeta{font-size:1rem;color:var(--ink-2)}
-.mmeta b{font-weight:600;color:var(--green-ink)}
-.mtags{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.mstats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;background:var(--bg);border-radius:12px;padding:18px 20px}
-.mstats .label{font-size:.95rem;color:var(--ink-2)}
-.mstats .value{font-size:1.2rem;font-weight:700;line-height:1.3}
-.mstats .value.good{color:var(--green-ink);font-size:1.45rem}
-.mfoot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.mfoot .pitch{color:var(--ink-2);flex:1;min-width:240px}
-.mfoot .btns{gap:10px}
-.mfoot .btn{min-height:52px}
-@media (max-width:1100px){.mstats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.mrow{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 32px;align-items:end}
+.mname{grid-column:1 / -1}
+.mname{display:flex;gap:16px;align-items:flex-start}
+.mname h3{margin-bottom:2px}
+.mmeta{font-size:1.02rem;color:var(--ink-2)}
+.mstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.mstats .label{font-size:.98rem;color:var(--ink-2)}
+.mstats .value{font-size:1.35rem;font-weight:700;line-height:1.25;white-space:nowrap}
+.mstats .value.good{color:var(--green-ink);font-size:1.6rem}
+.mact{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.mact .btn{min-height:54px;white-space:nowrap}
+@media (max-width:720px){.mrow{grid-template-columns:1fr;gap:18px}.mact{flex-direction:row;justify-content:space-between}}
 @media (max-width:960px){
   .browse{grid-template-columns:1fr}
   .ftoggle{display:inline-flex}
@@ -281,10 +277,9 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   .sortlbl{display:none}
 }
 @media (max-width:720px){
-  .mtop{flex-direction:column}.mtags{justify-content:flex-start}
-  .mstats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .mrow{padding:20px}
-  .mfoot .btns{width:100%}.mfoot .btn{flex:1}
+  .mstats{gap:10px}
+  .mstats .value{font-size:1.15rem}.mstats .value.good{font-size:1.35rem}
 }
 
 .sr{position:absolute;left:-9999px}
@@ -920,20 +915,16 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     });
     document.getElementById('r-list').innerHTML=list.map(function(d){
       var listed=d.status==='Buy from investors', soon=d.status==='Coming soon';
-      var tag=listed?'<span class="chip">Listed on BSE</span>':soon?'<span class="chip">Coming soon</span>':d.hot?'<span class="chip amber">'+d.hot+'</span>':'<span class="chip green"><span class="dot"></span>Open now</span>';
-      var when=listed?'Price today '+inrShort(d.min)+' per ₹1 lakh face value':soon?'Opens 20 Oct 2026':'Closes '+fmtDate(d.close);
-      var btn=soon?'<a class="btn btn-outline" href="#" data-demo="You’re on the waitlist. We’ll tell you when it opens.">Join waitlist</a>':listed?'<a class="btn btn-primary" href="#" data-demo="Buy request sent (demo). We’ll confirm the price.">Buy</a>':'<a class="btn btn-primary" href="#" data-demo="Starting the 2-minute suitability check (demo)">Apply</a>';
+      var when=listed?'Listed · buy now':soon?'Opens 20 Oct':'Closes '+fmtDate(d.close).replace(/ \d{4}$/,'');
+      var tag=d.hot?'<span class="chip amber">'+d.hot+'</span>':soon?'<span class="chip">Coming soon</span>':listed?'<span class="chip">Listed</span>':'';
       return '<article class="mrow">'+
-        '<div class="mtop"><div class="issuer"><div class="mark" style="background:'+d.color+'">'+d.mark+'</div><div><h3>'+esc(d.name)+'</h3><div class="mmeta">'+d.series+' · '+esc(d.issuer)+'</div><div class="mmeta">ISIN '+d.isin+' · <b>Secured</b></div></div></div>'+
-        '<div class="mtags">'+tag+'<span class="chip green">'+d.agency+' '+d.rating+' · '+d.outlook+'</span></div></div>'+
+        '<div class="mname"><div class="mark" style="background:'+d.color+'">'+d.mark+'</div><div><h3>'+esc(d.name)+'</h3><div class="mmeta">'+esc(d.issuer)+' · Rated '+d.rating+'</div>'+(tag?'<div style="margin-top:8px">'+tag+'</div>':'')+'</div></div>'+
         '<div class="mstats">'+
-          '<div><div class="label">'+(listed?'Return if it holds':'Best case')+'</div><div class="value good num">'+d.ret.toFixed(1)+'%</div><div class="label">'+(d.retNote||'a year')+'</div></div>'+
-          '<div><div class="label">Linked to</div><div class="value">'+esc(d.under)+'</div><div class="label">'+esc(d.rtype)+'</div></div>'+
-          '<div><div class="label">Payment</div><div class="value">On maturity</div><div class="label">Worst case: money back</div></div>'+
-          '<div><div class="label">Matures</div><div class="value">'+fmtDate(d.mat)+'</div><div class="label">'+(Math.round(yrs(d.mat)*12))+' months left</div></div>'+
-          '<div><div class="label">Minimum</div><div class="value num">'+inrShort(listed?d.min:d.min)+'</div><div class="label">Issue size ₹'+d.size+' Cr</div></div>'+
+          '<div><div class="label">'+(listed?'Return':'Best case')+'</div><div class="value good num">'+d.ret.toFixed(1)+'%</div><div class="label">a year</div></div>'+
+          '<div><div class="label">Matures</div><div class="value">'+MON[new Date(d.mat).getMonth()]+' '+new Date(d.mat).getFullYear()+'</div></div>'+
+          '<div><div class="label">Minimum</div><div class="value num">'+inrShort(d.min)+'</div></div>'+
         '</div>'+
-        '<div class="mfoot"><p class="pitch">'+esc(d.pitch)+' <span class="small">'+when+'.</span></p><div class="btns"><a class="btn btn-outline" href="#mld-detail">View details</a>'+btn+'</div></div>'+
+        '<div class="mact"><a class="btn btn-primary" href="#mld-detail">View details</a><span class="small muted">'+when+'</span></div>'+
       '</article>';
     }).join('');
     document.getElementById('r-empty').hidden=list.length>0;
