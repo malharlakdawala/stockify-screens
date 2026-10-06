@@ -336,6 +336,35 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 @media (max-width:960px){.lhero-grid,.applybox{grid-template-columns:1fr}.lhero-art{height:240px}.applybox{padding:32px 22px}}
 @media (max-width:720px){.lhero{padding:44px 0}.lhero-art{display:none}.btn-xl{width:100%}}
 
+/* Explore section + MLD detail */
+.center-f{justify-content:center}
+.xgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.xcard{display:flex;flex-direction:column;gap:18px;text-decoration:none;color:inherit;transition:border-color .15s,transform .15s}
+.xcard:hover{border-color:var(--green);transform:translateY(-2px)}
+.xcard .mname{display:flex;gap:16px;align-items:flex-start}
+.xcard .mstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border-top:1px solid var(--line);padding-top:16px}
+.xcard .more-link{color:var(--green-ink);font-weight:700;font-size:1.1rem}
+.dtitle{display:flex;gap:20px;align-items:flex-start}
+.dtitle .mark{width:72px;height:72px;font-size:1.4rem;border-radius:18px}
+.dsub{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:1.1rem;color:var(--ink-2);margin-top:8px}
+.dsub .ok{color:var(--green-ink);font-weight:700}
+.idgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
+.idgrid>div{padding:18px 0;border-top:1px solid var(--line)}
+.idgrid>div:nth-child(-n+2){border-top:0;padding-top:0}
+.idgrid .label{font-size:1rem;color:var(--ink-2)}
+.idgrid .value{font-size:1.3rem;font-weight:700;line-height:1.35}
+.idgrid .x{display:none}
+.idgrid.all .x{display:block}
+.showall{margin-top:20px;font-family:inherit;font-size:1.1rem;font-weight:700;color:var(--green-ink);background:var(--green-soft);border:0;border-radius:12px;min-height:52px;padding:0 22px;cursor:pointer}
+.minis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.mini{display:flex;gap:14px;align-items:center;padding:18px 20px;border:1px solid var(--line);border-radius:14px;text-decoration:none;color:inherit;background:var(--card)}
+.mini:hover{border-color:var(--green)}
+.mini .mark{width:44px;height:44px;font-size:.95rem}
+.mini strong{display:block;font-size:1.12rem}
+.mini span{font-size:1rem;color:var(--ink-2)}
+@media (max-width:960px){.xgrid,.minis{grid-template-columns:1fr}}
+@media (max-width:720px){.idgrid{grid-template-columns:1fr}.idgrid>div:nth-child(2){border-top:1px solid var(--line);padding-top:18px}.dtitle .mark{width:56px;height:56px}}
+.xcard .mstats .value{white-space:normal;font-size:1.2rem}
 .screen{display:none}
 .screen.on{display:block}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:16px 24px;border-radius:12px;font-size:1.05rem;opacity:0;pointer-events:none;transition:all .25s;z-index:50;max-width:calc(100% - 32px)}
@@ -479,7 +508,23 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     </div>
   </section>
 
-  <!-- 4. Testimonials (to add later) -->
+  <!-- 4. Explore MLDs -->
+  <section class="block" id="explore">
+    <div class="wrap">
+      <div class="head center"><h2>Explore MLDs</h2><p class="muted">New issues from rated finance companies. Tap any MLD to see its details.</p></div>
+      <div class="filters center-f" role="group" aria-label="Filter MLDs" id="x-filters">
+        <button type="button" aria-pressed="true" data-x="all">All</button>
+        <button type="button" aria-pressed="false" data-x="Nifty 50">Nifty 50</button>
+        <button type="button" aria-pressed="false" data-x="Bank Nifty">Bank Nifty</button>
+        <button type="button" aria-pressed="false" data-x="gsec">Government bond</button>
+        <button type="button" aria-pressed="false" data-x="AAA">AAA rated</button>
+      </div>
+      <div class="xgrid" id="x-list"></div>
+      <div style="text-align:center;margin-top:28px"><a class="btn btn-outline btn-xl" href="#mld-list">See all MLDs with more filters</a></div>
+    </div>
+  </section>
+
+  <!-- 5. Testimonials (to add later) -->
   <section class="block">
     <div class="wrap">
       <div class="head center"><h2>What our investors say</h2><p class="muted small">Sample quotes for the design – to be replaced with real investor stories.</p></div>
@@ -491,7 +536,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     </div>
   </section>
 
-  <!-- 5. Apply -->
+  <!-- 6. Apply -->
   <section class="block" id="apply">
     <div class="wrap">
       <div class="applybox">
@@ -635,217 +680,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 <!-- ============ SCREEN 2: MLD DETAIL ============ -->
 <div class="screen" id="scr-mld-detail">
   <div class="wrap crumb"><a class="btn-link" href="#mld-list"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 6l-6 6 6 6"/></svg>All MLDs</a></div>
-
-  <section class="block" style="padding-top:20px">
-    <div class="wrap" style="display:flex;flex-direction:column;gap:28px">
-<div class="dhead">
-      <div class="intro">
-        <div class="btns" style="gap:10px"><span class="chip green"><span class="dot"></span>Open · closes 9 Oct 2026</span><span class="chip green">Rated AA+ · high safety</span></div>
-        <h1>Kaveri Nifty 50 Booster</h1>
-        <p class="lead">By Kaveri Capital Finance · Series 7. Simple idea: if the Nifty does not fall more than 20% in 25 months, you earn 22.5%.</p>
-      </div>
-        <aside class="ctacard" aria-label="Apply">
-          <div><div class="label">Minimum investment</div><div class="value num">₹1,00,000</div><div class="label">Closes 9 Oct 2026 · no fee to Stockify</div></div>
-          <a class="btn btn-primary" href="#" data-demo="Starting the 2-minute suitability check (demo)">Apply now</a>
-          <a class="btn btn-outline" href="#" data-demo="Downloading: Term sheet, Series 7 (PDF) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download term sheet</a>
-          <p class="note">A 2-minute suitability check comes first.</p>
-        </aside>
-      </div>
-
-      </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap pair">
-      <div class="col">
-      <div class="card" style="display:flex;flex-direction:column;gap:24px">
-        <h2>What you get for every ₹1,00,000</h2>
-        <div class="outcomes">
-          <div class="outcome good">
-            <div class="if">If the Nifty has not fallen more than 20%</div>
-            <div class="amt num">₹1,22,500</div>
-            <div class="muted">22.5% in total · about 10.2% a year before tax</div>
-          </div>
-          <div class="outcome base">
-            <div class="if">If the Nifty falls more than 20%</div>
-            <div class="amt num">₹1,00,000</div>
-            <div class="muted">Your money back, but no return</div>
-          </div>
-        </div>
-        <p class="muted small">Both depend on Kaveri being able to pay. If it cannot, you may lose part or all of your money.</p>
-      </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <div class="head"><h2>Instrument details</h2></div>
-          <div class="factlist">
-            <div><span class="label">Face value</span><span class="value num">₹1,00,000</span></div>
-            <div><span class="label">Return</span><span class="value">Linked to Nifty 50</span></div>
-            <div><span class="label">Payment</span><span class="value">On maturity</span></div>
-            <div><span class="label">Tax</span><span class="value">Taxable, at your slab</span></div>
-            <div><span class="label">Issue size</span><span class="value num">₹25 Cr</span></div>
-            <div><span class="label">Instrument</span><span class="value">PP-MLD · Secured, senior</span></div>
-            <div><span class="label">Rating</span><span class="value">CRISIL AA+ · Stable</span></div>
-            <div><span class="label">Date of issue</span><span class="value">12 Oct 2026</span></div>
-            <div><span class="label">Maturity</span><span class="value">12 Nov 2028 · 25 months</span></div>
-            <div><span class="label">ISIN</span><span class="value">Given at allotment</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap pair">
-      <div class="col">
-      <div class="card">
-        <div class="head"><h2>5 things to know before you apply</h2></div>
-        <ul class="risks">
-          <li><div><strong>No return if the Nifty falls more than 20%</strong><p>You only get your ₹1,00,000 back after 25 months.</p></div></li>
-          <li><div><strong>The return is capped at 22.5%</strong><p>Even if the Nifty doubles, you get ₹1,22,500.</p></div></li>
-          <li><div><strong>Tax is at your income-tax slab</strong><p>At the 30% slab, you keep about 7.15% a year.</p></div></li>
-          <li><div><strong>Hard to sell early</strong><p>Few buyers on BSE. Kaveri buys back every quarter, at 1.5% less.</p></div></li>
-          <li><div><strong>Your money is only as safe as Kaveri</strong><p>Kaveri is rated AA+ and has repaid all 14 past MLDs on time.</p></div></li>
-        </ul>
-      </div>
-    
-      </div>
-      <div class="col">
-      <div class="card">
-        <div class="head"><h2>Work out your payout</h2><p class="muted">Pick an amount and where you think the Nifty will end.</p></div>
-        <div class="calc">
-          <div>
-            <div class="field">
-              <label id="lbl-qty">How much you invest</label>
-              <div class="stepper" role="group" aria-labelledby="lbl-qty">
-                <button type="button" id="c-minus" aria-label="Less">−</button>
-                <output id="c-amt" class="num">₹2,00,000</output>
-                <button type="button" id="c-plus" aria-label="More">+</button>
-              </div>
-            </div>
-            <div class="field">
-              <label for="c-nifty">Nifty at the end: <span id="c-nifty-out" class="num">+10%</span></label>
-              <input type="range" id="c-nifty" min="-50" max="60" step="1" value="10">
-              <div class="range-ends"><span>Falls 50%</span><span>Rises 60%</span></div>
-            </div>
-            <div class="field" style="margin-bottom:0">
-              <label for="c-slab">Your income-tax slab</label>
-              <select id="c-slab">
-                <option value="0">No tax</option>
-                <option value="0.052">5%</option>
-                <option value="0.208">20%</option>
-                <option value="0.312" selected>30%</option>
-              </select>
-            </div>
-          </div>
-          <div class="result good" id="c-box" aria-live="polite">
-            <div id="c-status" class="small" style="font-weight:700">Condition met</div>
-            <div>You get back</div>
-            <div class="big num" id="c-get">₹2,45,000</div>
-            <div class="line"><span>After tax</span><strong class="num" id="c-after">₹2,30,960</strong></div>
-            <div class="line"><span>Return a year, after tax</span><strong class="num" id="c-rate">7.15%</strong></div>
-            <div class="line"><span>Bank FD, after tax</span><strong class="num" id="c-fd">₹2,21,729</strong></div>
-          </div>
-        </div>
-      </div>
-    
-      </div>
-    </div>
-  </section>
-
-
-  <section class="block">
-    <div class="wrap">
-      <div class="head"><h2>More details</h2><p class="muted">Open any section, or download the full documents.</p></div>
-      <div class="moregrid">
-
-      <details class="more">
-        <summary><h3>Every possible outcome<span class="hint">What you get for each Nifty level, after tax</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="body">
-          <div class="tbl-wrap"><table class="tbl">
-            <thead><tr><th>Nifty at the end</th><th class="r">You get</th><th class="r">A year, after tax</th></tr></thead>
-            <tbody>
-              <tr><td>Up 40%</td><td class="r num">₹1,22,500</td><td class="r num">7.15%</td></tr>
-              <tr><td>No change</td><td class="r num">₹1,22,500</td><td class="r num">7.15%</td></tr>
-              <tr><td>Down 20%</td><td class="r num">₹1,22,500</td><td class="r num">7.15%</td></tr>
-              <tr><td>Down 21% or more</td><td class="r num">₹1,00,000</td><td class="r num">0%</td></tr>
-              <tr><td>Kaveri can’t pay</td><td class="r" colspan="2" style="color:var(--red-ink)">May lose part or all</td></tr>
-            </tbody>
-          </table></div>
-          <p class="legal">Per ₹1,00,000, at the 30% slab plus cess. Since 2000, the Nifty fell more than 20% over 25 months in 9% of periods. The past does not predict the future.</p>
-        </div>
-      </details>
-
-      <details class="more">
-        <summary><h3>How the final Nifty level is set<span class="hint">Start date, end dates and the 80% line</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="body">
-          <ul class="risks">
-            <li><div><strong>Start: 12 Oct 2026</strong><p>The Nifty close that day is the starting level.</p></div></li>
-            <li><div><strong>End: 23–25 Oct 2028</strong><p>The average of 3 closing levels, so one bad day matters less.</p></div></li>
-            <li><div><strong>The line: 80% of the start</strong><p>Example: start 26,000 → the end average must be 20,800 or more.</p></div></li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="more">
-        <summary><h3>About Kaveri Capital Finance<span class="hint">Rating, finances and past record</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="body">
-          <div class="grid g4">
-            <div><div class="muted small">Rating</div><div class="num" style="font-size:1.4rem;font-weight:700">AA+ Stable</div><div class="muted small">Upgraded 2025</div></div>
-            <div><div class="muted small">Net worth</div><div class="num" style="font-size:1.4rem;font-weight:700">₹6,240 Cr</div></div>
-            <div><div class="muted small">Bad loans</div><div class="num" style="font-size:1.4rem;font-weight:700">1.4%</div><div class="muted small">Low</div></div>
-            <div><div class="muted small">Past MLDs</div><div class="num" style="font-size:1.4rem;font-weight:700">14 of 14</div><div class="muted small">repaid on time</div></div>
-          </div>
-          <p class="muted">This MLD is secured against Kaveri’s loans. A trustee, Sentinel Trustee Services, looks after investors’ interests.</p>
-        </div>
-      </details>
-
-      <details class="more">
-        <summary><h3>Selling early, tax and costs<span class="hint">Your exit options and what Stockify earns</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="body">
-          <ul class="risks">
-            <li><div><strong>Sell on BSE</strong><p>Possible, but few trades happen.</p></div></li>
-            <li><div><strong>Kaveri buy-back, every quarter</strong><p>From Jan 2027, at the weekly value minus 1.5%.</p></div></li>
-            <li><div><strong>Tax</strong><p>Gains are taxed at your slab, however long you hold. At 30%: tax of ₹7,020 on a ₹22,500 gain.</p></div></li>
-            <li><div><strong>Costs</strong><p>You pay nothing. Kaveri pays Stockify 1% (₹1,000 per debenture). It does not change your payout.</p></div></li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="more">
-        <summary><h3>Who can apply<span class="hint">Documents you need and the suitability check</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="body">
-          <p>Resident individuals, HUFs, companies and trusts. You need PAN, KYC and a demat account. A 2-minute check comes first to make sure this suits you.</p>
-          <div class="callout"><div><strong>Risk level: moderately high.</strong> Suits you if you can leave the money for 25 months. Not for money you may need soon.</div></div>
-        </div>
-      </details>
-
-      <details class="more">
-        <summary><h3>Documents<span class="hint">Term sheet, Key Information Document and rating letter</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="body">
-          <div class="doclist">
-            <div class="doc"><div class="meta"><strong>Payoff explained in plain English</strong><span>Stockify · 4 pages</span></div><a class="btn btn-outline" style="min-height:48px" href="#" data-demo="Downloading (sample)">Download</a></div>
-            <div class="doc"><div class="meta"><strong>Term sheet</strong><span>2 pages · payoff and dates</span></div><a class="btn btn-outline" style="min-height:48px" href="#" data-demo="Downloading (sample)">Download</a></div>
-            <div class="doc"><div class="meta"><strong>Key Information Document</strong><span>38 pages · full details and risks</span></div><a class="btn btn-outline" style="min-height:48px" href="#" data-demo="Downloading (sample)">Download</a></div>
-            <div class="doc"><div class="meta"><strong>Rating letter</strong><span>CRISIL · 18 Sep 2026</span></div><a class="btn btn-outline" style="min-height:48px" href="#" data-demo="Downloading (sample)">Download</a></div>
-          </div>
-          <a class="btn btn-primary" href="#" data-demo="Downloading all 7 documents as one ZIP (sample)" style="align-self:flex-start"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download all 7 documents</a>
-        </div>
-      </details>
-
-      <details class="more">
-        <summary><h3>Common questions<span class="hint">Is my money safe? What if the Nifty falls 25%?</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="body">
-          <div><strong>Is my money safe?</strong><p class="muted">It comes back at the end only if Kaveri can pay. Kaveri is rated AA+. If it defaults, you may lose part or all.</p></div>
-          <div><strong>What if the Nifty falls 25%?</strong><p class="muted">You get ₹1,00,000 back on 12 Nov 2028, with no return.</p></div>
-          <div><strong>Can I get more than 22.5%?</strong><p class="muted">No. You get ₹1,22,500 whether the Nifty is flat or up 60%.</p></div>
-        </div>
-      </details>
-      </div>
-
-      <p class="legal" style="margin-top:28px">Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p>
-    </div>
-  </section>
+  <div id="d-root"></div>
 </div>
 
 <!-- ============ SCREEN 3: HOW MLDS WORK ============ -->
@@ -997,8 +832,10 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 (function(){
   // Screens by URL hash
   var ids=['mld-home','mld-list','mld-detail','mld-how'];
+  var detailHook=null;
   function show(){
-    var h=(location.hash||'').slice(1);
+    var h=(location.hash||'').slice(1), part=h.split('/');
+    if(part[0]==='mld-detail'){h='mld-detail';if(detailHook)detailHook(+part[1]||0)}
     var target=document.getElementById(h);
     var id=ids.indexOf(h)>=0?h:null;
     if(!id){ // an anchor inside a screen
@@ -1092,7 +929,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           '<div><div class="label">Matures</div><div class="value">'+MON[new Date(d.mat).getMonth()]+' '+new Date(d.mat).getFullYear()+'</div></div>'+
           '<div><div class="label">Minimum</div><div class="value num">'+inrShort(d.min)+'</div></div>'+
         '</div>'+
-        '<div class="mact"><a class="btn btn-primary" href="#mld-detail">View details</a><span class="small muted">'+when+'</span></div>'+
+        '<div class="mact"><a class="btn btn-primary" href="#mld-detail/'+MLDS.indexOf(d)+'">View details</a><span class="small muted">'+when+'</span></div>'+
       '</article>';
     }).join('');
     document.getElementById('r-empty').hidden=list.length>0;
@@ -1132,6 +969,114 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   document.getElementById('f-done').addEventListener('click',function(){fp.classList.remove('show');fo.setAttribute('aria-expanded','false');document.body.style.overflow='';document.getElementById('open-now').scrollIntoView()});
   render();
 
+  // ---- Issuers (sample) ----
+  var ISS={
+    'Kaveri Capital Finance':{industry:'Non-Banking Financial Company (NBFC)',hq:'Mumbai',sector:'Financial Services',own:'Private sector',about:'Wealth and lending arm of the Kaveri Group. Lends to individuals and businesses.',past:'14 of 14 past MLDs repaid on time'},
+    'Palash Finserv':{industry:'Housing Finance Company',hq:'Pune',sector:'Financial Services',own:'Private sector',about:'Gives home loans and small-business loans across western India.',past:'6 of 6 past MLDs repaid on time'},
+    'Sahyadri Finvest':{industry:'Non-Banking Financial Company (NBFC)',hq:'Kolhapur',sector:'Financial Services',own:'Private sector',about:'Gives vehicle loans and gold loans in Maharashtra and Karnataka.',past:'3 of 3 past MLDs repaid on time'},
+    'Meru Home Finance':{industry:'Housing Finance Company',hq:'Bengaluru',sector:'Financial Services',own:'Private sector',about:'Gives affordable home loans in South India.',past:'8 of 8 past MLDs repaid on time'},
+    'Crestline Investments':{industry:'Non-Banking Financial Company (NBFC)',hq:'Mumbai',sector:'Financial Services',own:'Private sector',about:'Finance arm of the Crestline Group, one of India’s largest business groups.',past:'22 of 22 past MLDs repaid on time'}
+  };
+  var ISSUE={0:'2026-10-12',1:'2026-10-03',2:'2026-10-19',3:'2026-10-26',4:'2026-10-23',5:'2026-10-30',6:'2026-11-20',7:'2024-03-14',8:'2025-01-20',9:'2024-12-08'};
+  var RDATE={CRISIL:'18 Sep 2026',ICRA:'11 Sep 2026',CARE:'4 Sep 2026'};
+  function months(a,b){var x=new Date(a),y=new Date(b);return (y.getFullYear()-x.getFullYear())*12+y.getMonth()-x.getMonth()}
+  function isGsec(d){return d.under.indexOf('G-Sec')===0}
+  function underText(d){return isGsec(d)?'a government bond':'the '+d.under}
+  function underLabel(d){return isGsec(d)?'Government bond':d.under}
+  function minLabel(d){return d.status==='Buy from investors'?'₹1 lakh face value':inrShort(d.min)}
+
+  // Landing "Explore MLDs"
+  var xf='all';
+  function xcard(d){
+    var i=MLDS.indexOf(d), soon=d.status==='Coming soon';
+    return '<a class="card xcard" href="#mld-detail/'+i+'">'+
+      '<div class="mname"><div class="mark" style="background:'+d.color+'">'+d.mark+'</div><div><h3>'+esc(d.name)+'</h3><div class="mmeta">'+esc(d.issuer)+' · Rated '+d.rating+'</div>'+
+      (d.hot?'<div style="margin-top:8px"><span class="chip amber">'+d.hot+'</span></div>':soon?'<div style="margin-top:8px"><span class="chip">Coming soon</span></div>':'')+'</div></div>'+
+      '<div class="mstats"><div><div class="label">Linked to</div><div class="value">'+underLabel(d)+'</div></div><div><div class="label">Time</div><div class="value">'+months(ISSUE[i],d.mat)+' months</div></div><div><div class="label">Minimum</div><div class="value num">'+inrShort(d.min)+'</div></div></div>'+
+      '<span class="more-link">View details →</span></a>';
+  }
+  function renderExplore(){
+    var list=MLDS.filter(function(d){return d.status!=='Buy from investors'}).filter(function(d){
+      return xf==='all'||(xf==='gsec'?isGsec(d):xf==='AAA'?d.rating==='AAA':d.under===xf)});
+    document.getElementById('x-list').innerHTML=list.slice(0,6).map(xcard).join('');
+  }
+  document.querySelectorAll('#x-filters button').forEach(function(b){b.addEventListener('click',function(){
+    xf=b.dataset.x;document.querySelectorAll('#x-filters button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});renderExplore();
+  })});
+  renderExplore();
+
+  // MLD detail page, built from the MLD's data (fields follow the Dezerv bond page)
+  function renderDetail(i){
+    var d=MLDS[i]||MLDS[0]; i=MLDS.indexOf(d);
+    var is=ISS[d.issuer], listed=d.status==='Buy from investors', soon=d.status==='Coming soon';
+    var statusTxt=listed?'Active · Listed':soon?'Coming soon':'Open for investment';
+    var cta=listed?['Buy now','Buy request sent (demo). We’ll confirm the price.']:soon?['Join waitlist','You’re on the waitlist. We’ll tell you when it opens.']:['Apply now','Starting the 2-minute suitability check (demo)'];
+    var when=listed?'Price today ₹'+d.min.toLocaleString('en-IN')+' per ₹1 lakh':soon?'Opens 20 Oct 2026':'Closes '+fmtDate(d.close);
+    var f=[
+      ['Face value','₹1,00,000'],['Coupon rate',underLabel(d).toUpperCase()==='GOVERNMENT BOND'?'Linked to G-Sec':d.under+' linked'],
+      ['Payment','On maturity'],['Tax type','Taxable'],
+      ['Issue size','₹'+d.size+' Cr'],['Instrument type','Debenture (PP-MLD)'],
+      ['Returns','Linked to markets'],['Date of issue',fmtDate(ISSUE[i])],
+      ['Maturity date',fmtDate(d.mat)],['Listing status',listed?'Listed on BSE':'To be listed on BSE'],
+      ['Credit rating',d.agency+' PP-MLD '+d.rating],['Security','Secured'],
+      ['Seniority in repayment','Senior'],['Asset cover','1.0x'],
+      ['Call option','Not available'],['Put option','Not available'],
+      ['Perpetual','No'],['Convertibility','Non-convertible']
+    ];
+    var cell=function(x,k){return '<div'+(k>=10?' class="x"':'')+'><div class="label">'+x[0]+'</div><div class="value">'+esc(x[1])+'</div></div>'};
+    var same=MLDS.filter(function(x){return x!==d&&x.issuer===d.issuer});
+    var similar=MLDS.filter(function(x){return x!==d&&x.issuer!==d.issuer&&(x.under===d.under||x.rtype===d.rtype)}).slice(0,4);
+    var mini=function(x){return '<a class="mini" href="#mld-detail/'+MLDS.indexOf(x)+'"><div class="mark" style="background:'+x.color+'">'+x.mark+'</div><div><strong>'+esc(x.name)+' · '+x.series+'</strong><span>'+esc(x.issuer)+' · Rated '+x.rating+' · '+underLabel(x)+'</span></div></a>'};
+    var faq=[
+      ['What is the name of this MLD?',d.name+' – '+d.series+', issued by '+d.issuer+'.'],
+      ['How often is the return paid?','Once, on maturity, on '+fmtDate(d.mat)+'. There are no payments before that.'],
+      ['What is its credit rating?',d.agency+' PP-MLD '+d.rating+' with a '+d.outlook.toLowerCase()+' outlook.'],
+      ['What is the coupon rate?','It is not fixed. The return is linked to '+underText(d)+', so it depends on how that market does.'],
+      ['Who is the issuer?',d.issuer+', a '+is.industry.replace(/ \(NBFC\)/,'')+' based in '+is.hq+'. '+is.past+'.']
+    ];
+    document.getElementById('d-root').innerHTML=
+    '<section class="block" style="padding-top:20px"><div class="wrap"><div class="dhead"><div class="intro">'+
+      '<div class="dtitle"><div class="mark" style="background:'+d.color+'">'+d.mark+'</div><div><h1>'+esc(d.name)+'</h1>'+
+      '<div class="dsub"><span>'+d.series+'</span><span>·</span><span class="ok">'+statusTxt+'</span><span>·</span><span>Private sector</span><span>·</span><span class="ok">Secured</span><span>·</span><span>ISIN: '+d.isin+'</span></div></div></div>'+
+      '<p class="lead">'+esc(d.issuer)+'. A principal-protected debenture whose return is linked to '+underText(d)+'.</p></div>'+
+      '<aside class="ctacard" aria-label="Invest"><div><div class="label">Minimum investment</div><div class="value num">'+minLabel(d)+'</div><div class="label">'+when+' · no fee to Stockify</div></div>'+
+      '<a class="btn btn-primary" href="#" data-demo="'+cta[1]+'">'+cta[0]+'</a>'+
+      '<a class="btn btn-outline" href="#" data-demo="Downloading: term sheet (PDF) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download term sheet</a>'+
+      '<p class="note">Our team will call you to help you apply.</p></aside></div></div></section>'+
+
+    '<section class="block"><div class="wrap"><div class="card"><div class="head" style="flex-direction:row;justify-content:space-between;flex-wrap:wrap;align-items:baseline"><h2>Instrument details</h2><span class="muted">ISIN: '+d.isin+'</span></div>'+
+      '<div class="idgrid" id="d-grid">'+f.map(cell).join('')+'</div>'+
+      '<button type="button" class="showall" id="d-showall" aria-expanded="false">Show all '+f.length+' details</button></div></div></section>'+
+
+    '<section class="block"><div class="wrap pair">'+
+      '<div class="col"><div class="card"><div class="head"><h2>About this MLD</h2></div><p class="bigtext">'+esc(d.pitch)+'</p><p class="muted" style="margin-top:16px">You get your ₹1,00,000 back on '+fmtDate(d.mat)+' if '+esc(d.issuer.split(' ')[0])+' can pay. Any extra return depends on '+underText(d)+'. Returns are not fixed or guaranteed.</p></div></div>'+
+      '<div class="col"><div class="card"><div class="head"><h2>Rating</h2></div><div class="factlist">'+
+        '<div><span class="label">Instrument rating</span><span class="value">'+d.agency+' PP-MLD '+d.rating+'</span></div>'+
+        '<div><span class="label">Outlook</span><span class="value">'+d.outlook+'</span></div>'+
+        '<div><span class="label">Date verified</span><span class="value">'+RDATE[d.agency]+'</span></div>'+
+        '<div><span class="label">Seniority in repayment</span><span class="value">Senior</span></div>'+
+        '<div><span class="label">Security</span><span class="value">Secured</span></div></div></div></div>'+
+    '</div></section>'+
+
+    '<section class="block"><div class="wrap pair">'+
+      '<div class="col"><div class="card"><div class="head"><h2>About the issuer</h2><p class="muted">'+esc(is.about)+'</p></div><div class="factlist">'+
+        '<div><span class="label">Basic industry</span><span class="value">'+is.industry+'</span></div>'+
+        '<div><span class="label">Head office</span><span class="value">'+is.hq+'</span></div>'+
+        '<div><span class="label">Sector</span><span class="value">'+is.sector+'</span></div>'+
+        '<div><span class="label">Ownership</span><span class="value">'+is.own+'</span></div>'+
+        '<div><span class="label">Track record</span><span class="value">'+is.past+'</span></div></div></div></div>'+
+      '<div class="col"><div class="card"><div class="head"><h2>Common questions</h2></div><div class="faq">'+
+        faq.map(function(q,k){return '<details'+(k===0?' open':'')+'><summary>'+q[0]+'</summary><p>'+esc(q[1])+'</p></details>'}).join('')+'</div></div></div>'+
+    '</div></section>'+
+
+    (same.length?'<section class="block"><div class="wrap"><div class="head"><h2>Other MLDs by '+esc(d.issuer)+'</h2></div><div class="minis">'+same.map(mini).join('')+'</div></div></section>':'')+
+    (similar.length?'<section class="block"><div class="wrap"><div class="head"><h2>Similar MLDs</h2></div><div class="minis">'+similar.map(mini).join('')+'</div></div></section>':'')+
+    '<section class="block"><div class="wrap"><p class="legal">Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p></div></section>';
+    var sa=document.getElementById('d-showall');
+    sa.addEventListener('click',function(){var x=document.getElementById('d-grid'),open=!x.classList.contains('all');x.classList.toggle('all',open);sa.setAttribute('aria-expanded',open);sa.textContent=open?'Show fewer details':'Show all '+f.length+' details'});
+  }
+  detailHook=renderDetail; show();
+
   // Apply form (demo: real version sends the lead to the team)
   var af=document.getElementById('apply-form');
   af.addEventListener('submit',function(e){
@@ -1151,27 +1096,6 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2600);
   });
 
-  // Payout calculator (Kaveri Series 7: 22.5% if Nifty ends at or above -20%, 25 months)
-  var qty=2, nifty=document.getElementById('c-nifty'), slab=document.getElementById('c-slab');
-  function inr(n){return '₹'+Math.round(n).toLocaleString('en-IN')}
-  function calc(){
-    var v=+nifty.value, face=100000*qty, met=v>=-20;
-    var get=met?face*1.225:face, gain=get-face, tax=gain*(+slab.value), after=get-tax;
-    var rate=Math.pow(after/face,12/25)-1;
-    var fdGain=face*(Math.pow(1+0.071/4,25/3)-1) // FD compounds quarterly
-   , fd=face+fdGain*(1-(+slab.value));
-    document.getElementById('c-amt').textContent=inr(face);
-    document.getElementById('c-nifty-out').textContent=(v>0?'+':'')+v+'%';
-    document.getElementById('c-box').className='result '+(met?'good':'base');
-    document.getElementById('c-status').textContent=met?'Condition met – Nifty fell less than 20%':'Condition not met – Nifty fell more than 20%';
-    document.getElementById('c-get').textContent=inr(get);
-    document.getElementById('c-after').textContent=inr(after);
-    document.getElementById('c-rate').textContent=(rate*100).toFixed(2)+'%';
-    document.getElementById('c-fd').textContent=inr(fd);
-  }
-  document.getElementById('c-minus').addEventListener('click',function(){if(qty>1){qty--;calc()}});
-  document.getElementById('c-plus').addEventListener('click',function(){if(qty<50){qty++;calc()}});
-  nifty.addEventListener('input',calc);slab.addEventListener('change',calc);calc();
 })();
 </script>
 </body>
