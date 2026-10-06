@@ -11,3 +11,8 @@ Clickable UI design for Stockify – Company Intelligence, US Private Equity & M
 3. `git add -A && git commit -m "what changed" && git push`
 
 The live link updates about a minute after each push.
+
+## v9 – easy-read MLD screens
+- File: `Stockify-MLDs-easy-read-v9.html` (MLD list, MLD page, How MLDs work)
+- Live: https://malharlakdawala.github.io/stockify-screens/Stockify-MLDs-easy-read-v9.html
+- Larger text with a text-size switch, less on each screen, extra detail behind "show more" sections and download buttons.
