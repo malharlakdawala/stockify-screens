@@ -283,6 +283,53 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 }
 
 .sr{position:absolute;left:-9999px}
+/* MLD landing */
+.btn-xl{min-height:64px;padding:0 34px;font-size:1.25rem}
+.head.center{text-align:center;align-items:center}
+.lhero{padding:80px 0 72px}
+.lhero-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:48px;align-items:center}
+.lhero-copy{display:flex;flex-direction:column;gap:24px;align-items:flex-start}
+.lhero h1{font-size:clamp(2.2rem,5vw,3.4rem);max-width:none}
+.lhero .hl{color:var(--green-ink)}
+.lhero-art{position:relative;height:340px;border-radius:28px;background:radial-gradient(circle at 50% 45%,#fff 0 30%,#DCEFDC 31% 100%);display:grid;place-items:center}
+.shield{filter:drop-shadow(0 12px 24px rgba(30,123,44,.25))}
+.arttag{position:absolute;background:#fff;border-radius:999px;padding:12px 20px;font-weight:700;font-size:1.05rem;box-shadow:var(--shadow)}
+.arttag.t1{top:36px;left:24px}
+.arttag.t2{bottom:36px;right:24px;color:var(--green-ink)}
+.benefit{align-items:flex-start;gap:14px;display:flex;flex-direction:column}
+.benefit p{color:var(--ink-2);font-size:1.15rem}
+.bicon{width:64px;height:64px;border-radius:18px;background:var(--green-soft);color:var(--green-ink);display:grid;place-items:center}
+.bicon svg{width:32px;height:32px}
+.bigtext{font-size:1.4rem;line-height:1.55}
+.faq details{border-top:1px solid var(--line)}
+.faq details:first-child{border-top:0}
+.faq summary{list-style:none;cursor:pointer;min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:700;font-size:1.2rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-size:1.8rem;font-weight:400;color:var(--ink-2)}
+.faq details[open] summary::after{content:'–'}
+.faq p{color:var(--ink-2);padding-bottom:18px}
+.tslot{border:2px dashed #C9D1CB;border-radius:var(--radius);padding:28px;color:var(--ink-2);display:flex;flex-direction:column;gap:6px;min-height:180px}
+.tslot .q{font-size:3rem;line-height:1;color:#C9D1CB;font-family:Georgia,serif}
+.tslot span{margin-top:auto;font-size:1rem}
+.applybox{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;background:var(--navy);border-radius:28px;padding:56px}
+.applycopy h2{color:#fff}
+.applycopy p{color:#C9D3DC;font-size:1.25rem;margin-top:12px}
+.applycopy .ticks{color:#fff;font-size:1.15rem}
+.applycopy .ticks.yes .i{background:rgba(61,181,74,.2);color:#7FD889}
+.applyform .field{margin-bottom:20px}
+.applyform input[type=text],.applyform input[type=tel]{font-family:inherit;font-size:1.2rem;min-height:60px;padding:0 16px;border:2px solid #C9D1CB;border-radius:12px;width:100%;color:var(--ink)}
+.applyform select{width:100%;min-height:60px;font-size:1.15rem}
+.applyform input:focus,.applyform select:focus{border-color:var(--green-ink);outline:none}
+.phone{display:flex;align-items:stretch;border:2px solid #C9D1CB;border-radius:12px;overflow:hidden}
+.phone span{display:grid;place-items:center;padding:0 16px;background:var(--bg);font-weight:700;font-size:1.15rem}
+.phone input{border:0 !important;border-radius:0 !important}
+.consent{margin:0 0 8px;font-size:1.02rem}
+.ferr{color:var(--red-ink);font-weight:600;min-height:1.6em;margin-bottom:8px}
+.thanks{text-align:center;align-items:center;display:flex;flex-direction:column}
+[hidden]{display:none !important}
+@media (max-width:960px){.lhero-grid,.applybox{grid-template-columns:1fr}.lhero-art{height:240px}.applybox{padding:32px 22px}}
+@media (max-width:720px){.lhero{padding:44px 0}.lhero-art{display:none}.btn-xl{width:100%}}
+
 .screen{display:none}
 .screen.on{display:block}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:16px 24px;border-radius:12px;font-size:1.05rem;opacity:0;pointer-events:none;transition:all .25s;z-index:50;max-width:calc(100% - 32px)}
@@ -327,7 +374,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     <a class="logo" href="#mld-home">ST<b>O</b>CKIFY</a>
     <nav class="nav" aria-label="Main">
       <a href="#mld-home" data-for="mld-home">MLDs</a>
-      <a href="#mld-detail" data-for="mld-detail">Featured MLD</a>
+      <a href="#mld-list" data-for="mld-list">All MLDs</a>
       <a href="#mld-how" data-for="mld-how">How MLDs work</a>
     </nav>
     <div class="textsize" role="group" aria-label="Text size">
@@ -344,24 +391,139 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 <!-- ============ SCREEN 1: MLD LIST ============ -->
 <div class="screen" id="scr-mld-home">
 
-  <section class="hero">
+  <!-- 1. Hook -->
+  <section class="hero lhero">
     <div class="wrap">
-      <span class="chip green"><span class="dot"></span>6 new issues open now</span>
-      <h1>Earn a return linked to the Nifty. Get your money back at maturity.</h1>
-      <p class="lead">Market Linked Debentures (MLDs) are listed loans to finance companies. Your return depends on how the Nifty does. Your money comes back at the end, as long as the company can pay.</p>
-      <div class="btns">
-        <a class="btn btn-primary" href="#open-now">See all MLDs</a>
-        <a class="btn btn-outline" href="#mld-how">How MLDs work <span class="muted small">· 3 min</span></a>
-      </div>
-      <div class="facts">
-        <div class="fact"><div class="badge"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12M6 9h12M13 20 6 13h3a4 4 0 0 0 0-8"/></svg></div><div><strong>Start with ₹1 lakh</strong><p>One debenture is ₹1,00,000.</p></div></div>
-        <div class="fact"><div class="badge"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div><div><strong>Money back at the end</strong><p>If the company pays. Check its rating.</p></div></div>
-        <div class="fact"><div class="badge"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div><div><strong>Return is not fixed</strong><p>It depends on the Nifty. It can be 0%.</p></div></div>
+      <div class="lhero-grid">
+        <div class="lhero-copy">
+          <span class="chip green">Market Linked Debentures (MLDs)</span>
+          <h1>Your money protected.<br><span class="hl">Your returns linked to the market.</span></h1>
+          <p class="lead">Get your principal back at maturity, with a chance to earn more when the market does well.</p>
+          <div class="btns">
+            <a class="btn btn-primary btn-xl" href="#apply">Apply now</a>
+            <a class="btn btn-outline btn-xl" href="#what-is">What is an MLD?</a>
+          </div>
+          <p class="small muted">Protection depends on the issuing company being able to pay. Free call with our team · No fee to Stockify.</p>
+        </div>
+        <div class="lhero-art" aria-hidden="true">
+          <div class="shield">
+            <svg viewBox="0 0 120 120" width="120" height="120"><path d="M60 10 20 24v30c0 26 17 44 40 52 23-8 40-26 40-52V24L60 10Z" fill="#3DB54A"/><path d="m42 60 13 13 25-27" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="arttag t1">Principal protected</div>
+          <div class="arttag t2">Market-linked upside</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="open-now">
+  <!-- 2. Benefits -->
+  <section class="block">
+    <div class="wrap">
+      <div class="head center"><h2>Why people choose MLDs</h2></div>
+      <div class="grid g3">
+        <div class="card benefit">
+          <div class="bicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <h3>Your principal is protected</h3>
+          <p>You get your invested money back at maturity, as long as the issuing company can pay.</p>
+        </div>
+        <div class="card benefit">
+          <div class="bicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div>
+          <h3>Earn more when the market rises</h3>
+          <p>Your return is linked to an index like the Nifty 50. When it does well, you can earn more.</p>
+        </div>
+        <div class="card benefit">
+          <div class="bicon" style="font-weight:800;font-size:1.5rem">2×</div>
+          <h3>Some give you extra</h3>
+          <p>Some MLDs give you more than the market’s rise, using a multiplier.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. What is an MLD -->
+  <section class="block" id="what-is">
+    <div class="wrap">
+      <div class="pair">
+        <div class="col">
+          <div class="card">
+            <div class="head"><h2>What is an MLD?</h2></div>
+            <p class="bigtext">An MLD is a type of bond. You lend money to a trusted finance company for a few years.</p>
+            <ul class="ticks yes" style="margin-top:24px">
+              <li><span class="i">1</span><div><strong>You invest</strong><br><span class="muted">From ₹1 lakh, for about 1½ to 5 years.</span></div></li>
+              <li><span class="i">2</span><div><strong>Your return follows the market</strong><br><span class="muted">It depends on how an index like the Nifty 50 does.</span></div></li>
+              <li><span class="i">3</span><div><strong>You get paid at the end</strong><br><span class="muted">Your money back, plus any return you earned.</span></div></li>
+            </ul>
+            <div class="callout" style="margin-top:28px"><div><strong>Returns are not fixed or guaranteed.</strong> If the market does badly, you may get only your money back.</div></div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="head"><h2>Common questions</h2></div>
+            <div class="faq">
+              <details open><summary>How does it work?</summary><p>You invest once. The company uses most of your money to earn steady interest, and a small part to follow the market. At the end, you get your money back plus any market-linked return.</p></details>
+              <details><summary>Is my principal protected?</summary><p>Yes, at maturity, as long as the company can pay. That is why we only list MLDs from companies with strong credit ratings.</p></details>
+              <details><summary>Will I get returns?</summary><p>Not always. Your return depends on the market. If the market does well, you earn more. If it does badly, you may get only your money back.</p></details>
+              <details><summary>Can I take my money out early?</summary><p>It is possible but not easy. MLDs are best for money you won’t need until maturity.</p></details>
+              <details><summary>Who can invest?</summary><p>Resident Indians with PAN, KYC and a demat account.</p></details>
+            </div>
+            <a class="btn-link" href="#mld-how" style="margin-top:12px">Read the full guide →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Testimonials (to add later) -->
+  <section class="block">
+    <div class="wrap">
+      <div class="head center"><h2>What our investors say</h2><p class="muted">Placeholder – real investor stories will be added here once we have them.</p></div>
+      <div class="grid g3">
+        <div class="tslot"><div class="q">“</div><p>Investor quote goes here</p><span>Name, city</span></div>
+        <div class="tslot"><div class="q">“</div><p>Investor quote goes here</p><span>Name, city</span></div>
+        <div class="tslot"><div class="q">“</div><p>Investor quote goes here</p><span>Name, city</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Apply -->
+  <section class="block" id="apply">
+    <div class="wrap">
+      <div class="applybox">
+        <div class="applycopy">
+          <h2>Interested? Let us call you.</h2>
+          <p>Share your details. Our team will call you, explain everything simply and help you apply.</p>
+          <ul class="ticks yes">
+            <li><span class="i">✓</span>No fee to Stockify</li>
+            <li><span class="i">✓</span>No obligation to invest</li>
+            <li><span class="i">✓</span>We call within 1 working day</li>
+          </ul>
+        </div>
+        <form class="applyform card" id="apply-form" novalidate>
+          <div class="field"><label for="a-name">Your name</label><input id="a-name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="a-phone">Mobile number</label><div class="phone"><span>+91</span><input id="a-phone" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="10" required></div></div>
+          <div class="field"><label for="a-city">City</label><input id="a-city" type="text" autocomplete="address-level2"></div>
+          <div class="field"><label for="a-amt">How much would you like to invest?</label>
+            <select id="a-amt"><option>Not sure yet</option><option>₹1 – 5 lakh</option><option>₹5 – 25 lakh</option><option>More than ₹25 lakh</option></select></div>
+          <label class="opt consent"><input type="checkbox" id="a-ok" checked><span>Stockify can call or WhatsApp me about MLDs</span></label>
+          <p class="ferr" id="a-err" role="alert"></p>
+          <button type="submit" class="btn btn-primary btn-xl" style="width:100%">Apply now</button>
+        </form>
+        <div class="card thanks" id="apply-done" hidden>
+          <div class="bicon" style="margin:0 auto 16px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m5 12 5 5 9-10"/></svg></div>
+          <h2>Thank you!</h2>
+          <p class="muted">Our team will call you within 1 working day.</p>
+          <a class="btn btn-outline" href="#mld-list" style="margin-top:20px">Browse MLDs meanwhile</a>
+        </div>
+      </div>
+      <p class="legal" style="margin-top:28px;text-align:center">Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p>
+    </div>
+  </section>
+</div>
+
+
+<!-- ============ ALL MLDS (list with filters) ============ -->
+<div class="screen" id="scr-mld-list">
+  <section class="block" id="open-now" style="padding-top:40px">
     <div class="wrap">
       <div class="head">
         <h2>All MLDs</h2>
@@ -466,7 +628,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 
 <!-- ============ SCREEN 2: MLD DETAIL ============ -->
 <div class="screen" id="scr-mld-detail">
-  <div class="wrap crumb"><a class="btn-link" href="#mld-home"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 6l-6 6 6 6"/></svg>All MLDs</a></div>
+  <div class="wrap crumb"><a class="btn-link" href="#mld-list"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 6l-6 6 6 6"/></svg>All MLDs</a></div>
 
   <section class="block" style="padding-top:20px">
     <div class="wrap" style="display:flex;flex-direction:column;gap:28px">
@@ -808,7 +970,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     <div class="wrap">
       <div class="cta">
         <div><h2>Ready to see the open MLDs?</h2><p>6 new issues from 5 companies, from ₹1 lakh.</p></div>
-        <div class="btns"><a class="btn btn-primary" href="#mld-home">See open MLDs</a><a class="btn btn-outline" href="#mld-detail">See an example</a></div>
+        <div class="btns"><a class="btn btn-primary" href="#mld-list">See open MLDs</a><a class="btn btn-outline" href="#mld-detail">See an example</a></div>
       </div>
       <p class="legal" style="margin-top:24px">Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p>
     </div>
@@ -828,7 +990,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 <script>
 (function(){
   // Screens by URL hash
-  var ids=['mld-home','mld-detail','mld-how'];
+  var ids=['mld-home','mld-list','mld-detail','mld-how'];
   function show(){
     var h=(location.hash||'').slice(1);
     var target=document.getElementById(h);
@@ -839,7 +1001,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     }
     ids.forEach(function(s){document.getElementById('scr-'+s).classList.toggle('on',s===id)});
     document.querySelectorAll('.nav a').forEach(function(a){
-      if(a.dataset.for===id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+      if(a.dataset.for===(id==='mld-detail'?'mld-list':id))a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
     });
     if(ids.indexOf(h)>=0||!h)window.scrollTo(0,0);
     else if(target)target.scrollIntoView();
@@ -963,6 +1125,17 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   fo.addEventListener('click',function(){fp.classList.add('show');fo.setAttribute('aria-expanded','true');document.body.style.overflow='hidden'});
   document.getElementById('f-done').addEventListener('click',function(){fp.classList.remove('show');fo.setAttribute('aria-expanded','false');document.body.style.overflow='';document.getElementById('open-now').scrollIntoView()});
   render();
+
+  // Apply form (demo: real version sends the lead to the team)
+  var af=document.getElementById('apply-form');
+  af.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('a-name').value.trim(), ph=document.getElementById('a-phone').value.replace(/\D/g,'');
+    var err=document.getElementById('a-err');
+    if(!name){err.textContent='Please enter your name.';document.getElementById('a-name').focus();return}
+    if(!/^[6-9]\d{9}$/.test(ph)){err.textContent='Please enter a 10-digit mobile number.';document.getElementById('a-phone').focus();return}
+    err.textContent='';af.hidden=true;document.getElementById('apply-done').hidden=false;
+  });
 
   // Demo-only buttons
   var toast=document.getElementById('toast'),tt;
