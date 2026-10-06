@@ -200,6 +200,14 @@ footer{border-top:1px solid var(--line);background:var(--card);padding:40px 0 56
 footer .links{display:flex;flex-wrap:wrap;gap:8px 28px;margin-bottom:18px}
 footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:1.05rem}
 
+.dhead{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:40px;align-items:start}
+.dhead .intro{display:flex;flex-direction:column;gap:14px;padding-top:8px}
+.ctacard{background:var(--card);border:2px solid var(--green);border-radius:var(--radius);padding:28px;box-shadow:0 8px 28px rgba(22,35,47,.08);display:flex;flex-direction:column;gap:14px}
+.ctacard .label{font-size:1rem;color:var(--ink-2)}
+.ctacard .value{font-size:2rem;font-weight:700;line-height:1.15}
+.ctacard .btn{width:100%}
+.ctacard .note{font-size:1rem;color:var(--ink-2);line-height:1.5}
+@media (max-width:960px){.dhead{grid-template-columns:1fr;gap:24px}}
 .screen{display:none}
 .screen.on{display:block}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:16px 24px;border-radius:12px;font-size:1.05rem;opacity:0;pointer-events:none;transition:all .25s;z-index:50;max-width:calc(100% - 32px)}
@@ -437,17 +445,25 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 
   <section class="block" style="padding-top:20px">
     <div class="wrap" style="display:flex;flex-direction:column;gap:28px">
-      <div style="display:flex;flex-direction:column;gap:14px">
+<div class="dhead">
+      <div class="intro">
         <div class="btns" style="gap:10px"><span class="chip green"><span class="dot"></span>Open · closes 18 Oct 2026</span><span class="chip green">✓ Company approved the sale</span></div>
         <h1>Helix AI</h1>
         <p class="lead">Makes AI assistants that large businesses use for customer support, accounts and IT. Based in San Francisco, about 1,400 people.</p>
+      </div>
+        <aside class="ctacard" aria-label="Invest">
+          <div><div class="label">Your minimum</div><div class="value num" data-r="min"></div><div class="label"><span data-r="minLocalShort"></span> · closes 18 Oct 2026</div></div>
+          <a class="btn btn-primary" href="#" data-demo="Interest saved (demo). Not binding until you sign on 14 Oct.">I’m interested</a>
+          <a class="btn btn-outline" href="#" data-demo="Downloading: Helix AI deal summary (PDF) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download deal summary</a>
+          <p class="note">Not binding. You pay only after your amount is confirmed.</p>
+        </aside>
       </div>
 
       <div class="keyfacts">
         <div><div class="label">Price per share</div><div class="value num">$142.50</div></div>
         <div><div class="label">vs last round ($128)</div><div class="value num">11% more</div></div>
         <div><div class="label">Company value</div><div class="value num">$67.9 billion</div></div>
-        <div><div class="label">Your minimum</div><div class="value num" data-r="min"></div></div>
+        <div><div class="label">Money back</div><div class="value">After IPO or sale</div></div>
       </div>
 
       <div class="card" style="display:flex;flex-direction:column;gap:20px">
@@ -458,12 +474,6 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           <div><div class="num" style="font-size:2.2rem;font-weight:700">10%</div><p class="muted">of your profit, only if you make money</p></div>
         </div>
       </div>
-
-      <div class="btns">
-        <a class="btn btn-primary" href="#" data-demo="Interest saved (demo). Not binding until you sign on 14 Oct.">I’m interested</a>
-        <a class="btn btn-outline" href="#" data-demo="Downloading: Helix AI deal summary (PDF) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download deal summary</a>
-      </div>
-      <p class="muted small" style="margin-top:-12px">Saying you’re interested is not binding. You pay only after your amount is confirmed.</p>
     </div>
   </section>
 

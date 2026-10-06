@@ -200,6 +200,14 @@ footer{border-top:1px solid var(--line);background:var(--card);padding:40px 0 56
 footer .links{display:flex;flex-wrap:wrap;gap:8px 28px;margin-bottom:18px}
 footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:1.05rem}
 
+.dhead{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:40px;align-items:start}
+.dhead .intro{display:flex;flex-direction:column;gap:14px;padding-top:8px}
+.ctacard{background:var(--card);border:2px solid var(--green);border-radius:var(--radius);padding:28px;box-shadow:0 8px 28px rgba(22,35,47,.08);display:flex;flex-direction:column;gap:14px}
+.ctacard .label{font-size:1rem;color:var(--ink-2)}
+.ctacard .value{font-size:2rem;font-weight:700;line-height:1.15}
+.ctacard .btn{width:100%}
+.ctacard .note{font-size:1rem;color:var(--ink-2);line-height:1.5}
+@media (max-width:960px){.dhead{grid-template-columns:1fr;gap:24px}}
 .screen{display:none}
 .screen.on{display:block}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:16px 24px;border-radius:12px;font-size:1.05rem;opacity:0;pointer-events:none;transition:all .25s;z-index:50;max-width:calc(100% - 32px)}
@@ -446,10 +454,18 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 
   <section class="block" style="padding-top:20px">
     <div class="wrap" style="display:flex;flex-direction:column;gap:28px">
-      <div style="display:flex;flex-direction:column;gap:14px">
+<div class="dhead">
+      <div class="intro">
         <div class="btns" style="gap:10px"><span class="chip green"><span class="dot"></span>Open · closes 9 Oct 2026</span><span class="chip green">Rated AA+ · high safety</span></div>
         <h1>Kaveri Nifty 50 Booster</h1>
         <p class="lead">By Kaveri Capital Finance · Series 7. Simple idea: if the Nifty does not fall more than 20% in 25 months, you earn 22.5%.</p>
+      </div>
+        <aside class="ctacard" aria-label="Apply">
+          <div><div class="label">Minimum investment</div><div class="value num">₹1,00,000</div><div class="label">Closes 9 Oct 2026 · no fee to Stockify</div></div>
+          <a class="btn btn-primary" href="#" data-demo="Starting the 2-minute suitability check (demo)">Apply now</a>
+          <a class="btn btn-outline" href="#" data-demo="Downloading: Term sheet, Series 7 (PDF) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download term sheet</a>
+          <p class="note">A 2-minute suitability check comes first.</p>
+        </aside>
       </div>
 
       <div class="card" style="display:flex;flex-direction:column;gap:24px">
@@ -474,11 +490,6 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
         <div><div class="label">Money locked for</div><div class="value">25 months</div></div>
         <div><div class="label">Paid to your bank</div><div class="value">12 Nov 2028</div></div>
         <div><div class="label">Fee you pay</div><div class="value">None</div></div>
-      </div>
-
-      <div class="btns">
-        <a class="btn btn-primary" href="#" data-demo="Starting the 2-minute suitability check (demo)">Apply now</a>
-        <a class="btn btn-outline" href="#" data-demo="Downloading: Term sheet, Series 7 (PDF) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download term sheet</a>
       </div>
     </div>
   </section>
