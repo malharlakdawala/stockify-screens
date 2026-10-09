@@ -5,7 +5,7 @@ Text only, for review by Ashish and the team. Screens: `Stockify-MLDs-easy-read-
 ## Hero
 **Principal protection. Market-linked returns.**
 A structured product that combines debt and equity, designed to protect your principal while participating in the performance of an underlying index or asset.
-Buttons: Apply now · View open issues
+Buttons: Apply now · View all MLDs
 Small print: No fee charged to investors · Guidance from the Stockify team
 
 Animation – three options to choose from (switch A / B / C on the page, or add ?anim=b to the link):
