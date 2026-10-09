@@ -8,29 +8,22 @@ A structured product that combines debt and equity, designed to protect your pri
 Buttons: Apply now · View open issues
 Small print: No fee charged to investors · Guidance from the Stockify team
 
-Animation captions (about 10 seconds, on a loop):
-1. Index falls: principal stays protected
-2. Index rises: returns participate, e.g. 1.7x
-3. Protection on the downside. Participation on the upside.
+Animation – three options to choose from (switch A / B / C on the page, or add ?anim=b to the link):
+- A. Growth line: "Your principal forms a protected base" → "As the index rises, your returns rise too" → "Participation of up to 1.7x the index gain"
+- B. Value at maturity: ₹10,00,000 counts up to ₹15,10,000. "If the Nifty 50 rises 30%, 1.7x participation gives a 51% return (13.5% CAGR)."
+- C. How it is built: Debt component (protects your principal) + Equity link (drives your returns) = Market Linked Debenture (protection + participation)
 
-Trust strip (numbers to be confirmed): ₹XXX Cr+ invested through Stockify · XX,000+ investors · BSE-listed instruments · ₹0 fee to investors
+Trust strip (from stockify.net.in): 5,000+ verified investors · 100+ companies · ₹2,000 Cr+ trades executed · 6 hr average settlement time
 
-## Open issues from InCred
-Issue opens 26 Oct 2026 · closes 30 Oct 2026 (10:30 am, cleared funds)
+## MLD list
+InCred Nifty Magnifier and InCred Nifty Sharkfin (opens 26 Oct 2026) appear first in the list; full terms are on each product page.
+The other MLDs are real instruments from public filings (via Dezerv): Anand Rathi Global Finance (7 Nifty 50 linked series), Cultured Curio Jewels (gold linked), Aadhar Housing Finance (MIBOR linked, CARE AA+), Kanchanjunga Power (MCLR linked, CARE A).
 
 **InCred Nifty Magnifier**
 1.7x participation in Nifty 50 gains between 0% and 30%, for a maximum return of 51% (13.5% CAGR).
-- 1.7x: Nifty 50 participation
-- 51%: Max return · 13.5% CAGR
-- −20%: Protected up to this Nifty fall
-- 3.25 yrs: Tenure
 
 **InCred Nifty Sharkfin**
 2x participation in annual Nifty 50 gains up to 12%, for a maximum of 24% a year. A 15% knock-out return applies in any year the Nifty 50 rises more than 12%.
-- 2x: Annual Nifty 50 participation
-- 24%: Maximum annual return
-- 15%: Knock-out return
-- Full: Principal protection
 
 ## Key features
 - **Principal protection**: Designed for investors who prioritise protecting their capital.
@@ -63,5 +56,5 @@ Principal Protected Market Linked Debentures do not offer fixed or assured retur
 
 ## Open points
 - InCred credit rating, minimum investment and issue size (shown as "To be confirmed").
-- Real figures for the trust strip.
+- Returns and participation for the Dezerv-sourced MLDs are not public, so they show "Variable" and "Per term sheet".
 - Issuer profile text for InCred.

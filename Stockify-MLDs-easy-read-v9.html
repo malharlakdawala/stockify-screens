@@ -306,7 +306,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 .mo-cap span:nth-child(3){animation-delay:6.8s}
 .mo-legend{display:flex;gap:18px;font-size:.95rem;color:var(--ink-2)}
 .mo-legend i{display:inline-block;width:18px;height:4px;border-radius:2px;vertical-align:middle;margin-right:8px}
-@keyframes mo-draw{0%{stroke-dashoffset:1}70%,92%{stroke-dashoffset:0}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes mo-draw{0%{stroke-dashoffset:1;opacity:1}70%,92%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
 @keyframes mo-zone{0%,8%{opacity:0}14%,34%{opacity:1}40%,100%{opacity:0}}
 @keyframes mo-zone-up{0%,40%{opacity:0}48%,92%{opacity:1}100%{opacity:0}}
 @keyframes mo-cap{0%{opacity:0}3%,30%{opacity:1}34%,100%{opacity:0}}
@@ -315,6 +315,41 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   .mo .zone{animation:none;opacity:1}
   .mo-cap span{animation:none;opacity:0}.mo-cap span:nth-child(3){opacity:1}
 }
+/* Animation options (review only) */
+.anim-wrap{display:flex;flex-direction:column;gap:10px}
+.optswitch{display:flex;align-items:center;gap:4px;align-self:flex-end;border:1px dashed #C9D1CB;border-radius:12px;padding:4px}
+.optswitch span{font-size:.9rem;color:var(--ink-2);padding:0 8px}
+.optswitch button{font-family:inherit;font-weight:700;border:0;background:transparent;color:var(--ink);border-radius:8px;width:40px;height:36px;cursor:pointer}
+.optswitch button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.mo .a-badge,.mo .a-shield{opacity:0;animation:mo-pop 10s ease-in-out infinite}
+.mo .a-shield{animation-delay:0s;opacity:1;animation:none}
+@keyframes mo-pop{0%,62%{opacity:0}70%,92%{opacity:1}100%{opacity:0}}
+.mo-b{min-height:300px;justify-content:center}
+.b-row{display:flex;gap:28px;align-items:flex-end}
+.b-col{width:120px;height:240px;display:flex;flex-direction:column;justify-content:flex-end;flex:none}
+.b-ret{background:var(--green);border-radius:12px 12px 0 0;height:0;display:grid;place-items:center;color:#fff;font-weight:700;font-size:1.15rem;overflow:hidden;animation:b-grow 8s ease-out infinite}
+.b-base{height:120px;background:#1B2B3A;border-radius:0 0 12px 12px;color:#fff;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-size:1rem}
+@keyframes b-grow{0%,10%{height:0}55%,92%{height:61px}100%{height:0}}
+.mo .b-base svg{width:22px;height:22px}
+.b-copy{display:flex;flex-direction:column;gap:4px;padding-bottom:6px}
+.b-num{font-size:clamp(1.8rem,3.4vw,2.4rem);font-weight:700;color:var(--green-ink);line-height:1.1}
+.b-note{margin-top:10px;font-size:1rem;color:var(--ink-2);line-height:1.5}
+.mo-c{min-height:300px;justify-content:center;gap:18px}
+.c-flow{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch}
+.c-op{align-self:center}
+.c-part{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:6px}
+.c-part .bicon{width:48px;height:48px;border-radius:14px}.c-part .bicon svg{width:24px;height:24px}
+.c-part span{font-size:.98rem;color:var(--ink-2)}
+.c-op{font-size:2rem;font-weight:700;color:var(--ink-2)}
+.c-res{background:var(--green-soft);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.c-res>span:first-child{font-size:1.8rem;font-weight:700;color:var(--green-ink)}
+.c-res strong{font-size:1.2rem}
+.c-tag{font-size:.95rem;font-weight:700;color:var(--green-ink);background:#fff;border-radius:999px;padding:4px 12px}
+.c1,.c2,.c3,.c4{opacity:0;animation:c-in 9s ease-out infinite}
+.c2{animation-delay:.9s}.c3{animation-delay:1.8s}.c4{animation-delay:3s}
+@keyframes c-in{0%{opacity:0;transform:translateY(12px)}8%,85%{opacity:1;transform:none}95%,100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.b-ret{animation:none;height:61px}.c1,.c2,.c3,.c4,.mo .a-badge{animation:none;opacity:1}}
+@media (max-width:720px){.b-row{gap:18px}.b-col{width:96px;height:200px}.b-base{height:100px}.c-flow{grid-template-columns:1fr}.c-op{text-align:center;line-height:1}.mo-b,.mo-c{min-height:0}}
 /* Trust strip */
 .trust{background:var(--card);border-bottom:1px solid var(--line)}
 .trust .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding-top:22px;padding-bottom:22px}
@@ -493,51 +528,75 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           <p class="lead">A structured product that combines debt and equity, designed to protect your principal while participating in the performance of an underlying index or asset.</p>
           <div class="btns">
             <a class="btn btn-primary btn-xl" href="#apply">Apply now</a>
-            <a class="btn btn-outline btn-xl" href="#now-open">View open issues</a>
+            <a class="btn btn-outline btn-xl" href="#open-now">View all MLDs</a>
           </div>
           <p class="small muted">No fee charged to investors · Guidance from the Stockify team</p>
         </div>
-        <div class="lhero-art mo" role="img" aria-label="Animation: when the index falls, the MLD holds at your principal; when the index rises, the MLD return rises faster through participation.">
-          <div class="mo-cap" aria-hidden="true">
-            <span>Index falls: principal stays protected</span>
-            <span>Index rises: returns participate, e.g. 1.7x</span>
-            <span>Protection on the downside. Participation on the upside.</span>
+        <div class="anim-wrap">
+          <div class="optswitch" role="group" aria-label="Animation design options (for review)">
+            <span>Animation option</span>
+            <button type="button" data-anim="a" aria-pressed="true">A</button>
+            <button type="button" data-anim="b" aria-pressed="false">B</button>
+            <button type="button" data-anim="c" aria-pressed="false">C</button>
           </div>
-          <svg viewBox="0 0 480 250" aria-hidden="true">
-            <rect class="zone" x="20" y="150" width="223" height="100" fill="#EAF5EA" rx="10"/>
-            <rect class="zone up" x="243" y="10" width="217" height="140" fill="#EAF5EA" rx="10"/>
-            <line class="floor" x1="20" y1="150" x2="460" y2="150"/>
-            <text x="24" y="142">Your principal</text>
-            <path class="idx" pathLength="1" d="M20,150 L90,178 L150,205 L220,162 L290,132 L360,112 L440,92"/>
-            <path class="pay" pathLength="1" d="M20,150 L243,150 L290,116 L360,82 L440,48"/>
-          </svg>
-          <div class="mo-legend" aria-hidden="true"><span><i style="background:#9AA6B1"></i>Underlying index</span><span><i style="background:var(--green)"></i>MLD return</span></div>
+
+          <!-- Option A: protected base, returns grow faster than the index -->
+          <div class="lhero-art mo" data-opt="a" role="img" aria-label="Animation: your principal forms a protected base; as the index rises, the MLD return rises 1.7 times faster.">
+            <div class="mo-cap" aria-hidden="true">
+              <span>Your principal forms a protected base</span>
+              <span>As the index rises, your returns rise too</span>
+              <span>Participation of up to 1.7x the index gain</span>
+            </div>
+            <svg viewBox="0 0 480 250" aria-hidden="true">
+              <rect x="20" y="182" width="440" height="56" rx="10" fill="#1B2B3A"/>
+              <text x="40" y="216" style="fill:#fff;font-size:15px">Principal protected</text>
+              <path class="a-shield" d="M430 196l-12 4v8c0 7 5 11 12 13 7-2 12-6 12-13v-8l-12-4Z" fill="#3DB54A"/>
+              <path class="idx" pathLength="1" d="M20,172 L110,160 L200,150 L290,134 L370,122 L450,108"/>
+              <path class="pay" pathLength="1" d="M20,172 L110,150 L200,132 L290,100 L370,74 L450,44"/>
+              <g class="a-badge"><rect x="356" y="8" width="104" height="32" rx="16" fill="#EAF5EA"/><text x="373" y="29" style="fill:#1A6B26;font-size:15px;font-weight:700">1.7x index</text></g>
+            </svg>
+            <div class="mo-legend" aria-hidden="true"><span><i style="background:#9AA6B1"></i>Nifty 50</span><span><i style="background:var(--green)"></i>MLD return</span></div>
+          </div>
+
+          <!-- Option B: principal plus a growing return block, with the value counting up -->
+          <div class="lhero-art mo mo-b" data-opt="b" role="img" aria-label="Animation: an investment of 10 lakh grows to 15.1 lakh at maturity when the Nifty 50 rises 30%, with 1.7x participation." hidden>
+            <div class="b-row">
+              <div class="b-col">
+                <div class="b-ret"><span>+51%</span></div>
+                <div class="b-base"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>Principal</div>
+              </div>
+              <div class="b-copy">
+                <div class="small muted">Value at maturity</div>
+                <div class="b-num num" id="b-num">₹10,00,000</div>
+                <div class="small muted">on ₹10,00,000 invested</div>
+                <div class="b-note">If the Nifty 50 rises 30%, 1.7x participation gives a 51% return (13.5% CAGR).</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Option C: how the product is built: debt + equity link = MLD -->
+          <div class="lhero-art mo mo-c" data-opt="c" role="img" aria-label="Animation: a debt component that protects the principal, plus an equity link that drives returns, combine into one MLD." hidden>
+            <div class="c-flow">
+              <div class="c-part c1"><div class="bicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div><strong>Debt component</strong><span>Protects your principal</span></div>
+              <div class="c-op c2">+</div>
+              <div class="c-part c3"><div class="bicon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></div><strong>Equity link</strong><span>Drives your returns</span></div>
+            </div>
+            <div class="c-res c4"><span>=</span><strong>Market Linked Debenture</strong><span class="c-tag">Protection + participation</span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 1b. Trust strip (figures to be confirmed by Stockify) -->
+  <!-- 1b. Trust strip (figures from stockify.net.in) -->
   <div class="trust" aria-label="Stockify at a glance">
     <div class="wrap">
-      <div><strong>₹XXX Cr+</strong><span>invested through Stockify</span></div>
-      <div><strong>XX,000+</strong><span>investors</span></div>
-      <div><strong>BSE</strong><span>listed instruments</span></div>
-      <div><strong>₹0</strong><span>fee to investors</span></div>
+      <div><strong>5,000+</strong><span>verified investors</span></div>
+      <div><strong>100+</strong><span>companies</span></div>
+      <div><strong>₹2,000 Cr+</strong><span>trades executed</span></div>
+      <div><strong>6 hr</strong><span>average settlement time</span></div>
     </div>
   </div>
-
-  <!-- 2. Open issues -->
-  <section class="block" id="now-open">
-    <div class="wrap">
-      <div class="head">
-        <span class="chip amber" style="align-self:flex-start">Issue opens 26 Oct 2026 · closes 30 Oct 2026</span>
-        <h2>Open issues from InCred</h2>
-        <p class="muted">Two Nifty 50 linked MLDs, each with a 3.25-year tenure.</p>
-      </div>
-      <div class="xgrid" id="featured"></div>
-    </div>
-  </section>
 
   <!-- 3. Key features -->
   <section class="block">
@@ -593,7 +652,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     <div class="wrap">
       <div class="head">
         <h2>All MLDs</h2>
-        <p class="muted">New issues, and listed MLDs available from other investors. No fee is charged to investors.</p>
+        <p class="muted">New issues, and existing MLDs available from other investors. No fee is charged to investors.</p>
       </div>
 
       <div class="browse">
@@ -623,7 +682,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           <div class="chiprow" id="f-chips"></div>
           <div class="mlist" id="r-list"></div>
           <div class="empty card" id="r-empty" hidden><h3>No MLDs match these filters</h3><p class="muted">Try removing a filter.</p><button type="button" class="btn btn-outline" id="r-reset">Clear all filters</button></div>
-          <p class="legal" style="margin-top:24px">Return is a year (XIRR), before tax, if the condition is met. Listed MLDs show the return at today’s Stockify price. Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p>
+          <p class="legal" style="margin-top:24px">Best-case return is a year, before tax, as per the issuer’s terms. For existing MLDs, the price is shared on request. Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p>
         </div>
       </div>
     </div>
@@ -821,7 +880,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
 <footer>
   <div class="wrap">
     <div class="links"><a href="#">About our data</a><a href="#">Disclaimer</a><a href="#">Privacy</a><a href="#">Contact us</a><a href="Stockify-MLDs.html#mld-home">Previous design (v8)</a></div>
-    <p class="legal">MLDs carry company credit risk and market risk. Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance. Design sample – all companies, products and index levels are fictional.</p>
+    <p class="legal">MLDs carry company credit risk and market risk. Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance. Design sample – InCred terms are from the issuer’s October 2026 note; other MLD details are from public filings (via Dezerv) and may have changed.</p>
   </div>
 </footer>
 
@@ -862,8 +921,12 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   sizeBtns.forEach(function(b){b.addEventListener('click',function(){setSize(b.dataset.size)})});
 
   // ---- MLD list with filters (sample data; real data comes from the backend) ----
+  // ---- MLD data ----
+  // InCred: terms from the issuer's October 2026 note. Others: public filings as shown on Dezerv (Oct 2026).
+  function AR(series,isin,issue,mat,size){return {name:'Anand Rathi Nifty 50 Linked',series:'Series '+series,issuer:'Anand Rathi Global Finance',itype:'NBFC',mark:'AR',color:'#1B2B3A',isin:isin,rating:'Unrated',under:'Nifty 50',ret:null,issue:issue,mat:mat,fv:100000,min:100000,size:size,status:'Buy from investors',secured:true,listed:false,pay:'On maturity',
+    pitch:'A secured, unrated, unlisted debenture whose return is linked to the Nifty 50, paid on maturity.'}}
   var MLDS=[
-    {name:'InCred Nifty Magnifier',series:'October 2026',issuer:'InCred',itype:'NBFC – diversified finance',mark:'IN',color:'#0B3D6B',isin:'Given at allotment',rating:null,agency:null,outlook:null,rtype:'Participation',under:'Nifty 50',ret:13.5,issue:'2026-10-30',mat:'2030-01-30',min:null,size:null,status:'Coming soon',open:'2026-10-26',close:'2026-10-30',
+    {name:'InCred Nifty Magnifier',series:'October 2026',issuer:'InCred',itype:'NBFC',mark:'IN',color:'#0B3D6B',isin:'Given at allotment',rating:null,under:'Nifty 50',ret:13.5,issue:'2026-10-30',mat:'2030-01-30',fv:100000,min:null,size:null,status:'Coming soon',open:'2026-10-26',close:'2026-10-30',secured:true,listed:false,
       prot:'Partial',protShort:'Up to −20%',protLong:'Protected up to a 20% fall in the Nifty 50; beyond that, as per index performance',mult:1.7,pay:'On maturity',obs:'3-month averaging at entry and exit, on F&O monthly expiry dates',
       pitch:'1.7x participation in Nifty 50 gains between 0% and 30%, for a maximum return of 51% (13.5% CAGR).',
       keys:[['1.7x','Nifty 50 participation'],['51%','Max return · 13.5% CAGR'],['−20%','Protected up to this Nifty fall'],['3.25 yrs','Tenure']],
@@ -872,7 +935,7 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           ['Maximum return','51% absolute return (13.5% CAGR) at a 30% rise in the Nifty 50.'],
           ['Tenure','3.25 years.'],
           ['Nifty observation','Averaged over 3 months at entry and exit, using Nifty 50 levels on F&O monthly expiry dates.']]},
-    {name:'InCred Nifty Sharkfin',series:'October 2026',issuer:'InCred',itype:'NBFC – diversified finance',mark:'IN',color:'#0B3D6B',isin:'Given at allotment',rating:null,agency:null,outlook:null,rtype:'Participation',under:'Nifty 50',ret:24,issue:'2026-10-30',mat:'2030-01-30',min:null,size:null,status:'Coming soon',open:'2026-10-26',close:'2026-10-30',
+    {name:'InCred Nifty Sharkfin',series:'October 2026',issuer:'InCred',itype:'NBFC',mark:'IN',color:'#0B3D6B',isin:'Given at allotment',rating:null,under:'Nifty 50',ret:24,issue:'2026-10-30',mat:'2030-01-30',fv:100000,min:null,size:null,status:'Coming soon',open:'2026-10-26',close:'2026-10-30',secured:true,listed:false,
       prot:'Full',protShort:'Full',protLong:'Fully protected at maturity',mult:2,pay:'Return set each year',obs:'Annual Nifty 50 observation',
       pitch:'2x participation in annual Nifty 50 gains up to 12%, for a maximum of 24% a year. A 15% knock-out return applies in any year the Nifty 50 rises more than 12%.',
       keys:[['2x','Annual Nifty 50 participation'],['24%','Maximum annual return'],['15%','Knock-out return'],['Full','Principal protection']],
@@ -882,41 +945,43 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
           ['Knock-out return','15% for any year in which the Nifty 50 rises more than 12%.'],
           ['Tenure','3.25 years.'],
           ['Annual observation','The Nifty 50 is observed each year to set that year’s return.']]},
-    {name:'Kaveri Nifty 50 Booster',series:'Series 7',issuer:'Kaveri Capital Finance',itype:'NBFC – wealth & lending',mark:'KC',color:'#1B2B3A',isin:'Given at allotment',rating:'AA+',agency:'CRISIL',outlook:'Stable',rtype:'Fixed payout if index holds',under:'Nifty 50',ret:10.23,issue:'2026-10-12',mat:'2028-11-12',min:100000,size:25,status:'Open now',close:'2026-10-09',prot:'Full',pitch:'22.5% in total if the Nifty 50 does not fall more than 20%.'},
-    {name:'Palash G-Sec Linked',series:'Series 3',issuer:'Palash Finserv',itype:'Housing & MSME finance',mark:'PF',color:'#2D5BA8',isin:'Given at allotment',rating:'AA',agency:'ICRA',outlook:'Stable',rtype:'G-Sec linked',under:'G-Sec 2033',ret:9.10,issue:'2026-10-03',mat:'2028-04-12',min:100000,size:10,status:'Open now',close:'2026-09-30',hot:'Closing soon',prot:'Full',pitch:'A close-to-fixed return, linked to a government bond.'},
-    {name:'Kaveri Nifty Participation',series:'Series 8',issuer:'Kaveri Capital Finance',itype:'NBFC – wealth & lending',mark:'KC',color:'#1B2B3A',isin:'Given at allotment',rating:'AA+',agency:'CRISIL',outlook:'Stable',rtype:'Participation',under:'Nifty 50',ret:13.19,issue:'2026-10-19',mat:'2029-10-19',min:100000,size:15,status:'Open now',close:'2026-10-16',prot:'Full',mult:1.2,pitch:'1.2x participation in Nifty 50 gains, up to 45% in total.'},
-    {name:'Sahyadri Gold Advantage',series:'Series 1',issuer:'Sahyadri Finvest',itype:'Vehicle & gold loans',mark:'SF',color:'#B5541C',isin:'Given at allotment',rating:'AA-',agency:'CARE',outlook:'Positive',rtype:'Participation',under:'Gold',ret:10.4,issue:'2026-10-21',mat:'2029-10-21',min:100000,size:10,status:'Open now',close:'2026-10-21',prot:'Full',mult:1.1,pitch:'1.1x participation in the rise in gold prices, up to 36% in total.'},
-    {name:'Sahyadri Bank Nifty Double Up',series:'Series 2',issuer:'Sahyadri Finvest',itype:'Vehicle & gold loans',mark:'SF',color:'#B5541C',isin:'Given at allotment',rating:'AA-',agency:'CARE',outlook:'Positive',rtype:'Fixed payout if index holds',under:'Bank Nifty',ret:11.07,issue:'2026-10-26',mat:'2029-04-26',min:500000,size:10,status:'Open now',close:'2026-10-23',prot:'Full',pitch:'30% in total if Bank Nifty ends at or above its starting level.'},
-    {name:'Meru Nifty Defender',series:'Series 5',issuer:'Meru Home Finance',itype:'Housing & MSME finance',mark:'MH',color:'#7A3E8E',isin:'Given at allotment',rating:'AA',agency:'CRISIL',outlook:'Stable',rtype:'Fixed payout if index holds',under:'Nifty 50',ret:9.62,issue:'2026-10-23',mat:'2028-10-30',min:100000,size:20,status:'Open now',close:'2026-10-20',prot:'Full',pitch:'20% in total if the Nifty 50 does not fall more than 25%.'},
-    {name:'Crestline G-Sec Steady',series:'Series 9',issuer:'Crestline Investments',itype:'Group finance arm',mark:'CI',color:'#1E6B34',isin:'Given at allotment',rating:'AAA',agency:'CRISIL',outlook:'Stable',rtype:'G-Sec linked',under:'G-Sec 2032',ret:8.35,issue:'2026-10-30',mat:'2028-01-14',min:100000,size:30,status:'Open now',close:'2026-10-27',prot:'Full',pitch:'A steady, close-to-fixed return from a AAA-rated issuer.'},
-    {name:'Crestline Nifty Shield',series:'Series 12',issuer:'Crestline Investments',itype:'Group finance arm',mark:'CI',color:'#1E6B34',isin:'Given at allotment',rating:'AAA',agency:'CRISIL',outlook:'Stable',rtype:'Participation',under:'Nifty 50',ret:5.39,issue:'2026-11-20',mat:'2032-02-20',min:100000,size:20,status:'Coming soon',open:'2026-10-20',close:'2026-11-18',prot:'Full',mult:0.5,pitch:'0.5x participation in Nifty 50 gains, with no upper limit.'},
-    {name:'Kaveri Nifty 50 Booster',series:'Series 4',issuer:'Kaveri Capital Finance',itype:'NBFC – wealth & lending',mark:'KC',color:'#1B2B3A',isin:'INE0KC907184',rating:'AA+',agency:'CRISIL',outlook:'Stable',rtype:'Fixed payout if index holds',under:'Nifty 50',ret:8.9,issue:'2024-03-14',mat:'2027-04-14',min:117850,size:20,status:'Buy from investors',prot:'Full',pitch:'Payout condition on track: the Nifty 50 is 16.5% above its starting level.'},
-    {name:'Palash G-Sec Linked',series:'Series 1',issuer:'Palash Finserv',itype:'Housing & MSME finance',mark:'PF',color:'#2D5BA8',isin:'INE0PF907052',rating:'AA',agency:'ICRA',outlook:'Stable',rtype:'G-Sec linked',under:'G-Sec 2031',ret:8.6,issue:'2025-01-20',mat:'2027-07-20',min:106450,size:8,status:'Buy from investors',prot:'Full',pitch:'Payout condition already met. About 10 months to maturity.'},
-    {name:'Sahyadri Nifty Participation',series:'Series 1',issuer:'Sahyadri Finvest',itype:'Vehicle & gold loans',mark:'SF',color:'#B5541C',isin:'INE0SF907021',rating:'AA-',agency:'CARE',outlook:'Positive',rtype:'Participation',under:'Nifty 50',ret:9.4,issue:'2024-12-08',mat:'2027-12-08',min:112300,size:12,status:'Buy from investors',prot:'Full',mult:1,pitch:'The Nifty 50 is 22% above its starting level. Gains capped at 40%.'}
+    AR('ARG22SP76-IV','INE093JA77L5','2021-10-30','2026-12-18',31.625),
+    AR('ARG20SP143-II','INE093JA7971','2019-12-12','2027-01-24',12.025),
+    AR('ARG22SP117-II','INE093JA71U9','2022-02-28','2027-04-18',7.3125),
+    AR('ARG23SP11-IV','INE093JA78Y6','2022-04-21','2027-06-09',36.225),
+    AR('ARG23SP29-IV','INE093JB7251','2022-05-18','2027-07-06',41.4),
+    AR('ARG21SP91-II','INE093JA7ZQ6','2020-12-24','2027-08-30',8.075),
+    AR('ARG21SP124-IX','INE093JA7L66','2021-03-30','2027-12-24',28.6),
+    {name:'Cultured Curio Gold Linked',series:'Series A',issuer:'Cultured Curio Jewels',itype:'Gems & jewellery',mark:'CC',color:'#B5541C',isin:'INE0CR608018',rating:'Unrated',under:'Gold',ret:null,issue:'2020-02-20',mat:'2029-02-19',fv:100000,min:100000,size:20,status:'Buy from investors',secured:false,listed:false,prot:'Full',pay:'On maturity',
+      pitch:'An unsecured, unrated, principal-protected debenture whose return is linked to the price of gold, paid on maturity.'},
+    {name:'Aadhar Housing MIBOR Linked',series:'June 2029 Tranche 1',issuer:'Aadhar Housing Finance',itype:'Housing finance',mark:'AH',color:'#2D5BA8',isin:'INE883F07264',rating:'AA+',agency:'CARE',outlook:'Stable',rdate:'06 Jul 2026',senior:'Senior',under:'MIBOR',ret:null,issue:'2022-07-15',mat:'2029-06-15',fv:1000000,min:1000000,size:351,status:'Buy from investors',secured:true,listed:false,pay:'Quarterly',
+      pitch:'A secured, CARE AA+ rated debenture whose interest is linked to the 3-month MIBOR, paid quarterly.'},
+    {name:'Kanchanjunga Power MCLR Linked',series:'Series 3A',issuer:'Kanchanjunga Power Company',itype:'Power',mark:'KP',color:'#1E6B34',isin:'INE117N07089',rating:'A',agency:'CARE',outlook:'Stable',rdate:'20 Oct 2025',under:'MCLR',ret:null,issue:'2022-06-02',mat:'2029-10-31',fv:1000000,min:1000000,size:36,status:'Buy from investors',secured:true,listed:false,pay:'Monthly',
+      pitch:'A secured, CARE A rated debenture whose interest is linked to the 1-year MCLR, paid monthly.'}
   ];
-  var TODAY=new Date('2026-09-25');
   var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   function months(a,b){var x=new Date(a),y=new Date(b);return (y.getFullYear()-x.getFullYear())*12+y.getMonth()-x.getMonth()}
   function tenLabel(d){var m=months(d.issue,d.mat),y=Math.floor(m/12),r=m%12;return y+' yr'+(y===1?'':'s')+(r?' '+r+' mo':'')}
   function tenure(d){var y=months(d.issue,d.mat)/12;return y<=3?'1 to 3 years':y<=5?'3 to 5 years':'Over 5 years'}
-  function band(r){return r<9?'Up to 9% a year':r<=11?'9% to 11% a year':'Over 11% a year'}
-  function protShort(d){return d.protShort||'Full'}
-  function protLong(d){return d.protLong||'Fully protected at maturity'}
+  function band(r){return r==null?'Not disclosed':r<12?'Up to 12% a year':r<=20?'12% to 20% a year':'Over 20% a year'}
+  function protShort(d){return d.protShort||(d.prot==='Full'?'Full':'Per term sheet')}
+  function protLong(d){return d.protLong||(d.prot==='Full'?'Fully protected at maturity':'As per the term sheet')}
   function multLabel(d){return d.mult?d.mult+'x':'Not applicable'}
-  function ratingText(d){return d.rating?'Rated '+d.rating:'Rating awaited'}
-  function ratingFull(d){return d.rating?d.agency+' PP-MLD '+d.rating:'Awaited'}
+  function ratingText(d){return d.rating==='Unrated'?'Unrated':d.rating?'Rated '+d.rating:'Rating awaited'}
+  function ratingFull(d){return d.rating==='Unrated'?'Not rated':d.rating?d.agency+' '+d.rating:'Awaited'}
+  function underTag(d){return {MIBOR:'3M MIBOR',MCLR:'1Y MCLR'}[d.under]||d.under}
+  function underText(d){return {'Gold':'the price of gold',MIBOR:'the 3-month MIBOR',MCLR:'the 1-year MCLR'}[d.under]||'the '+d.under}
   var GROUPS=[
-    {key:'status',label:'Status',get:function(d){return d.status},order:['Open now','Coming soon','Buy from investors'],open:true},
-    {key:'prot',label:'Principal protection',get:function(d){return d.prot==='Full'?'Full':'Up to a set index fall'},order:['Full','Up to a set index fall'],open:true},
-    {key:'under',label:'Linked to',get:function(d){return d.under.indexOf('G-Sec')===0?'Government bond (G-Sec)':d.under},order:['Nifty 50','Bank Nifty','Gold','Government bond (G-Sec)'],open:true},
-    {key:'mult',label:'Nifty multiplier',get:function(d){return d.mult>1?'Yes (above 1x)':'No'},order:['Yes (above 1x)','No']},
+    {key:'status',label:'Status',get:function(d){return d.status},order:['Coming soon','Buy from investors'],open:true},
+    {key:'prot',label:'Principal protection',get:function(d){return d.prot==='Full'?'Full':d.prot==='Partial'?'Up to a set index fall':'As per term sheet'},order:['Full','Up to a set index fall','As per term sheet'],open:true},
+    {key:'under',label:'Linked to',get:function(d){return d.under==='MIBOR'||d.under==='MCLR'?'Interest rate benchmark':d.under},order:['Nifty 50','Gold','Interest rate benchmark'],open:true},
+    {key:'mult',label:'Nifty multiplier',get:function(d){return d.mult>1?'Yes (above 1x)':'No / not disclosed'},order:['Yes (above 1x)','No / not disclosed']},
     {key:'ten',label:'Tenure',get:tenure,order:['1 to 3 years','3 to 5 years','Over 5 years'],open:true},
-    {key:'rtype',label:'Return type',get:function(d){return d.rtype},order:['Participation','Fixed payout if index holds','G-Sec linked']},
-    {key:'ret',label:'Best-case return',get:function(d){return band(d.ret)},order:['Up to 9% a year','9% to 11% a year','Over 11% a year']},
-    {key:'rating',label:'Credit rating',get:function(d){return d.rating||'Awaited'},order:['AAA','AA+','AA','AA-','Awaited']},
+    {key:'ret',label:'Best-case return',get:function(d){return band(d.ret)},order:['Up to 12% a year','12% to 20% a year','Over 20% a year','Not disclosed']},
+    {key:'rating',label:'Credit rating',get:function(d){return d.rating||'Awaited'},order:['AA+','A','Unrated','Awaited']},
     {key:'issuer',label:'Issuer name',get:function(d){return d.issuer}},
     {key:'itype',label:'Issuer type',get:function(d){return d.itype}},
-    {key:'min',label:'Minimum investment',get:function(d){return d.min==null?'To be confirmed':d.min>=500000?'₹5 lakh':'About ₹1 lakh'},order:['About ₹1 lakh','₹5 lakh','To be confirmed']}
+    {key:'min',label:'Face value',get:function(d){return d.fv>=1000000?'₹10 lakh':'₹1 lakh'},order:['₹1 lakh','₹10 lakh']}
   ];
   var sel={}; GROUPS.forEach(function(g){sel[g.key]=[]});
   var chev='<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>';
@@ -934,29 +999,30 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   }
   function fmtDate(s){var d=new Date(s);return d.getDate()+' '+MON[d.getMonth()]+' '+d.getFullYear()}
   function shortDate(s){return fmtDate(s).replace(/ \d{4}$/,'')}
+  function monYear(s){var d=new Date(s);return MON[d.getMonth()]+' '+d.getFullYear()}
   function inrShort(n){return n>=100000&&n%100000===0?'₹'+(n/100000)+' lakh':'₹'+n.toLocaleString('en-IN')}
-  var RANK={'AAA':0,'AA+':1,'AA':2,'AA-':3,'Awaited':9};
-  function underTag(d){return d.under.indexOf('G-Sec')===0?'G-Sec':d.under}
+  var RANK={'AA+':1,'A':2,'Unrated':8,'Awaited':9};
   function render(){
     var list=MLDS.filter(function(d){return match(d)});
     var sort=document.getElementById('r-sort').value;
     list.sort(function(a,b){
-      if(sort==='ret')return b.ret-a.ret;
+      if(sort==='ret')return (b.ret==null?-1:b.ret)-(a.ret==null?-1:a.ret);
       if(sort==='mat')return new Date(a.mat)-new Date(b.mat);
-      if(sort==='rating')return RANK[a.rating||'Awaited']-RANK[b.rating||'Awaited']||b.ret-a.ret;
-      var ca=a.close?new Date(a.close):new Date('2100-01-01'), cb=b.close?new Date(b.close):new Date('2100-01-01');
+      if(sort==='rating')return RANK[a.rating||'Awaited']-RANK[b.rating||'Awaited']||(b.ret||0)-(a.ret||0);
+      var ca=a.close?new Date(a.close):new Date(a.mat), cb=b.close?new Date(b.close):new Date(b.mat);
       return ca-cb;
     });
     document.getElementById('r-list').innerHTML=list.map(function(d){
-      var listed=d.status==='Buy from investors', soon=d.status==='Coming soon';
-      var when=listed?'Listed · buy now':soon?'Opens '+shortDate(d.open):'Closes '+shortDate(d.close);
-      var tag=d.hot?'<span class="chip amber">'+d.hot+'</span>':soon?'<span class="chip">Coming soon</span>':listed?'<span class="chip">Listed</span>':'';
-      var mtag=d.mult>1?'<span class="chip green">'+d.mult+'x '+esc(d.under)+'</span>':'';
-      var tags=tag+(tag&&mtag?' ':'')+mtag;
+      var soon=d.status==='Coming soon';
+      var when=soon?'Opens '+shortDate(d.open):'Matures '+monYear(d.mat);
+      var tag=soon?'<span class="chip amber">New issue · opens '+shortDate(d.open)+'</span>':'<span class="chip">Buy from investors</span>';
+      var mtag=d.mult>1?' <span class="chip green">'+d.mult+'x '+esc(d.under)+'</span>':'';
+      var retCell=d.ret!=null?'<div class="label">Best case</div><div class="value good num">'+(+d.ret.toFixed(2))+'%</div><div class="label">a year</div>'
+        :'<div class="label">Return</div><div class="value">Variable</div><div class="label">linked to '+esc(underTag(d))+'</div>';
       return '<article class="mrow">'+
-        '<div class="mname"><div class="mark" style="background:'+d.color+'">'+d.mark+'</div><div><h3>'+esc(d.name)+'</h3><div class="mmeta">'+esc(d.issuer)+' · '+ratingText(d)+' · Linked to '+esc(underTag(d))+'</div>'+(tags?'<div style="margin-top:8px">'+tags+'</div>':'')+'</div></div>'+
+        '<div class="mname"><div class="mark" style="background:'+d.color+'">'+d.mark+'</div><div><h3>'+esc(d.name)+'</h3><div class="mmeta">'+esc(d.issuer)+' · '+ratingText(d)+' · '+esc(d.series)+'</div><div style="margin-top:8px">'+tag+mtag+'</div></div></div>'+
         '<div class="mstats">'+
-          '<div><div class="label">'+(listed?'Return':'Best case')+'</div><div class="value good num">'+(+d.ret.toFixed(2))+'%</div><div class="label">a year</div></div>'+
+          '<div>'+retCell+'</div>'+
           '<div><div class="label">Protection</div><div class="value">'+esc(protShort(d))+'</div></div>'+
           '<div><div class="label">Tenure</div><div class="value">'+tenLabel(d)+'</div></div>'+
         '</div>'+
@@ -1000,15 +1066,26 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
   document.getElementById('f-done').addEventListener('click',function(){fp.classList.remove('show');fo.setAttribute('aria-expanded','false');document.body.style.overflow='';document.getElementById('open-now').scrollIntoView()});
   render();
 
-  // ---- Featured open issues (InCred, October 2026) ----
-  function keysOf(d){return d.keys||[[multLabel(d),'Participation'],[(+d.ret.toFixed(2))+'%','Best case a year'],[protShort(d),'Principal protection'],[tenLabel(d),'Tenure']]}
-  document.getElementById('featured').innerHTML=MLDS.filter(function(d){return d.issuer==='InCred'}).map(function(d){
-    return '<a class="card xcard" href="#mld-detail/'+MLDS.indexOf(d)+'">'+
-      '<div class="mname"><div class="mark" style="background:'+d.color+'">'+d.mark+'</div><div><h3>'+esc(d.name)+'</h3><div class="mmeta">'+esc(d.issuer)+' · Linked to '+esc(d.under)+'</div></div></div>'+
-      '<p class="muted">'+esc(d.pitch)+'</p>'+
-      '<div class="hk-list">'+keysOf(d).map(function(k){return '<div class="hk"><div class="k num">'+esc(k[0])+'</div><div class="t">'+esc(k[1])+'</div></div>'}).join('')+'</div>'+
-      '<span class="more-link">View product details →</span></a>';
-  }).join('');
+  // ---- Hero animation options (for review): A / B / C, also via ?anim=b ----
+  var optBtns=document.querySelectorAll('.optswitch button'), bTimer=null;
+  function countUp(){
+    var el=document.getElementById('b-num'); clearInterval(bTimer);
+    var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN')}
+    if(reduce){el.textContent=fmt(1510000);return}
+    var t0=Date.now();
+    bTimer=setInterval(function(){
+      var t=((Date.now()-t0)%8000)/8000, k=t<.1?0:t>.92?0:Math.min(1,(t-.1)/.45);
+      el.textContent=fmt(1000000+510000*(1-Math.pow(1-k,3)));
+    },50);
+  }
+  function setAnim(o){
+    document.querySelectorAll('[data-opt]').forEach(function(x){x.hidden=x.dataset.opt!==o});
+    optBtns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.anim===o)});
+    if(o==='b')countUp();else clearInterval(bTimer);
+  }
+  optBtns.forEach(function(b){b.addEventListener('click',function(){setAnim(b.dataset.anim)})});
+  var qa=(location.search.match(/anim=([abc])/)||[])[1]; setAnim(qa||'a');
 
   // ---- Understanding MLDs: update the sticky question as answers scroll past ----
   var steps=document.querySelectorAll('.learn-step'), lt=document.getElementById('learn-title'), lc=document.getElementById('learn-count'), lb=document.querySelectorAll('#learn-bar i');
@@ -1022,45 +1099,39 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     steps.forEach(function(s){io.observe(s)});
   }
 
-  // ---- Issuers (sample) ----
+  // ---- Issuers (from public filings; to be completed) ----
   var ISS={
-    'InCred':{industry:'Non-Banking Financial Company (NBFC)',hq:'Mumbai',sector:'Financial Services',own:'Private sector',about:'Issuer profile to be added from the information memorandum.',past:'To be confirmed'},
-    'Kaveri Capital Finance':{industry:'Non-Banking Financial Company (NBFC)',hq:'Mumbai',sector:'Financial Services',own:'Private sector',about:'Wealth and lending arm of the Kaveri Group. Lends to individuals and businesses.',past:'14 of 14 past MLDs repaid on time'},
-    'Palash Finserv':{industry:'Housing Finance Company',hq:'Pune',sector:'Financial Services',own:'Private sector',about:'Provides home loans and small-business loans across western India.',past:'6 of 6 past MLDs repaid on time'},
-    'Sahyadri Finvest':{industry:'Non-Banking Financial Company (NBFC)',hq:'Kolhapur',sector:'Financial Services',own:'Private sector',about:'Provides vehicle loans and gold loans in Maharashtra and Karnataka.',past:'3 of 3 past MLDs repaid on time'},
-    'Meru Home Finance':{industry:'Housing Finance Company',hq:'Bengaluru',sector:'Financial Services',own:'Private sector',about:'Provides affordable home loans in South India.',past:'8 of 8 past MLDs repaid on time'},
-    'Crestline Investments':{industry:'Non-Banking Financial Company (NBFC)',hq:'Mumbai',sector:'Financial Services',own:'Private sector',about:'Finance arm of the Crestline Group, one of India’s largest business groups.',past:'22 of 22 past MLDs repaid on time'}
+    'InCred':{industry:'Non-Banking Financial Company (NBFC)',hq:'Mumbai',about:'Issuer profile to be added from the information memorandum.'},
+    'Anand Rathi Global Finance':{industry:'Non-Banking Financial Company (NBFC)',about:'Part of the Anand Rathi Group. Formerly known as Rathi Global Finance Limited.'},
+    'Cultured Curio Jewels':{industry:'Gems, jewellery and watches',about:'Formerly known as Abans Fortune Gems Private Limited.'},
+    'Aadhar Housing Finance':{industry:'Housing Finance Company',about:'Formerly known as DHFL Vysya Housing Finance Limited.'},
+    'Kanchanjunga Power Company':{industry:'Electric utilities',about:'Formerly known as Padmini Traders Private Limited.'}
   };
-  var RDATE={CRISIL:'18 Sep 2026',ICRA:'11 Sep 2026',CARE:'4 Sep 2026'};
-  function isGsec(d){return d.under.indexOf('G-Sec')===0}
-  function underText(d){return isGsec(d)?'a government bond':d.under==='Gold'?'the price of gold':'the '+d.under}
-  function underLabel(d){return isGsec(d)?'Government bond':d.under}
-  function minLabel(d){return d.status==='Buy from investors'?'₹1 lakh face value':d.min==null?'To be confirmed':inrShort(d.min)}
+  function minLabel(d){return d.status==='Buy from investors'?inrShort(d.fv)+' face value':d.min==null?'To be confirmed':inrShort(d.min)}
+  function keysOf(d){return d.keys||[[underTag(d),'Linked to'],[monYear(d.mat),'Maturity'],[protShort(d),'Principal protection'],[d.rating==='Unrated'?'Unrated':d.rating||'Awaited','Credit rating']]}
 
   // MLD detail page, built from the MLD's data (fields follow the Dezerv bond page)
   function renderDetail(i){
     var d=MLDS[i]||MLDS[0]; i=MLDS.indexOf(d);
-    var is=ISS[d.issuer], listed=d.status==='Buy from investors', soon=d.status==='Coming soon';
-    var statusTxt=listed?'Active · Listed':soon?'Opens '+fmtDate(d.open):'Open for investment';
-    var cta=listed?['Buy now','Buy request sent (demo). We’ll confirm the price.']:soon?['Register interest','Thank you. We will contact you when the issue opens (demo).']:['Apply now','Starting the 2-minute suitability check (demo)'];
-    var when=listed?'Price today ₹'+d.min.toLocaleString('en-IN')+' per ₹1 lakh':soon?'Opens '+shortDate(d.open)+', closes '+fmtDate(d.close):'Closes '+fmtDate(d.close);
+    var is=ISS[d.issuer], soon=d.status==='Coming soon';
+    var statusTxt=soon?'Opens '+fmtDate(d.open):'Active';
+    var cta=soon?['Register interest','Thank you. We will contact you when the issue opens (demo).']:['Request a price','Request sent (demo). Our team will share the current price.'];
+    var when=soon?'Opens '+shortDate(d.open)+', closes '+fmtDate(d.close):'Price on request';
     var f=[
-      ['Principal protection',protLong(d)],['Participation',d.mult?d.mult+'x of '+d.under+' gains':'Not applicable'],
-      ['Tenure',tenLabel(d)],['Linked to',underLabel(d)],
-      ['Return type',d.rtype],['Index observation',d.obs||'At maturity'],
-      ['Payment',d.pay||'On maturity'],['Face value','₹1,00,000'],
+      ['Principal protection',protLong(d)],['Participation',d.mult?d.mult+'x of '+d.under+' gains':'Not disclosed'],
+      ['Linked to',underTag(d)],['Payment',d.pay||'On maturity'],
       ['Date of issue',fmtDate(d.issue)],['Maturity date',fmtDate(d.mat)],
-      ['Issue size',d.size?'₹'+d.size+' Cr':'To be confirmed'],['Instrument type','Debenture (PP-MLD)'],
-      ['Tax type','Taxable'],['Listing status',listed?'Listed on BSE':'To be listed on BSE'],
-      ['Credit rating',ratingFull(d)],['Security','Secured'],
-      ['Seniority in repayment','Senior'],['Asset cover','1.0x'],
-      ['Call option','Not available'],['Put option','Not available'],
-      ['Perpetual','No'],['Convertibility','Non-convertible']
+      ['Tenure',tenLabel(d)],['Face value',inrShort(d.fv)],
+      ['Issue size',d.size?'₹'+d.size+' Cr':'To be confirmed'],['Credit rating',ratingFull(d)],
+      ['Index observation',d.obs||'As per term sheet'],['Instrument type','Debenture'],
+      ['Tax type','Taxable'],['Listing status',d.listed?'Listed on BSE':soon?'To be listed on BSE':'Not listed'],
+      ['Security',d.secured?'Secured':'Unsecured'],['Seniority in repayment',d.senior||'Not specified'],
+      ['Convertibility','Non-convertible']
     ];
     var cell=function(x,k){return '<div'+(k>=10?' class="x"':'')+'><div class="label">'+x[0]+'</div><div class="value">'+esc(x[1])+'</div></div>'};
     var same=MLDS.filter(function(x){return x!==d&&x.issuer===d.issuer});
-    var similar=MLDS.filter(function(x){return x!==d&&x.issuer!==d.issuer&&(x.under===d.under||x.rtype===d.rtype)}).slice(0,4);
-    var mini=function(x){return '<a class="mini" href="#mld-detail/'+MLDS.indexOf(x)+'"><div class="mark" style="background:'+x.color+'">'+x.mark+'</div><div><strong>'+esc(x.name)+' · '+x.series+'</strong><span>'+esc(x.issuer)+' · '+ratingText(x)+' · '+underLabel(x)+'</span></div></a>'};
+    var similar=MLDS.filter(function(x){return x!==d&&x.issuer!==d.issuer&&x.under===d.under}).slice(0,4);
+    var mini=function(x){return '<a class="mini" href="#mld-detail/'+MLDS.indexOf(x)+'"><div class="mark" style="background:'+x.color+'">'+x.mark+'</div><div><strong>'+esc(x.name)+' · '+esc(x.series)+'</strong><span>'+esc(x.issuer)+' · '+ratingText(x)+' · Matures '+monYear(x.mat)+'</span></div></a>'};
     var glance=[
       ['Product',d.name+' – '+d.series],
       ['Issuer',d.issuer],
@@ -1070,13 +1141,14 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
     ];
     var hl=d.hl?'<section class="block"><div class="wrap"><div class="head"><h2>Product highlights</h2></div><div class="grid g3">'+
       d.hl.map(function(h){return '<div class="card feat"><h3>'+esc(h[0])+'</h3><p>'+esc(h[1])+'</p></div>'}).join('')+'</div></div></section>':'';
+    var issRows=[['Basic industry',is.industry],['Head office',is.hq]].filter(function(r){return r[1]});
     document.getElementById('d-root').innerHTML=
     '<section class="block" style="padding-top:20px"><div class="wrap"><div class="dhead"><div class="intro">'+
       '<div class="dtitle"><div class="mark" style="background:'+d.color+'">'+d.mark+'</div><div><h1>'+esc(d.name)+'</h1>'+
-      '<div class="dsub"><span>'+d.series+'</span><span>·</span><span class="ok">'+statusTxt+'</span><span>·</span><span>Private sector</span><span>·</span><span class="ok">Secured</span><span>·</span><span>ISIN: '+d.isin+'</span></div></div></div>'+
+      '<div class="dsub"><span>'+esc(d.series)+'</span><span>·</span><span class="ok">'+statusTxt+'</span><span>·</span><span>Private sector</span><span>·</span><span'+(d.secured?' class="ok">Secured':'>Unsecured')+'</span><span>·</span><span>ISIN: '+d.isin+'</span></div></div></div>'+
       '<p class="lead">'+esc(d.pitch)+'</p>'+
       '<div class="keyfacts">'+keysOf(d).map(function(k){return '<div><div class="value num" style="color:var(--green-ink)">'+esc(k[0])+'</div><div class="label">'+esc(k[1])+'</div></div>'}).join('')+'</div></div>'+
-      '<aside class="ctacard" aria-label="Invest"><div><div class="label">Minimum investment</div><div class="value num">'+minLabel(d)+'</div><div class="label">'+when+' · no fee to Stockify</div></div>'+
+      '<aside class="ctacard" aria-label="Invest"><div><div class="label">'+(soon?'Minimum investment':'Face value')+'</div><div class="value num">'+minLabel(d).replace(' face value','')+'</div><div class="label">'+when+' · no fee to Stockify</div></div>'+
       '<a class="btn btn-primary" href="#" data-demo="'+cta[1]+'">'+cta[0]+'</a>'+
       '<a class="btn btn-outline" href="#" data-demo="Downloading: term sheet (PDF) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download term sheet</a>'+
       '<p class="note">A Stockify specialist will assist with the application.</p></aside></div></div></section>'+
@@ -1091,26 +1163,23 @@ footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:
       '<div class="col"><div class="card"><div class="head"><h2>About this MLD</h2></div><p class="bigtext">'+esc(d.pitch)+'</p><p class="muted" style="margin-top:16px">Principal protection: '+esc(protLong(d).charAt(0).toLowerCase()+protLong(d).slice(1))+', subject to the issuer’s ability to pay. Returns are linked to '+underText(d)+' and are not fixed or assured.</p></div></div>'+
       '<div class="col"><div class="card"><div class="head"><h2>Rating</h2></div><div class="factlist">'+
         '<div><span class="label">Instrument rating</span><span class="value">'+ratingFull(d)+'</span></div>'+
-        '<div><span class="label">Outlook</span><span class="value">'+(d.outlook||'Awaited')+'</span></div>'+
-        '<div><span class="label">Date verified</span><span class="value">'+(RDATE[d.agency]||'Awaited')+'</span></div>'+
-        '<div><span class="label">Seniority in repayment</span><span class="value">Senior</span></div>'+
-        '<div><span class="label">Security</span><span class="value">Secured</span></div></div></div></div>'+
+        '<div><span class="label">Outlook</span><span class="value">'+(d.outlook||(d.rating==='Unrated'?'Not applicable':'Awaited'))+'</span></div>'+
+        '<div><span class="label">Date verified</span><span class="value">'+(d.rdate||(d.rating==='Unrated'?'Not applicable':'Awaited'))+'</span></div>'+
+        '<div><span class="label">Seniority in repayment</span><span class="value">'+(d.senior||'Not specified')+'</span></div>'+
+        '<div><span class="label">Security</span><span class="value">'+(d.secured?'Secured':'Unsecured')+'</span></div></div></div></div>'+
     '</div></section>'+
 
     '<section class="block"><div class="wrap pair">'+
       '<div class="col"><div class="card"><div class="head"><h2>About the issuer</h2><p class="muted">'+esc(is.about)+'</p></div><div class="factlist">'+
-        '<div><span class="label">Basic industry</span><span class="value">'+is.industry+'</span></div>'+
-        '<div><span class="label">Head office</span><span class="value">'+is.hq+'</span></div>'+
-        '<div><span class="label">Sector</span><span class="value">'+is.sector+'</span></div>'+
-        '<div><span class="label">Ownership</span><span class="value">'+is.own+'</span></div>'+
-        '<div><span class="label">Track record</span><span class="value">'+is.past+'</span></div></div></div></div>'+
+        issRows.map(function(r){return '<div><span class="label">'+r[0]+'</span><span class="value">'+esc(r[1])+'</span></div>'}).join('')+
+        '<div><span class="label">Sector</span><span class="value">Private sector</span></div></div></div></div>'+
       '<div class="col"><div class="card"><div class="head"><h2>At a glance</h2></div><div class="factlist">'+
         glance.map(function(q){return '<div><span class="label">'+q[0]+'</span><span class="value" style="font-size:1.1rem">'+esc(q[1])+'</span></div>'}).join('')+'</div></div></div>'+
     '</div></section>'+
 
     (same.length?'<section class="block"><div class="wrap"><div class="head"><h2>Other MLDs by '+esc(d.issuer)+'</h2></div><div class="minis">'+same.map(mini).join('')+'</div></div></section>':'')+
     (similar.length?'<section class="block"><div class="wrap"><div class="head"><h2>Similar MLDs</h2></div><div class="minis">'+similar.map(mini).join('')+'</div></div></section>':'')+
-    '<section class="block"><div class="wrap"><p class="legal">Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p></div></section>';
+    '<section class="block"><div class="wrap"><p class="legal">'+(d.issuer==='InCred'?'Terms as per the issuer’s October 2026 note.':'Details from public filings (via Dezerv); confirm against the term sheet.')+' Principal Protected Market Linked Debentures do not offer fixed or assured returns. Payouts depend on the underlying benchmark performance.</p></div></section>';
     var sa=document.getElementById('d-showall');
     sa.addEventListener('click',function(){var x=document.getElementById('d-grid'),open=!x.classList.contains('all');x.classList.toggle('all',open);sa.setAttribute('aria-expanded',open);sa.textContent=open?'Show fewer details':'Show all '+f.length+' details'});
   }
