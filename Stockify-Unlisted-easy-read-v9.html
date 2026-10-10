@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stockify Unlisted – Easy read</title>
+<meta name="description" content="Stockify Unlisted company overview redesigned for easy reading: larger text, less on each screen, details on demand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Schibsted+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F4; --card:#FFFFFF; --ink:#16232F; --ink-2:#3E4C59; --line:#E3E7E2;
+  --green:#3DB54A; --green-ink:#1A6B26; --green-soft:#EAF5EA; --navy:#1B2B3A;
+  --amber-soft:#FFF5E6; --amber-ink:#8A4B00; --red-soft:#FDEEEC; --red-ink:#A3261B;
+  --radius:16px; --shadow:0 1px 2px rgba(22,35,47,.04),0 4px 16px rgba(22,35,47,.05);
+}
+html{font-size:100%}
+html[data-size="1"]{font-size:112.5%}
+html[data-size="2"]{font-size:125%}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Instrument Sans',system-ui,sans-serif;font-size:1.1875rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Schibsted Grotesk',sans-serif;color:var(--ink);margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,4.5vw,3rem);line-height:1.15}
+h2{font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.25}
+h3{font-size:1.375rem;line-height:1.3}
+p{margin:0}
+a{color:var(--green-ink)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.narrow{max-width:820px}
+.lead{font-size:1.3rem;color:var(--ink-2);line-height:1.6}
+.muted{color:var(--ink-2)}
+.small{font-size:1rem}
+.num{font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+:focus-visible{outline:3px solid #1F6FEB;outline-offset:3px;border-radius:8px}
+
+/* Header */
+.top{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.top .wrap{display:flex;align-items:center;gap:28px;min-height:76px}
+.logo{font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:1.5rem;letter-spacing:.04em;color:var(--navy);text-decoration:none}
+.logo b{color:var(--green)}
+.nav{display:flex;gap:6px;flex:1}
+.nav a{white-space:nowrap;font-size:1.125rem;font-weight:600;color:var(--ink-2);text-decoration:none;padding:10px 16px;border-radius:10px}
+.nav a:hover{background:var(--bg)}
+.nav a[aria-current="page"]{color:var(--green-ink);background:var(--green-soft)}
+.textsize{display:flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:12px;padding:4px}
+.textsize span{font-size:.95rem;color:var(--ink-2);padding:0 8px}
+.textsize button{font-family:inherit;font-weight:700;border:0;background:transparent;color:var(--ink);border-radius:8px;width:44px;height:40px;cursor:pointer}
+.textsize button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.textsize button:nth-of-type(1){font-size:15px}.textsize button:nth-of-type(2){font-size:18px}.textsize button:nth-of-type(3){font-size:21px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:0 28px;border-radius:12px;font-family:inherit;font-weight:700;font-size:1.15rem;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:background .15s}
+.btn-primary{background:var(--green);color:#0F1D14}
+.btn-primary:hover{background:#34A541}
+.btn-outline{background:var(--card);color:var(--ink);border-color:#C9D1CB}
+.btn-outline:hover{border-color:var(--navy)}
+.btn-link{font-weight:700;font-size:1.15rem;color:var(--green-ink);text-decoration:none;display:inline-flex;gap:8px;align-items:center;min-height:48px}
+.btn-link:hover{text-decoration:underline}
+.btns{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.ico{width:1.2em;height:1.2em;flex:none}
+
+/* Layout pieces */
+section.block{padding:64px 0}
+section.block + section.block{padding-top:0}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:32px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:24px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:1rem;font-weight:600;padding:6px 14px;border-radius:999px;background:var(--bg);color:var(--ink-2)}
+.chip.green{background:var(--green-soft);color:var(--green-ink)}
+.chip.amber{background:var(--amber-soft);color:var(--amber-ink)}
+.dot{width:9px;height:9px;border-radius:50%;background:currentColor}
+
+/* Hero */
+.hero{background:linear-gradient(180deg,#EAF3EA 0%,var(--bg) 100%);padding:72px 0 56px}
+.hero .wrap{display:flex;flex-direction:column;gap:26px}
+.hero .chip{align-self:flex-start}
+.hero h1{max-width:22ch}
+.hero .lead{max-width:52ch}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:20px}
+.fact{display:flex;gap:16px;align-items:flex-start;background:var(--card);border-radius:var(--radius);padding:24px;border:1px solid var(--line)}
+.fact .badge{width:52px;height:52px;border-radius:14px;background:var(--green-soft);color:var(--green-ink);display:grid;place-items:center;flex:none}
+.fact strong{display:block;font-size:1.2rem;line-height:1.35;margin-bottom:4px}
+.fact p{color:var(--ink-2);font-size:1.05rem;line-height:1.5}
+
+/* Product cards */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.filters button{font-family:inherit;font-size:1.1rem;font-weight:600;min-height:50px;padding:0 22px;border-radius:999px;border:2px solid #C9D1CB;background:var(--card);color:var(--ink);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.products{display:flex;flex-direction:column;gap:20px}
+.product{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.5fr) auto;gap:32px;align-items:center}
+.product .who{display:flex;flex-direction:column;gap:10px}
+.issuer{display:flex;align-items:center;gap:14px}
+.mark{width:52px;height:52px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:1.05rem;flex:none}
+.product .pitch{font-size:1.1rem;color:var(--ink-2)}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.stat .label{font-size:1rem;color:var(--ink-2)}
+.stat .value{font-size:1.6rem;font-weight:700;line-height:1.2}
+.stat .value.good{color:var(--green-ink)}
+.product .act{display:flex;flex-direction:column;gap:10px;align-items:stretch;min-width:200px;text-align:center}
+.product .act .small{color:var(--ink-2)}
+.legal{font-size:1rem;color:var(--ink-2);line-height:1.55}
+
+/* Compare bars */
+.bars{display:flex;flex-direction:column;gap:22px}
+.bar-row{display:grid;grid-template-columns:220px minmax(0,1fr) 110px;gap:20px;align-items:center}
+.bar-row .name{font-weight:600;font-size:1.15rem;line-height:1.35}
+.bar-row .name span{display:block;font-weight:400;font-size:1rem;color:var(--ink-2)}
+.track{height:22px;border-radius:999px;background:#EEF1EE;overflow:hidden}
+.fill{height:100%;border-radius:999px}
+.bar-row .pct{font-size:1.5rem;font-weight:700;text-align:right}
+
+/* Disclosure / "show more" */
+details.more{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+details.more + details.more{margin-top:16px}
+details.more summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:18px;padding:26px 32px;min-height:84px}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary h3{flex:1}
+details.more summary .hint{font-size:1rem;color:var(--ink-2);font-weight:400;display:block;font-family:'Instrument Sans',sans-serif;letter-spacing:0;margin-top:2px}
+.plus{width:44px;height:44px;border-radius:50%;background:var(--bg);display:grid;place-items:center;flex:none;transition:transform .2s}
+details[open] .plus{transform:rotate(45deg)}
+details.more .body{padding:0 32px 32px;display:flex;flex-direction:column;gap:20px}
+
+/* Tables (only inside "show more") */
+.tbl{width:100%;border-collapse:collapse;font-size:1.1rem;font-variant-numeric:tabular-nums}
+.tbl th{text-align:left;font-size:1rem;color:var(--ink-2);font-weight:600;padding:12px 14px;border-bottom:2px solid var(--line)}
+.tbl td{padding:16px 14px;border-bottom:1px solid var(--line)}
+.tbl .r{text-align:right}
+.tbl-wrap{overflow-x:auto}
+
+/* Detail page */
+.crumb{padding:28px 0 0}
+.outcomes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.outcome{border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:8px}
+.outcome.good{background:var(--green-soft)}
+.outcome.base{background:#EEF1F4}
+.outcome .if{font-size:1.1rem;font-weight:600}
+.outcome .amt{font-size:clamp(2rem,4vw,2.6rem);font-weight:700;line-height:1.15}
+.outcome.good .amt{color:var(--green-ink)}
+.keyfacts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:var(--radius);background:var(--card)}
+.keyfacts>div{padding:22px 24px;border-left:1px solid var(--line)}
+.keyfacts>div:first-child{border-left:0}
+.keyfacts .label{font-size:1rem;color:var(--ink-2)}
+.keyfacts .value{font-size:1.45rem;font-weight:700;line-height:1.3}
+.risks{display:flex;flex-direction:column;gap:0;counter-reset:r}
+.risks li{list-style:none;display:flex;gap:20px;padding:20px 0;border-top:1px solid var(--line)}
+.risks li:first-child{border-top:0;padding-top:0}
+.risks li::before{counter-increment:r;content:counter(r);width:44px;height:44px;border-radius:50%;background:var(--amber-soft);color:var(--amber-ink);font-weight:700;display:grid;place-items:center;flex:none;font-size:1.15rem}
+.risks strong{display:block;font-size:1.2rem}
+.risks p{color:var(--ink-2)}
+ul.risks{margin:0;padding:0}
+
+/* Calculator */
+.calc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:start}
+.field{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.field label{font-weight:700;font-size:1.15rem}
+.stepper{display:flex;align-items:center;gap:0;border:2px solid #C9D1CB;border-radius:12px;width:max-content;background:#fff}
+.stepper button{width:60px;height:58px;border:0;background:transparent;font-size:1.6rem;font-weight:700;cursor:pointer;color:var(--ink)}
+.stepper output{min-width:150px;text-align:center;font-size:1.2rem;font-weight:700}
+input[type=range]{width:100%;height:44px;accent-color:var(--green-ink);cursor:pointer}
+.range-ends{display:flex;justify-content:space-between;font-size:1rem;color:var(--ink-2)}
+select{font-family:inherit;font-size:1.1rem;min-height:56px;padding:0 16px;border:2px solid #C9D1CB;border-radius:12px;background:#fff;color:var(--ink)}
+.result{border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:14px}
+.result.good{background:var(--green-soft)}
+.result.base{background:#EEF1F4}
+.result .big{font-size:2.6rem;font-weight:700;line-height:1.1}
+.result.good .big{color:var(--green-ink)}
+.result .line{display:flex;justify-content:space-between;gap:16px;font-size:1.1rem;border-top:1px solid rgba(22,35,47,.1);padding-top:12px}
+
+/* Docs */
+.doclist{display:flex;flex-direction:column}
+.doc{display:flex;align-items:center;gap:18px;padding:18px 0;border-top:1px solid var(--line)}
+.doc:first-child{border-top:0}
+.doc .meta{flex:1}
+.doc .meta strong{display:block}
+.doc .meta span{font-size:1rem;color:var(--ink-2)}
+
+/* How it works */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;counter-reset:s}
+.step{position:relative}
+.step .n{width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:700;font-size:1.4rem;margin-bottom:18px}
+.step p{color:var(--ink-2);margin-top:8px}
+.ticks{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:16px}
+.ticks li{display:flex;gap:14px;align-items:flex-start}
+.ticks .i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:none;font-weight:700}
+.ticks.yes .i{background:var(--green-soft);color:var(--green-ink)}
+.ticks.no .i{background:var(--red-soft);color:var(--red-ink)}
+.callout{background:var(--amber-soft);border-radius:var(--radius);padding:24px 28px;display:flex;gap:16px;align-items:flex-start}
+.callout strong{color:var(--amber-ink)}
+
+.cta{background:var(--navy);color:#fff;border-radius:24px;padding:48px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.cta h2{color:#fff}
+.cta p{color:#C9D3DC;margin-top:8px}
+.cta .btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.5)}
+
+footer{border-top:1px solid var(--line);background:var(--card);padding:40px 0 56px;margin-top:40px}
+footer .links{display:flex;flex-wrap:wrap;gap:8px 28px;margin-bottom:18px}
+footer .links a{color:var(--ink);font-weight:600;text-decoration:none;font-size:1.05rem}
+
+.dhead{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:40px;align-items:start}
+.dhead .intro{display:flex;flex-direction:column;gap:14px;padding-top:8px}
+.ctacard{background:var(--card);border:2px solid var(--green);border-radius:var(--radius);padding:28px;box-shadow:0 8px 28px rgba(22,35,47,.08);display:flex;flex-direction:column;gap:14px}
+.ctacard .label{font-size:1rem;color:var(--ink-2)}
+.ctacard .value{font-size:2rem;font-weight:700;line-height:1.15}
+.ctacard .btn{width:100%}
+.ctacard .note{font-size:1rem;color:var(--ink-2);line-height:1.5}
+@media (max-width:960px){.dhead{grid-template-columns:1fr;gap:24px}}
+
+/* Two-column layout */
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch}
+.pair>.col{display:flex;flex-direction:column;gap:24px;min-width:0}
+.pair>.col>.card{flex:1}
+.pair .head{margin-bottom:24px}
+.pair .calc{grid-template-columns:1fr;gap:28px}
+.pair .outcomes{grid-template-columns:1fr}
+.pair .grid.g2{grid-template-columns:1fr}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.product{grid-template-columns:1fr;gap:22px;align-items:start;align-content:space-between}
+.product .act{flex-direction:row;align-items:center;flex-wrap:wrap;text-align:left;min-width:0}
+.moregrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.moregrid details.more + details.more{margin-top:0}
+.factlist{display:flex;flex-direction:column}
+.factlist>div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--line);align-items:baseline}
+.factlist>div:first-child{border-top:0;padding-top:0}
+.factlist .label{color:var(--ink-2)}
+.factlist .value{font-size:1.35rem;font-weight:700;text-align:right}
+.steps4{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:960px){.pair,.products,.moregrid{grid-template-columns:1fr}}
+.screen{display:none}
+.screen.on{display:block}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:16px 24px;border-radius:12px;font-size:1.05rem;opacity:0;pointer-events:none;transition:all .25s;z-index:50;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width:960px){
+  .product{grid-template-columns:1fr;gap:22px}
+  .product .act{flex-direction:row;flex-wrap:wrap;align-items:center;text-align:left}
+  .calc,.g2{grid-template-columns:1fr}
+  .g4,.keyfacts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .keyfacts>div:nth-child(3){border-left:0}
+  .keyfacts>div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (max-width:720px){
+  body{font-size:1.125rem}
+  .wrap{padding:0 16px}
+  .top .wrap{flex-wrap:wrap;gap:8px 16px;padding-top:10px;padding-bottom:10px}
+  .nav{order:3;flex-basis:100%;overflow-x:auto}
+  .textsize{margin-left:auto}
+  .textsize span{display:none}
+  .top .login{display:none}
+  .nav a{padding:8px 12px;font-size:1.05rem}
+  .facts,.g3,.steps,.outcomes{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+  .stat .value{font-size:1.3rem}
+  .card{padding:22px}
+  details.more summary{padding:20px 22px}
+  details.more .body{padding:0 22px 24px}
+  .bar-row{grid-template-columns:1fr auto;gap:8px 12px}
+  .bar-row .track{grid-column:1 / -1;grid-row:2}
+  .cta{padding:32px 24px}
+  section.block{padding:44px 0}
+  .hero{padding:44px 0 36px}
+  .btns .btn{flex:1 1 100%}
+}
+
+.regionbar{background:var(--navy);color:#fff}
+.regionbar .wrap{display:flex;align-items:center;gap:18px;min-height:72px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.rlabel{font-weight:700;font-size:1.15rem}
+.region{display:flex;gap:8px;flex-wrap:wrap}
+.region button{font-family:inherit;font-size:1.1rem;font-weight:600;min-height:50px;padding:0 22px;border-radius:999px;border:2px solid rgba(255,255,255,.35);background:transparent;color:#fff;cursor:pointer}
+.region button[aria-pressed="true"]{background:#fff;color:var(--navy);border-color:#fff}
+
+.flow{font-size:1.25rem;font-weight:700;background:var(--green-soft);color:var(--green-ink);border-radius:12px;padding:18px 22px}
+@media (max-width:960px){.steps4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.steps4{grid-template-columns:1fr}.region button{padding:0 16px;font-size:1.02rem}}
+</style>
+<style>
+.pricebar{background:var(--navy);color:#fff}
+.pricebar .wrap{display:flex;gap:28px;min-height:56px;align-items:center;overflow-x:auto;white-space:nowrap;font-size:1.02rem}
+.pricebar b{font-weight:600;margin-right:8px}
+.pricebar .up{color:#7FDB8A}.pricebar .down{color:#FF9D92}
+.ctacard .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ctacard .two .value{font-size:1.6rem}
+.ipo li::before{content:"✓";background:var(--green-soft);color:var(--green-ink)}
+.ipo li.wait::before{content:"…";background:#EEF1F4;color:var(--ink-2)}
+.ipo li.now::before{content:"3";background:var(--navy);color:#fff}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#">ST<b>O</b>CKIFY</a>
+    <nav class="nav" aria-label="Main">
+      <a href="#" aria-current="page">Unlisted shares</a>
+      <a href="Stockify-US-PE-easy-read-v9.html">US deals</a>
+      <a href="Stockify-MLDs-easy-read-v9.html">MLDs</a>
+    </nav>
+    <div class="textsize" role="group" aria-label="Text size">
+      <span>Text size</span>
+      <button type="button" data-size="0" aria-label="Normal text">A</button>
+      <button type="button" data-size="1" aria-label="Larger text">A</button>
+      <button type="button" data-size="2" aria-label="Largest text">A</button>
+    </div>
+    <a class="btn btn-outline login" href="#" data-demo="Log in" style="min-height:48px;padding:0 20px;font-size:1.05rem">Log in</a>
+  </div>
+</header>
+
+<div class="pricebar" aria-label="Live prices">
+  <div class="wrap">
+    <span><b>Kestrel Payments</b>₹412.00 <span class="up">▲ 0.7%</span></span>
+    <span><b>PayNova Technologies</b>₹186.00 <span class="up">▲ 1.2%</span></span>
+    <span><b>Mintroute Fintech</b>₹1,240.00 <span class="down">▼ 0.8%</span></span>
+    <span><b>Arohi Foods</b>₹327.50 <span class="up">▲ 2.1%</span></span>
+    <span><b>Zentry SaaS</b>₹1,880.00 <span class="up">▲ 0.4%</span></span>
+    <span><b>Orbit Quick Commerce</b>₹22.15 <span class="down">▼ 3.4%</span></span>
+  </div>
+</div>
+
+<main>
+  <div class="wrap crumb"><a class="btn-link" href="#" data-demo="Opens the list of all unlisted shares (demo)"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 6l-6 6 6 6"/></svg>All unlisted shares</a></div>
+
+  <section class="block" style="padding-top:20px">
+    <div class="wrap">
+      <div class="dhead">
+        <div class="intro">
+          <div class="btns" style="gap:10px"><span class="chip green"><span class="dot"></span>IPO papers filed · 22 Jul 2026</span><span class="chip green">✓ Checked by Stockify</span></div>
+          <h1>Kestrel Payments</h1>
+          <p class="lead">Helps small shops in India take payments, get loans and run their billing, all in one app. Based in Mumbai since 2016, and making a profit since FY25.</p>
+          <p class="muted small">Fintech · Payment gateway · Updated 25 Sep 2026 from 18 public sources</p>
+        </div>
+        <aside class="ctacard" aria-label="Buy or sell">
+          <div class="two">
+            <div><div class="label">Buy at</div><div class="value num">₹412</div></div>
+            <div><div class="label">Sell at</div><div class="value num">₹398</div></div>
+          </div>
+          <div class="label">Minimum 50 shares · ₹20,600</div>
+          <a class="btn btn-primary" href="#" data-demo="Starting your order (demo). Shares reach your demat account in 1–2 days.">Buy shares</a>
+          <a class="btn btn-outline" href="#" data-demo="Sell request started (demo)">Sell to Stockify</a>
+          <p class="note">Questions? <a href="#" data-demo="Opens WhatsApp chat with a Stockify expert (demo)">Talk to an expert on WhatsApp</a></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="callout"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="#8A4B00" stroke-width="2" style="margin-top:4px"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><div><strong>Not listed yet.</strong> These shares aren’t on the stock exchange. Selling before the IPO can be slow, and after listing you can’t sell for 6 months.</div></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap pair">
+      <div class="col">
+        <div class="card">
+          <div class="head"><h2>The company at a glance</h2><p class="muted">Year to March 2026</p></div>
+          <div class="factlist">
+            <div><span class="label">Sales</span><span class="value num">₹2,184 Cr <span class="small" style="color:var(--green-ink)">▲ 35%</span></span></div>
+            <div><span class="label">Profit</span><span class="value num">₹148 Cr <span class="small muted">from ₹31 Cr</span></span></div>
+            <div><span class="label">Cash in the bank</span><span class="value num">₹1,460 Cr</span></div>
+            <div><span class="label">Money it owes</span><span class="value num">₹310 Cr</span></div>
+            <div><span class="label">Company value at ₹412</span><span class="value num">₹17,551 Cr</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="head"><h2>Share price on Stockify</h2><p class="muted">₹352 a year ago, ₹412 today</p></div>
+          <div class="outcome good" style="margin-bottom:20px"><div class="if">Up in the last 12 months</div><div class="amt num">17%</div></div>
+          <div class="factlist">
+            <div><span class="label">Highest in a year</span><span class="value num">₹418</span></div>
+            <div><span class="label">Lowest in a year</span><span class="value num">₹349</span></div>
+            <div><span class="label">Last funding round (Series E)</span><span class="value num">₹365</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap pair">
+      <div class="col">
+        <div class="card">
+          <div class="head"><h2>How it makes money</h2><p class="muted">Share of sales, FY26</p></div>
+          <div class="bars">
+            <div class="bar-row"><div class="name">Payment fees<span>A small fee on every online payment</span></div><div class="track"><div class="fill" style="width:58%;background:var(--green)"></div></div><div class="pct num">58%</div></div>
+            <div class="bar-row"><div class="name">Loans to shops<span>Interest, plus card machine rent</span></div><div class="track"><div class="fill" style="width:27%;background:#1F6F8B"></div></div><div class="pct num">27%</div></div>
+            <div class="bar-row"><div class="name">Payouts &amp; software<span>Bulk payouts and billing app</span></div><div class="track"><div class="fill" style="width:15%;background:#B5541C"></div></div><div class="pct num">15%</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="head"><h2>Where the IPO stands</h2><p class="muted">Step 3 of 5. No listing date yet.</p></div>
+          <ul class="risks ipo">
+            <li><div><strong>Became a public company</strong><p>18 Mar 2026</p></div></li>
+            <li><div><strong>Filed IPO papers with SEBI</strong><p>22 Jul 2026 · ₹2,400 Cr of new shares</p></div></li>
+            <li class="now"><div><strong>Waiting for SEBI’s comments</strong><p>Usually takes 2–4 months</p></div></li>
+            <li class="wait"><div><strong>Price range announced</strong><p>Not yet</p></div></li>
+            <li class="wait"><div><strong>Listed on NSE / BSE</strong><p>Not yet</p></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap pair">
+      <div class="col">
+        <div class="card">
+          <div class="head"><h2>4 things to know before you buy</h2></div>
+          <ul class="risks">
+            <li><div><strong>The price is high for its profit</strong><p>You pay about 119 times yearly profit. Similar listed companies trade at about 79 times.</p></div></li>
+            <li><div><strong>Locked for 6 months after listing</strong><p>You can’t sell for 6 months once the shares list.</p></div></li>
+            <li><div><strong>Lower tax only after 2 years</strong><p>Gains are taxed at 12.5% only if you hold for more than 24 months.</p></div></li>
+            <li><div><strong>Bad loans differ from filings</strong><p>The company says 2.1%. Its lending arm’s own filing says 2.4%.</p></div></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="head"><h2>See what you could get back</h2><p class="muted">An example only. Nobody knows the listing price.</p></div>
+          <div class="calc">
+            <div>
+              <div class="field">
+                <label id="lbl-lots">How many shares</label>
+                <div class="stepper" role="group" aria-labelledby="lbl-lots">
+                  <button type="button" id="u-minus" aria-label="Fewer">−</button>
+                  <output id="u-qty" class="num">100</output>
+                  <button type="button" id="u-plus" aria-label="More">+</button>
+                </div>
+                <span class="muted small" id="u-cost"></span>
+              </div>
+              <div class="field" style="margin-bottom:0">
+                <label id="lbl-px">If the share is later worth</label>
+                <div class="filters" role="group" aria-labelledby="lbl-px" style="margin:0">
+                  <button type="button" data-p="300" aria-pressed="false">₹300</button>
+                  <button type="button" data-p="412" aria-pressed="false">₹412</button>
+                  <button type="button" data-p="500" aria-pressed="true">₹500</button>
+                  <button type="button" data-p="600" aria-pressed="false">₹600</button>
+                </div>
+              </div>
+            </div>
+            <div class="result good" id="u-box" aria-live="polite">
+              <div>Your shares would be worth</div>
+              <div class="big num" id="u-get"></div>
+              <div class="line"><span>You paid</span><strong class="num" id="u-paid"></strong></div>
+              <div class="line"><span>Gain or loss</span><strong class="num" id="u-gain"></strong></div>
+            </div>
+          </div>
+          <p class="legal" style="margin-top:20px">Before tax.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="head"><h2>More details</h2><p class="muted">Open any section for the full details.</p></div>
+      <div class="moregrid">
+
+      <details class="more">
+        <summary><h3>Key numbers<span class="hint">Price ratios, returns and debt</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div class="tbl-wrap"><table class="tbl"><tbody>
+            <tr><td>Price ÷ profit per share (P/E)</td><td class="r num"><strong>118.6x</strong> · peers 78.9x</td></tr>
+            <tr><td>Price ÷ sales</td><td class="r num"><strong>8.0x</strong> · peers 7.0x</td></tr>
+            <tr><td>Price ÷ book value (P/B)</td><td class="r num"><strong>5.6x</strong></td></tr>
+            <tr><td>Return on equity</td><td class="r num"><strong>6.1%</strong></td></tr>
+            <tr><td>Debt ÷ equity</td><td class="r num"><strong>0.10</strong></td></tr>
+            <tr><td>Profit per share</td><td class="r num"><strong>₹3.47</strong> · from ₹0.80</td></tr>
+            <tr><td>Dividend</td><td class="r"><strong>Never paid</strong></td></tr>
+          </tbody></table></div>
+          <p class="legal">FY26 results from the IPO papers. Ratios at ₹412.</p>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>Who owns Kestrel<span class="hint">Founders, funds and employees</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div class="bars">
+            <div class="bar-row"><div class="name">Investment funds</div><div class="track"><div class="fill" style="width:51.3%;background:var(--navy)"></div></div><div class="pct num">51%</div></div>
+            <div class="bar-row"><div class="name">Founders</div><div class="track"><div class="fill" style="width:24.8%;background:var(--green)"></div></div><div class="pct num">25%</div></div>
+            <div class="bar-row"><div class="name">Individual investors</div><div class="track"><div class="fill" style="width:14.6%;background:#1F6F8B"></div></div><div class="pct num">15%</div></div>
+            <div class="bar-row"><div class="name">Employees &amp; ESOP</div><div class="track"><div class="fill" style="width:9.3%;background:#B5541C"></div></div><div class="pct num">9%</div></div>
+          </div>
+          <p class="muted">Individual shareholders grew from 1,240 to 9,410 in two years.</p>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>Its 5 products<span class="hint">Launched 2017 to 2024</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th>Product</th><th>What it does</th><th class="r">Size</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Gateway</strong></td><td>Online payments</td><td class="r num">1.1 lakh shops</td></tr>
+              <tr><td><strong>POS &amp; Soundbox</strong></td><td>In-store payments</td><td class="r num">14.2 lakh devices</td></tr>
+              <tr><td><strong>Capital</strong></td><td>Loans to shops</td><td class="r num">₹1,060 Cr lent</td></tr>
+              <tr><td><strong>Payouts</strong></td><td>Bulk payouts for apps</td><td class="r num">2,400 clients</td></tr>
+              <tr><td><strong>Books</strong></td><td>Billing and GST app</td><td class="r num">86,000 users</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>What we checked<span class="hint">Company claims vs official filings</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <ul class="ticks yes" style="margin:0">
+            <li><span class="i">✓</span><div><strong>Sales match.</strong> ₹2,184 Cr in the filings.</div></li>
+            <li><span class="i">✓</span><div><strong>Loans match.</strong> ₹1,060 Cr in the deck and the balance sheet.</div></li>
+            <li><span class="i">✓</span><div><strong>Staff match.</strong> About 3,500 people.</div></li>
+          </ul>
+          <ul class="ticks no" style="margin:0">
+            <li><span class="i">!</span><div><strong>Bad loans differ.</strong> 2.1% in the deck, 2.4% in the filing. Worth asking about.</div></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>What changed recently<span class="hint">Last 30 days</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div class="tbl-wrap"><table class="tbl"><tbody>
+            <tr><td class="num">14 Sep</td><td>New ₹150 Cr bank loan from Axis Bank, for lending to shops</td></tr>
+            <tr><td class="num">10 Sep</td><td>Staff up 6% in 90 days. Hiring a head of investor relations</td></tr>
+            <tr><td class="num">2 Sep</td><td>Employee share pool raised from 6.5% to 7.5%</td></tr>
+            <tr><td class="num">28 Aug</td><td>App rating dipped from 4.4 to 4.3 after refund delays</td></tr>
+          </tbody></table></div>
+        </div>
+      </details>
+
+      <details class="more">
+        <summary><h3>Common questions<span class="hint">Where do my shares go? When can I sell?</span></h3><span class="plus" aria-hidden="true"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="body">
+          <div><strong>Where do my shares go?</strong><p class="muted">Into your own demat account, usually in 1–2 working days.</p></div>
+          <div><strong>Can I sell before the IPO?</strong><p class="muted">Yes, back to Stockify at the sell price. It can take a few days.</p></div>
+          <div><strong>What happens at the IPO?</strong><p class="muted">Your shares list on NSE / BSE. You can sell them 6 months after listing.</p></div>
+        </div>
+      </details>
+      </div>
+
+      <div class="btns" style="margin-top:28px">
+        <a class="btn btn-outline" href="#" data-demo="Downloading: Kestrel Payments report (PDF) – sample"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v11m0 0-4-4m4 4 4-4M5 20h14"/></svg>Download the full report (PDF)</a>
+      </div>
+      <p class="legal" style="margin-top:28px">Unlisted shares are high risk and can be hard to sell. Nothing here is investment advice.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="cta">
+        <div><h2>Ready to buy Kestrel shares?</h2><p>₹412 a share. Minimum 50 shares (₹20,600).</p></div>
+        <div class="btns"><a class="btn btn-primary" href="#" data-demo="Starting your order (demo)">Buy shares</a><a class="btn btn-outline" href="#" data-demo="Opens WhatsApp chat with a Stockify expert (demo)">Talk to an expert</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="links"><a href="#">About our data</a><a href="#">Disclaimer</a><a href="#">Privacy</a><a href="#">Contact us</a><a href="Stockify-Unlisted.html">Previous design (v8)</a></div>
+    <p class="legal">Stockify lets investors in India buy and sell shares of companies before they list. Nothing on this page is investment, legal or tax advice. Unlisted shares are high risk and hard to sell. Design sample – all companies and figures are fictional.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+<script>
+(function(){
+  function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+
+  // Text size
+  var root=document.documentElement, sizeBtns=document.querySelectorAll('.textsize button');
+  function setSize(n){root.setAttribute('data-size',n);sizeBtns.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.size===String(n))});store('stk-text',n)}
+  setSize(store('stk-text')||'0');
+  sizeBtns.forEach(function(b){b.addEventListener('click',function(){setSize(b.dataset.size)})});
+
+  // Toast
+  var toast=document.getElementById('toast'),tt;
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-demo]');if(!a)return;
+    e.preventDefault();toast.textContent=a.dataset.demo;toast.classList.add('show');
+    clearTimeout(tt);tt=setTimeout(function(){toast.classList.remove('show')},2600);
+  });
+
+  // Value calculator: buy at ₹412, steps of 50 shares
+  var BUY=412, qty=100, px=500, pb=document.querySelectorAll('[data-p]');
+  function inr(n){return (n<0?'−':'')+'₹'+Math.round(Math.abs(n)).toLocaleString('en-IN')}
+  function calc(){
+    var paid=qty*BUY, get=qty*px, gain=get-paid;
+    document.getElementById('u-qty').textContent=qty;
+    document.getElementById('u-cost').textContent='Costs '+inr(paid)+' at ₹412 a share';
+    document.getElementById('u-get').textContent=inr(get);
+    document.getElementById('u-paid').textContent=inr(paid);
+    document.getElementById('u-gain').textContent=(gain>0?'+':'')+inr(gain);
+    document.getElementById('u-box').className='result '+(gain>=0?'good':'base');
+  }
+  pb.forEach(function(b){b.addEventListener('click',function(){px=+b.dataset.p;pb.forEach(function(x){x.setAttribute('aria-pressed',x===b)});calc()})});
+  document.getElementById('u-minus').addEventListener('click',function(){if(qty>50){qty-=50;calc()}});
+  document.getElementById('u-plus').addEventListener('click',function(){if(qty<5000){qty+=50;calc()}});
+  calc();
+})();
+</script>
+
+</body>
+</html>
